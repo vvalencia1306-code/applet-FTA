@@ -1,255 +1,120 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Applet – Fenología y Riesgos Capsicum</title>
+<script type="text/babel">
+  const { useMemo, useState } = React;
 
-  <!-- Tailwind vía CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  const CALENDARIOS = {
+    Cayenne: [
+      { elem: "Preparación del terreno", ini: 1, fin: 1 },
+      { elem: "Germinación", ini: 1, fin: 1 },
+      { elem: "Emergencia", ini: 1, fin: 1 },
+      { elem: "Des. tallo y ramificación", ini: 1, fin: 1 },
+      { elem: "Fertilización", ini: 1, fin: 1 },
+      { elem: "Brotes axilares", ini: 1, fin: 1 },
+      { elem: "Desarrollo foliar", ini: 1, fin: 2 },
+      { elem: "Control de malezas", ini: 1, fin: 2 },
+      { elem: "Control de plagas", ini: 1, fin: 8 },
+      { elem: "Emergencia de inflorescencia", ini: 1, fin: 2 },
+      { elem: "Floración (oleadas)", ini: 1, fin: 7 },
+      { elem: "Cuajado (oleadas)", ini: 2, fin: 7 },
+      { elem: "Desarrollo del fruto", ini: 3, fin: 8 },
+      { elem: "Cosecha (escalonada)", ini: 3, fin: 8 },
+    ],
+    Habanero: [
+      { elem: "Preparación del terreno", ini: 1, fin: 1 },
+      { elem: "Germinación", ini: 1, fin: 1 },
+      { elem: "Emergencia", ini: 1, fin: 1 },
+      { elem: "Des. tallo y ramificación", ini: 1, fin: 2 },
+      { elem: "Fertilización", ini: 1, fin: 2 },
+      { elem: "Brotes axilares", ini: 1, fin: 2 },
+      { elem: "Desarrollo foliar", ini: 1, fin: 2 },
+      { elem: "Control de malezas", ini: 1, fin: 2 },
+      { elem: "Control de plagas", ini: 1, fin: 8 },
+      { elem: "Emergencia de inflorescencia", ini: 2, fin: 3 },
+      { elem: "Floración (oleadas)", ini: 2, fin: 7 },
+      { elem: "Cuajado (oleadas)", ini: 2, fin: 7 },
+      { elem: "Desarrollo del fruto", ini: 3, fin: 8 },
+      { elem: "Cosecha (escalonada)", ini: 3, fin: 8 },
+    ],
+    Tabasco: [
+      { elem: "Preparación del terreno", ini: 1, fin: 1 },
+      { elem: "Germinación", ini: 1, fin: 1 },
+      { elem: "Emergencia", ini: 1, fin: 1 },
+      { elem: "Des. tallo y ramificación", ini: 1, fin: 3 },
+      { elem: "Fertilización", ini: 1, fin: 3 },
+      { elem: "Brotes axilares", ini: 2, fin: 3 },
+      { elem: "Desarrollo foliar", ini: 1, fin: 3 },
+      { elem: "Control de malezas", ini: 1, fin: 3 },
+      { elem: "Control de plagas", ini: 1, fin: 9 },
+      { elem: "Emergencia de inflorescencia", ini: 3, fin: 4 },
+      { elem: "Floración (oleadas)", ini: 3, fin: 8 },
+      { elem: "Cuajado (oleadas)", ini: 4, fin: 8 },
+      { elem: "Desarrollo del fruto", ini: 5, fin: 9 },
+      { elem: "Cosecha (escalonada)", ini: 5, fin: 9 },
+    ],
+  };
 
-  <!-- React 18 + ReactDOM UMD -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  const months = [1,2,3,4,5,6,7,8,9];
 
-  <!-- Babel para compilar JSX en el navegador -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-</head>
-<body class="bg-white text-gray-800">
-  <main class="max-w-6xl mx-auto p-6">
-    <!-- ESTE DIV ES CLAVE -->
-    <div id="root">Cargando applet…</div>
-  </main>
+  function AppletCapsicum(){
+    const [especie, setEspecie] = useState("Cayenne");
+    const data = CALENDARIOS[especie];
 
-  <!-- Tu app en JSX -->
-  <script type="text/babel">
-    const { useMemo, useState } = React;
+    const grid = useMemo(()=>{
+      return data.map(d => {
+        const monthsActive = months.map(m => (m>=d.ini && m<=d.fin));
+        return { ...d, monthsActive };
+      });
+    }, [data]);
 
-    const CALENDARIOS = {
-      Cayenne: [
-        { elem: "Preparación del terreno", ini: 1, fin: 1 },
-        { elem: "Germinación", ini: 1, fin: 1 },
-        { elem: "Emergencia", ini: 1, fin: 1 },
-        { elem: "Des. tallo y ramificación", ini: 1, fin: 1 },
-        { elem: "Fertilización", ini: 1, fin: 1 },
-        { elem: "Brotes axilares", ini: 1, fin: 1 },
-        { elem: "Desarrollo foliar", ini: 1, fin: 2 },
-        { elem: "Control de malezas", ini: 1, fin: 2 },
-        { elem: "Control de plagas", ini: 1, fin: 8 },
-        { elem: "Emergencia de inflorescencia", ini: 1, fin: 2 },
-        { elem: "Floración (oleadas)", ini: 1, fin: 7 },
-        { elem: "Cuajado (oleadas)", ini: 2, fin: 7 },
-        { elem: "Desarrollo del fruto", ini: 3, fin: 8 },
-        { elem: "Cosecha (escalonada)", ini: 3, fin: 8 },
-      ],
-      Habanero: [
-        { elem: "Preparación del terreno", ini: 1, fin: 1 },
-        { elem: "Germinación", ini: 1, fin: 1 },
-        { elem: "Emergencia", ini: 1, fin: 1 },
-        { elem: "Des. tallo y ramificación", ini: 1, fin: 2 },
-        { elem: "Fertilización", ini: 1, fin: 2 },
-        { elem: "Brotes axilares", ini: 1, fin: 2 },
-        { elem: "Desarrollo foliar", ini: 1, fin: 2 },
-        { elem: "Control de malezas", ini: 1, fin: 2 },
-        { elem: "Control de plagas", ini: 1, fin: 8 },
-        { elem: "Emergencia de inflorescencia", ini: 2, fin: 3 },
-        { elem: "Floración (oleadas)", ini: 2, fin: 7 },
-        { elem: "Cuajado (oleadas)", ini: 2, fin: 7 },
-        { elem: "Desarrollo del fruto", ini: 3, fin: 8 },
-        { elem: "Cosecha (escalonada)", ini: 3, fin: 8 },
-      ],
-      Tabasco: [
-        { elem: "Preparación del terreno", ini: 1, fin: 1 },
-        { elem: "Germinación", ini: 1, fin: 1 },
-        { elem: "Emergencia", ini: 1, fin: 1 },
-        { elem: "Des. tallo y ramificación", ini: 1, fin: 3 },
-        { elem: "Fertilización", ini: 1, fin: 3 },
-        { elem: "Brotes axilares", ini: 2, fin: 3 },
-        { elem: "Desarrollo foliar", ini: 1, fin: 3 },
-        { elem: "Control de malezas", ini: 1, fin: 3 },
-        { elem: "Control de plagas", ini: 1, fin: 9 },
-        { elem: "Emergencia de inflorescencia", ini: 3, fin: 4 },
-        { elem: "Floración (oleadas)", ini: 3, fin: 8 },
-        { elem: "Cuajado (oleadas)", ini: 4, fin: 8 },
-        { elem: "Desarrollo del fruto", ini: 5, fin: 9 },
-        { elem: "Cosecha (escalonada)", ini: 5, fin: 9 },
-      ],
-    };
-
-    const RIESGOS = {
-      Cayenne: {
-        "Floración (oleadas)": {
-          "Exceso hídrico": "Caída floral por hongos",
-          "Déficit hídrico": "Aborto floral, bajo cuajado",
-          Tmax: "Alta sensibilidad al calor (>32°C)",
-          Tmin: "Baja afectación",
-        },
-        "Cuajado (oleadas)": {
-          "Exceso hídrico": "Deterioro inicial del fruto",
-          "Déficit hídrico": "Caída y bajo calibre",
-          Tmax: "Malformaciones/quemaduras",
-          Tmin: "Bajo cuajado por frío",
-        },
-        "Desarrollo del fruto": {
-          "Exceso hídrico": "Pudrición apical, Phytophthora",
-          "Déficit hídrico": "Frutos pequeños/arrugados",
-          Tmax: "Maduración acelerada",
-          Tmin: "Maduración lenta",
-        },
-      },
-      Habanero: {
-        "Floración (oleadas)": {
-          "Exceso hídrico": "Botrytis/caída floral",
-          "Déficit hídrico": "Aborto floral",
-          Tmax: "Menor cuajado",
-          Tmin: "Muy sensible a frío",
-        },
-        "Cuajado (oleadas)": {
-          "Exceso hídrico": "Deterioro y caída",
-          "Déficit hídrico": "Bajo calibre",
-          Tmax: "Malformaciones",
-          Tmin: "Frutos pequeños",
-        },
-        "Desarrollo del fruto": {
-          "Exceso hídrico": "Antracnosis/pudriciones",
-          "Déficit hídrico": "Arrugado",
-          Tmax: "Maduración rápida",
-          Tmin: "Lenta; decoloraciones",
-        },
-      },
-      Tabasco: {
-        "Floración (oleadas)": {
-          "Exceso hídrico": "Caída floral por humedad",
-          "Déficit hídrico": "Aborto floral",
-          Tmax: "Menor cuajado",
-          Tmin: "Baja afectación",
-        },
-        "Cuajado (oleadas)": {
-          "Exceso hídrico": "Frutos caídos/soft rot",
-          "Déficit hídrico": "Bajo calibre",
-          Tmax: "Quemaduras",
-          Tmin: "Frutos pequeños",
-        },
-        "Desarrollo del fruto": {
-          "Exceso hídrico": "Phytophthora, antracnosis",
-          "Déficit hídrico": "Frutos pequeños",
-          Tmax: "Maduración rápida",
-          Tmin: "Lenta",
-        },
-      },
-    };
-
-    const months = [1,2,3,4,5,6,7,8,9];
-
-    function Pill({ children }) {
-      return (
-        <span className="px-2 py-0.5 rounded-full bg-gray-100 border text-gray-800 text-xs">
-          {children}
-        </span>
-      );
-    }
-
-    function AppletCapsicum(){
-      const [especie, setEspecie] = useState("Cayenne");
-      const data = CALENDARIOS[especie];
-
-      const grid = useMemo(()=>{
-        return data.map((d)=>{
-          const monthsActive = months.map(m => (m>=d.ini && m<=d.fin));
-          return { ...d, monthsActive };
-        });
-      },[data]);
-
-      const riesgos = (elem) => (RIESGOS[especie] || {})[elem];
-
-      return (
-        <div className="w-full p-2 md:p-6 space-y-6">
-          <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-            <h1 className="text-2xl font-semibold">Applet – Fenología y Riesgos por especie</h1>
-            <div className="flex items-center gap-2">
-              <label className="text-sm text-gray-600">Especie:</label>
-              <select
-                value={especie}
-                onChange={(e)=>setEspecie(e.target.value)}
-                className="border rounded-lg px-3 py-2 text-sm"
-              >
-                {Object.keys(CALENDARIOS).map(k=> (
-                  <option key={k} value={k}>{k}</option>
-                ))}
-              </select>
-            </div>
-          </header>
-
-          <div className="text-sm text-gray-600">
-            Mes 1 = 21-dic → 20-ene. Cambia la especie para ver su calendario y riesgos específicos.
+    return (
+      <div className="p-6 space-y-6">
+        <header className="flex items-center justify-between">
+          <h1 className="text-2xl font-semibold">Applet – Fenología y Riesgos por especie</h1>
+          <div className="flex items-center gap-2">
+            <label className="text-sm text-gray-600">Especie:</label>
+            <select
+              value={especie}
+              onChange={(e)=>setEspecie(e.target.value)}
+              className="border rounded-lg px-3 py-2 text-sm"
+            >
+              {Object.keys(CALENDARIOS).map(k=> (
+                <option key={k} value={k}>{k}</option>
+              ))}
+            </select>
           </div>
+        </header>
 
-          <div className="overflow-auto border rounded-2xl">
-            <table className="min-w-full text-sm">
-              <thead>
-                <tr className="bg-gray-50">
-                  <th className="text-left px-3 py-2 sticky left-0 bg-gray-50">Elemento expuesto</th>
-                  {months.map(m=> (
-                    <th key={m} className="px-3 py-2 text-center border-l">M{m}</th>
+        <div className="overflow-auto border rounded-2xl">
+          <table className="min-w-full text-sm">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="text-left px-3 py-2 sticky left-0 bg-gray-50">Elemento expuesto</th>
+                {months.map(m=> (
+                  <th key={m} className="px-3 py-2 text-center border-l">M{m}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {grid.map((row,i)=> (
+                <tr key={i} className={i%2 ? "bg-white" : "bg-gray-50/50"}>
+                  <td className="px-3 py-2 sticky left-0 bg-inherit max-w-[260px]">{row.elem}</td>
+                  {row.monthsActive.map((on, j)=> (
+                    <td key={j} className={`h-9 border-l ${on ? "bg-emerald-200" : ""}`}></td>
                   ))}
                 </tr>
-              </thead>
-              <tbody>
-                {grid.map((row,i)=> (
-                  <tr key={i} className={i%2 ? "bg-white" : "bg-gray-50/50"}>
-                    <td className="px-3 py-2 sticky left-0 bg-inherit max-w-[260px]">{row.elem}</td>
-                    {row.monthsActive.map((on, j)=> (
-                      <td key={j} className={`h-9 border-l ${on ? "bg-emerald-200" : ""}`}></td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <section className="space-y-3">
-            <h2 className="text-lg font-semibold">Riesgos críticos por especie</h2>
-            <p className="text-sm text-gray-600">
-              A continuación se muestran los más importantes para <b>{especie}</b> en <i>Floración</i>, <i>Cuajado</i> y <i>Desarrollo del fruto</i>.
-            </p>
-            {["Floración (oleadas)","Cuajado (oleadas)","Desarrollo del fruto"].map((fase)=> {
-              const r = riesgos(fase) || {};
-              return (
-                <div key={fase} className="border rounded-xl p-4">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                    <h3 className="font-medium">{fase}</h3>
-                    <div className="flex gap-2">
-                      <Pill>Exceso hídrico</Pill>
-                      <Pill>Déficit hídrico</Pill>
-                      <Pill>Tmax</Pill>
-                      <Pill>Tmin</Pill>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-3 text-sm">
-                    <div><b>Exceso hídrico:</b> {r["Exceso hídrico"] || "—"}</div>
-                    <div><b>Déficit hídrico:</b> {r["Déficit hídrico"] || "—"}</div>
-                    <div><b>Tmax:</b> {r["Tmax"] || "—"}</div>
-                    <div><b>Tmin:</b> {r["Tmin"] || "—"}</div>
-                  </div>
-                </div>
-              );
-            })}
-          </section>
-
-          <footer className="text-xs text-gray-600">
-            <p className="mb-2">
-              Referencias sugeridas: Erickson & Markhart (2002); Lin et al. (2022); Ristaino et al. (Phytophthora capsici);
-              Bosland & Votava (2012, CABI); Reddy & Kakani (2007).
-            </p>
-          </footer>
+              ))}
+            </tbody>
+          </table>
         </div>
-      );
-    }
 
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(<AppletCapsicum />);
-  </script>
-  <!-- deploy -->
-</body>
-</html>
+        <p className="text-gray-600 text-sm">
+          Mes 1 = 21-dic → 20-ene. Cambia la especie para ver su calendario.
+        </p>
+      </div>
+    );
+  }
+
+  // Montar en el div#root
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<AppletCapsicum />);
+</script>
 
