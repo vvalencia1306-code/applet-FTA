@@ -277,87 +277,99 @@
       );
     }
 
-    function MatrizCacao({ onBack }) {
-      const [fase, setFase] = useState("Vegetativa");
-      const data = fase === "Vegetativa" ? MATRIZ_VEGETATIVA : MATRIZ_PRODUCTIVA;
-      const [sel, setSel] = useState(null);
+   function MatrizCacao({ onBack }) {
+  const [fase, setFase] = useState("Vegetativa");
+  const data = fase === "Vegetativa" ? MATRIZ_VEGETATIVA : MATRIZ_PRODUCTIVA;
+  const [sel, setSel] = useState(null);
 
-      const maxMes = useMemo(() => {
-  const filaMax = (row) => {
-    if (Array.isArray(row?.meses) && row.meses.length) {
-      return Math.max(...row.meses);
-    }
-    if (typeof row?.fin === "number") return row.fin;
-    return 0;
-  };
-  const vals = data.map(filaMax);
-  const max = vals.length ? Math.max(...vals) : 0;
-  return max > 0 ? max : 22; // por si todas las filas dan 0
-}, [data]);
-      const meses = useMemo(() => Array.from({length: maxMes}, (_,i) => i+1), [maxMes]);
+  // maxMes que soporta ini/fin y meses[]
+  const maxMes = useMemo(() => {
+    const filaMax = (row) => {
+      if (Array.isArray(row?.meses) && row.meses.length) {
+        return Math.max(...row.meses);
+      }
+      if (typeof row?.fin === "number") return row.fin;
+      return 0;
+    };
+    const vals = data.map(filaMax);
+    const max = vals.length ? Math.max(...vals) : 0;
+    return max > 0 ? max : 22;
+  }, [data]);
 
-      return (
-        <div className="max-w-7xl mx-auto p-6 space-y-6">
-          <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-            <div>
-              <h1 className="text-2xl font-semibold">Matriz preliminar de riesgos agroclimáticos · Cacao</h1>
-              <p className="text-sm text-gray-600">
-                Los meses representan <b>fases del ciclo</b>, no un calendario fijo. “Mes 1” = primer mes del evento en campo.
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
-              <label className="text-sm text-gray-600">Fase:</label>
-              <select value={fase} onChange={e => setFase(e.target.value)}
-                      className="border rounded-lg px-3 py-2 text-sm">
-                <option>Vegetativa</option>
-                <option>Productiva</option>
-              </select>
-            </div>
-          </header>
+  const meses = useMemo(
+    () => Array.from({ length: maxMes }, (_, i) => i + 1),
+    [maxMes]
+  );
 
-          <div className="overflow-auto border rounded-2xl">
-            <table className="min-w-full text-sm">
-              <thead>
-                <tr className="bg-gray-50">
-                  <th className="text-left px-3 py-2 sticky left-0 bg-gray-50 z-10">Elemento expuesto</th>
-                  {meses.map(m => <th key={m} className="px-3 py-2 text-center border-l">M{m}</th>)}
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((row, i) => {
-                  const activo = (m) => m >= row.ini && m <= row.fin;
-                  return (
-                    <tr key={i} className={i%2 ? "bg-white" : "bg-gray-50/50 hover:bg-emerald-50"}>
-                      <td className="px-3 py-2 sticky left-0 bg-inherit max-w-[360px]">
-                        <button onClick={() => setSel(row)} className="text-left hover:underline">
-                          {row.elem}
-                        </button>
-                      </td>
-                      {meses.map((m, j) =>
-                        <td key={j} className={`h-9 border-l ${activo(m, row) ? "bg-emerald-200" : ""}`} />
-                      )}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-
-          <section className="text-xs text-gray-600">
-            <div className="flex items-center gap-2">
-              <Pill>Déficit hídrico</Pill>
-              <Pill>Exceso hídrico</Pill>
-              <Pill>Tmax</Pill>
-              <Pill>Tmin</Pill>
-            </div>
-            <p className="mt-2">Haz clic en el nombre de la fila para ver el detalle y las referencias.</p>
-          </section>
-
-          <PanelDetalle fila={sel} onClose={() => setSel(null)} />
+  return (
+    <div className="max-w-7xl mx-auto p-6 space-y-6">
+      <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-semibold">Matriz preliminar de riesgos agroclimáticos · Cacao</h1>
+          <p className="text-sm text-gray-600">
+            Los meses representan <b>fases del ciclo</b>, no un calendario fijo. “Mes 1” = primer mes del evento en campo.
+          </p>
         </div>
-      );
-    }
+        <div className="flex items-center gap-2">
+          <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
+          <label className="text-sm text-gray-600">Fase:</label>
+          <select value={fase} onChange={e => setFase(e.target.value)} className="border rounded-lg px-3 py-2 text-sm">
+            <option>Vegetativa</option>
+            <option>Productiva</option>
+          </select>
+        </div>
+      </header>
+
+      <div className="overflow-auto border rounded-2xl">
+        <table className="min-w-full text-sm">
+          <thead>
+            <tr className="bg-gray-50">
+              <th className="text-left px-3 py-2 sticky left-0 bg-gray-50 z-10">Elemento expuesto</th>
+              {meses.map(m => <th key={m} className="px-3 py-2 text-center border-l">M{m}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((row, i) => {
+              // ⚠️ NUEVA función 'activo' que acepta meses[] o ini/fin
+              const activo = (m, r) => {
+                if (Array.isArray(r?.meses) && r.meses.length) {
+                  return r.meses.includes(m);
+                }
+                return m >= r.ini && m <= r.fin;
+              };
+              return (
+                <tr key={i} className={i % 2 ? "bg-white" : "bg-gray-50/50 hover:bg-emerald-50"}>
+                  <td className="px-3 py-2 sticky left-0 bg-inherit max-w-[360px]">
+                    <button onClick={() => setSel(row)} className="text-left hover:underline">
+                      {row.elem}
+                    </button>
+                  </td>
+                  {meses.map((m, j) =>
+                    // ⚠️ Usa activo(m, row) (no la versión vieja activo(m))
+                    <td key={j} className={`h-9 border-l ${activo(m, row) ? "bg-emerald-200" : ""}`} />
+                  )}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <section className="text-xs text-gray-600">
+        <div className="flex items-center gap-2">
+          <Pill>Déficit hídrico</Pill>
+          <Pill>Exceso hídrico</Pill>
+          <Pill>Tmax</Pill>
+          <Pill>Tmin</Pill>
+        </div>
+        <p className="mt-2">Haz clic en el nombre de la fila para ver el detalle y las referencias.</p>
+      </section>
+
+      <PanelDetalle fila={sel} onClose={() => setSel(null)} />
+    </div>
+  );
+}
+
 
     function App() {
       const [paso, setPaso] = useState("intro");
