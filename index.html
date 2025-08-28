@@ -1,5 +1,27 @@
-<!-- deploy -->
-<!-- Tu app en JSX -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Applet – Fenología y Riesgos Capsicum</title>
+
+  <!-- Tailwind vía CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- React 18 + ReactDOM UMD -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Babel para compilar JSX en el navegador -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-white text-gray-800">
+  <main class="max-w-6xl mx-auto p-6">
+    <!-- Contenedor donde React montará la app -->
+    <div id="root">Cargando applet…</div>
+  </main>
+
+  <!-- Tu app en JSX (NO TypeScript) -->
   <script type="text/babel">
     const { useMemo, useState } = React;
 
@@ -190,29 +212,28 @@
             <p className="text-sm text-gray-600">
               A continuación se muestran los más importantes para <b>{especie}</b> en <i>Floración</i>, <i>Cuajado</i> y <i>Desarrollo del fruto</i>.
             </p>
-            {["Floración (oleadas)","Cuajado (oleadas)","Desarrollo del fruto"]
-              .map((fase)=> {
-                const r = riesgos(fase) || {};
-                return (
-                  <div key={fase} className="border rounded-xl p-4">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                      <h3 className="font-medium">{fase}</h3>
-                      <div className="flex gap-2">
-                        <Pill>Exceso hídrico</Pill>
-                        <Pill>Déficit hídrico</Pill>
-                        <Pill>Tmax</Pill>
-                        <Pill>Tmin</Pill>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-3 text-sm">
-                      <div><b>Exceso hídrico:</b> {r["Exceso hídrico"] || "—"}</div>
-                      <div><b>Déficit hídrico:</b> {r["Déficit hídrico"] || "—"}</div>
-                      <div><b>Tmax:</b> {r["Tmax"] || "—"}</div>
-                      <div><b>Tmin:</b> {r["Tmin"] || "—"}</div>
+            {["Floración (oleadas)","Cuajado (oleadas)","Desarrollo del fruto"].map((fase)=> {
+              const r = riesgos(fase) || {};
+              return (
+                <div key={fase} className="border rounded-xl p-4">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                    <h3 className="font-medium">{fase}</h3>
+                    <div className="flex gap-2">
+                      <Pill>Exceso hídrico</Pill>
+                      <Pill>Déficit hídrico</Pill>
+                      <Pill>Tmax</Pill>
+                      <Pill>Tmin</Pill>
                     </div>
                   </div>
-                );
-              })}
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-3 text-sm">
+                    <div><b>Exceso hídrico:</b> {r["Exceso hídrico"] || "—"}</div>
+                    <div><b>Déficit hídrico:</b> {r["Déficit hídrico"] || "—"}</div>
+                    <div><b>Tmax:</b> {r["Tmax"] || "—"}</div>
+                    <div><b>Tmin:</b> {r["Tmin"] || "—"}</div>
+                  </div>
+                </div>
+              );
+            })}
           </section>
 
           <footer className="text-xs text-gray-600">
@@ -228,4 +249,7 @@
     const root = ReactDOM.createRoot(document.getElementById("root"));
     root.render(<AppletCapsicum />);
   </script>
+  <!-- deploy -->
+</body>
+</html>
 
