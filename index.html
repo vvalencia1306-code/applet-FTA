@@ -1,120 +1,353 @@
-<script type="text/babel">
-  const { useMemo, useState } = React;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FTA · Cacao – AGRORAC</title>
 
-  const CALENDARIOS = {
-    Cayenne: [
-      { elem: "Preparación del terreno", ini: 1, fin: 1 },
-      { elem: "Germinación", ini: 1, fin: 1 },
-      { elem: "Emergencia", ini: 1, fin: 1 },
-      { elem: "Des. tallo y ramificación", ini: 1, fin: 1 },
-      { elem: "Fertilización", ini: 1, fin: 1 },
-      { elem: "Brotes axilares", ini: 1, fin: 1 },
-      { elem: "Desarrollo foliar", ini: 1, fin: 2 },
-      { elem: "Control de malezas", ini: 1, fin: 2 },
-      { elem: "Control de plagas", ini: 1, fin: 8 },
-      { elem: "Emergencia de inflorescencia", ini: 1, fin: 2 },
-      { elem: "Floración (oleadas)", ini: 1, fin: 7 },
-      { elem: "Cuajado (oleadas)", ini: 2, fin: 7 },
-      { elem: "Desarrollo del fruto", ini: 3, fin: 8 },
-      { elem: "Cosecha (escalonada)", ini: 3, fin: 8 },
-    ],
-    Habanero: [
-      { elem: "Preparación del terreno", ini: 1, fin: 1 },
-      { elem: "Germinación", ini: 1, fin: 1 },
-      { elem: "Emergencia", ini: 1, fin: 1 },
-      { elem: "Des. tallo y ramificación", ini: 1, fin: 2 },
-      { elem: "Fertilización", ini: 1, fin: 2 },
-      { elem: "Brotes axilares", ini: 1, fin: 2 },
-      { elem: "Desarrollo foliar", ini: 1, fin: 2 },
-      { elem: "Control de malezas", ini: 1, fin: 2 },
-      { elem: "Control de plagas", ini: 1, fin: 8 },
-      { elem: "Emergencia de inflorescencia", ini: 2, fin: 3 },
-      { elem: "Floración (oleadas)", ini: 2, fin: 7 },
-      { elem: "Cuajado (oleadas)", ini: 2, fin: 7 },
-      { elem: "Desarrollo del fruto", ini: 3, fin: 8 },
-      { elem: "Cosecha (escalonada)", ini: 3, fin: 8 },
-    ],
-    Tabasco: [
-      { elem: "Preparación del terreno", ini: 1, fin: 1 },
-      { elem: "Germinación", ini: 1, fin: 1 },
-      { elem: "Emergencia", ini: 1, fin: 1 },
-      { elem: "Des. tallo y ramificación", ini: 1, fin: 3 },
-      { elem: "Fertilización", ini: 1, fin: 3 },
-      { elem: "Brotes axilares", ini: 2, fin: 3 },
-      { elem: "Desarrollo foliar", ini: 1, fin: 3 },
-      { elem: "Control de malezas", ini: 1, fin: 3 },
-      { elem: "Control de plagas", ini: 1, fin: 9 },
-      { elem: "Emergencia de inflorescencia", ini: 3, fin: 4 },
-      { elem: "Floración (oleadas)", ini: 3, fin: 8 },
-      { elem: "Cuajado (oleadas)", ini: 4, fin: 8 },
-      { elem: "Desarrollo del fruto", ini: 5, fin: 9 },
-      { elem: "Cosecha (escalonada)", ini: 5, fin: 9 },
-    ],
-  };
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- React 18 -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Babel para JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-white text-gray-800">
+  <div id="root"></div>
 
-  const months = [1,2,3,4,5,6,7,8,9];
+  <script type="text/babel">
+    const { useState, useMemo } = React;
 
-  function AppletCapsicum(){
-    const [especie, setEspecie] = useState("Cayenne");
-    const data = CALENDARIOS[especie];
+    // ===========================
+    // DATOS (puedes ampliar libremente)
+    // Estructura de cada fila:
+    // { elem, ini, fin, riesgos: { deficit, exceso, Tmax, Tmin }, ref }
+    // ===========================
+    const MATRIZ_VEGETATIVA = [
+      {
+        elem: "Establecimiento del sombrío (permanente y transitorio)",
+        ini: 1, fin: 6,
+        riesgos: {
+          deficit: "Sombrío deficiente, mayor estrés hídrico inicial.",
+          exceso: "Exceso de humedad favorece patógenos en plántulas bajo sombra densa.",
+          Tmax: "Estrés térmico si no hay sombra efectiva.",
+          Tmin: "Lentitud en descomposición de MO y baja actividad microbiana."
+        },
+        ref: "Opoku (2024). Cocoa Under Heat and Drought Stress."
+      },
+      {
+        elem: "Preparación del terreno (trazado, ahoyado y drenajes)",
+        ini: 6, fin: 6,
+        riesgos: {
+          deficit: "Endurecimiento del suelo; menor disponibilidad de nutrientes.",
+          exceso: "Saturación, erosión, compactación y pérdida de nutrientes.",
+          Tmax: "Evaporación rápida; descomposición acelerada.",
+          Tmin: "Baja actividad microbiana y lenta descomposición de MO."
+        },
+        ref: "Opoku (2024)."
+      },
+      {
+        elem: "Aplicación de enmiendas (corrección de acidez y orgánica)",
+        ini: 6, fin: 6,
+        riesgos: {
+          deficit: "Baja eficiencia en incorporación; menor disponibilidad de enmiendas.",
+          exceso: "Lixiviación/escorrentía; anegamiento; fermentación anaerobia de MO.",
+          Tmax: "Volatilización de N; estrés térmico a microbios del suelo.",
+          Tmin: "Retraso de efectos por baja actividad microbiana."
+        },
+        ref: "Opoku (2024); Rodriguez (2015)."
+      },
+      {
+        elem: "Establecimiento en campo",
+        ini: 7, fin: 7,
+        riesgos: {
+          deficit: "Deshidratación de plántulas; lenta activación radicular.",
+          exceso: "Anoxia en hoyo; ↑Phytophthora/Pythium/Fusarium; lavado de N.",
+          Tmax: "Marchitez al mediodía; daño en hojas jóvenes.",
+          Tmin: "Crecimiento lento y mayor susceptibilidad a patógenos de cuello/raíz."
+        },
+        ref: "Rodriguez (2015)."
+      },
+      {
+        elem: "Deschuponado (cada mes)",
+        ini: 9, fin: 16,
+        riesgos: {
+          deficit: "Cicatrización lenta; baja brotación posterior.",
+          exceso: "Alta humedad en heridas ↑hongos (Phytophthora, Ceratocystis).",
+          Tmax: "Quemadura de heridas; estrés térmico limita regeneración.",
+          Tmin: "Cicatrización muy lenta; ↑susceptibilidad a patógenos."
+        },
+        ref: "Rodriguez (2015)."
+      },
+      {
+        elem: "Raíces",
+        ini: 6, fin: 23,
+        riesgos: {
+          deficit: "Menor absorción de agua/nutrientes; potencial hídrico más negativo.",
+          exceso: "Asfixia radicular; Phytophthora.",
+          Tmax: "Cavitación (burbujas) en xilema; daño en raíces superficiales.",
+          Tmin: "↓Actividad radicular."
+        },
+        ref: "Opoku (2024); Paredes (2003)."
+      },
+      {
+        elem: "Hojas",
+        ini: 6, fin: 23,
+        riesgos: {
+          deficit: "Defoliación; cierre estomático → ↓CO₂.",
+          exceso: "↑Phytophthora/Antracnosis.",
+          Tmax: "Marchitez; ↑densidad estomática; ↓fotosíntesis por fotorrespiración.",
+          Tmin: "↓Actividad enzimática."
+        },
+        ref: "Opoku (2024); Rodriguez (2015)."
+      },
+    ];
 
-    const grid = useMemo(()=>{
-      return data.map(d => {
-        const monthsActive = months.map(m => (m>=d.ini && m<=d.fin));
-        return { ...d, monthsActive };
-      });
-    }, [data]);
+    const MATRIZ_PRODUCTIVA = [
+      {
+        elem: "Fertilización edáfica 1",
+        ini: 9, fin: 9,
+        riesgos: {
+          deficit: "Baja absorción de nutrientes.",
+          exceso: "Pérdida por lixiviación; posible anegamiento.",
+          Tmax: "—",
+          Tmin: "—"
+        },
+        ref: "Rodriguez (2015)."
+      },
+      {
+        elem: "Deschuponado (cada mes)",
+        ini: 9, fin: 16,
+        riesgos: {
+          deficit: "Menor capacidad de cicatrizar; menor brotación.",
+          exceso: "Heridas húmedas favorecen patógenos.",
+          Tmax: "Quemadura de heridas; estrés térmico.",
+          Tmin: "Cicatrización lenta; ↑riesgo de infección."
+        },
+        ref: "Rodriguez (2015)."
+      },
+      {
+        elem: "Floración",
+        ini: 4, fin: 6,
+        riesgos: {
+          deficit: "Pérdida/aborto floral; menos néctar; baja polinización.",
+          exceso: "Hipoxia; ↑Phytophthora/Colletotrichum; lavado de néctar/polen.",
+          Tmax: "Menor viabilidad floral; polen menos viable; apertura incompleta.",
+          Tmin: "Ralentiza metabolismo; baja producción de néctar y hormonas."
+        },
+        ref: "Osorio (2021); Opoku (2024); Agudelo (2021)."
+      },
+      {
+        elem: "Polinización y fecundación",
+        ini: 5, fin: 7,
+        riesgos: {
+          deficit: "Menor actividad de polinizadores.",
+          exceso: "Menor éxito de polinización.",
+          Tmax: "—",
+          Tmin: "↓movilidad de polinizadores."
+        },
+        ref: "Agudelo (2021)."
+      },
+      {
+        elem: "Cuajado de frutos",
+        ini: 5, fin: 8,
+        riesgos: {
+          deficit: "Menor retención; abortos; menor desarrollo del grano.",
+          exceso: "Aborto de frutos jóvenes; ↑Moniliasis.",
+          Tmax: "Maduración acelerada; frutos pequeños; Phytophthora.",
+          Tmin: "Frutos poco desarrollados."
+        },
+        ref: "Rodriguez (2015)."
+      },
+      {
+        elem: "Crecimiento y maduración del fruto",
+        ini: 7, fin: 12,
+        riesgos: {
+          deficit: "Secado acelerado; ↑Carmenta.",
+          exceso: "↑Moniliasis, Phytophthora y Monalonion; ↓tamaño del fruto.",
+          Tmax: "↓tiempo de maduración; cambios en composición; Phytophthora.",
+          Tmin: "—"
+        },
+        ref: "Daymond (2007); Rodriguez (2015)."
+      },
+      {
+        elem: "Cosecha",
+        ini: 9, fin: 12,
+        riesgos: {
+          deficit: "Retraso en maduración.",
+          exceso: "Cosecha difícil por humedad.",
+          Tmax: "Calidad del grano afectada; variación en rutas enzimáticas.",
+          Tmin: "—"
+        },
+        ref: "Daymond (2007); Rodriguez (2015)."
+      },
+      {
+        elem: "Postcosecha – Fermentación",
+        ini: 1, fin: 12,
+        riesgos: {
+          deficit: "—",
+          exceso: "Fermentación inadecuada; desarrollo de mohos.",
+          Tmax: "—",
+          Tmin: "Fermentación lenta; menor desarrollo de sabor."
+        },
+        ref: "—"
+      },
+    ];
 
-    return (
-      <div className="p-6 space-y-6">
-        <header className="flex items-center justify-between">
-          <h1 className="text-2xl font-semibold">Applet – Fenología y Riesgos por especie</h1>
-          <div className="flex items-center gap-2">
-            <label className="text-sm text-gray-600">Especie:</label>
-            <select
-              value={especie}
-              onChange={(e)=>setEspecie(e.target.value)}
-              className="border rounded-lg px-3 py-2 text-sm"
-            >
-              {Object.keys(CALENDARIOS).map(k=> (
-                <option key={k} value={k}>{k}</option>
-              ))}
-            </select>
+    // ===========================
+    // COMPONENTES
+    // ===========================
+    function Intro({ onStart }) {
+      return (
+        <div className="max-w-5xl mx-auto p-6 space-y-6">
+          <header className="space-y-2">
+            <h1 className="text-3xl font-semibold">¿Qué es una Ficha Técnica Agroclimática (FTA)?</h1>
+            <p className="text-gray-700">
+              Una FTA organiza y sintetiza los principales <b>riesgos agroclimáticos</b> que afectan un cultivo.
+              Identifica <b>elementos expuestos</b> (raíces, tallo, floración, prácticas de manejo) y los relaciona con
+              <b> amenazas</b> como <i>déficit y exceso hídrico</i> y <i>temperaturas extremas</i>. Sirve para anticipar impactos y tomar mejores decisiones de manejo.
+            </p>
+            <div className="p-4 rounded-xl bg-amber-50 text-amber-900">
+              <b>Importante:</b> Los campos <i>Mes inicio</i> y <i>Mes fin</i> <b>no son meses de calendario</b>. “Mes 1” es el primer mes del evento dentro del sistema productivo. Por ejemplo, puede coincidir con octubre si allí inicia la preparación del terreno. Esto es clave porque las siembras ya no ocurren siempre en las mismas fechas históricas.
+            </div>
+          </header>
+
+          <section className="grid md:grid-cols-2 gap-6">
+            <div className="rounded-2xl border p-5">
+              <h2 className="font-semibold mb-2">¿Qué verán en la matriz?</h2>
+              <ul className="list-disc ml-6 text-gray-700 space-y-1">
+                <li>Filas = <b>elementos expuestos</b> (fases o prácticas).</li>
+                <li>Columnas = <b>meses del ciclo</b> (no calendario).</li>
+                <li>Colores = <b>ventanas de exposición</b>.</li>
+                <li>Detalle por amenaza: <i>déficit</i>, <i>exceso</i>, <i>Tmax</i>, <i>Tmin</i> y <b>referencias</b>.</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border p-5">
+              <h2 className="font-semibold mb-2">¿Para quién?</h2>
+              <p className="text-gray-700">
+                Para agricultores (visión clara y práctica) y para ingenieros agrónomos (detalle técnico con bibliografía). Es la base de cómo AGRORAC traduce clima en prácticas de manejo.
+              </p>
+            </div>
+          </section>
+
+          <div className="pt-2">
+            <button onClick={onStart}
+              className="px-5 py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700">
+              👉 Explorar matriz de cacao
+            </button>
           </div>
-        </header>
-
-        <div className="overflow-auto border rounded-2xl">
-          <table className="min-w-full text-sm">
-            <thead>
-              <tr className="bg-gray-50">
-                <th className="text-left px-3 py-2 sticky left-0 bg-gray-50">Elemento expuesto</th>
-                {months.map(m=> (
-                  <th key={m} className="px-3 py-2 text-center border-l">M{m}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {grid.map((row,i)=> (
-                <tr key={i} className={i%2 ? "bg-white" : "bg-gray-50/50"}>
-                  <td className="px-3 py-2 sticky left-0 bg-inherit max-w-[260px]">{row.elem}</td>
-                  {row.monthsActive.map((on, j)=> (
-                    <td key={j} className={`h-9 border-l ${on ? "bg-emerald-200" : ""}`}></td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
+      );
+    }
 
-        <p className="text-gray-600 text-sm">
-          Mes 1 = 21-dic → 20-ene. Cambia la especie para ver su calendario.
-        </p>
-      </div>
-    );
-  }
+    function Pill({ children }) {
+      return <span className="px-2 py-0.5 rounded-full bg-gray-100 border text-gray-800 text-xs">{children}</span>;
+    }
 
-  // Montar en el div#root
-  const root = ReactDOM.createRoot(document.getElementById("root"));
-  root.render(<AppletCapsicum />);
-</script>
+    function PanelDetalle({ fila, onClose }) {
+      if (!fila) return null;
+      const R = fila.riesgos || {};
+      return (
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex">
+          <div className="m-auto w-[95%] max-w-3xl bg-white rounded-2xl shadow-lg p-5">
+            <div className="flex items-start justify-between gap-4">
+              <h3 className="text-lg font-semibold">{fila.elem}</h3>
+              <button onClick={onClose} className="text-gray-500 hover:text-gray-700">✕</button>
+            </div>
+            <p className="text-sm text-gray-600 mb-3">Ventana: M{fila.ini} – M{fila.fin}</p>
+            <div className="grid md:grid-cols-2 gap-3 text-sm">
+              <div className="border rounded-xl p-3"><b>Déficit hídrico:</b> {R.deficit || "—"}</div>
+              <div className="border rounded-xl p-3"><b>Exceso hídrico:</b> {R.exceso || "—"}</div>
+              <div className="border rounded-xl p-3"><b>Tmax:</b> {R.Tmax || "—"}</div>
+              <div className="border rounded-xl p-3"><b>Tmin:</b> {R.Tmin || "—"}</div>
+            </div>
+            <p className="text-xs text-gray-500 mt-4"><b>Referencias:</b> {fila.ref || "—"}</p>
+          </div>
+        </div>
+      );
+    }
+
+    function MatrizCacao({ onBack }) {
+      const [fase, setFase] = useState("Vegetativa");
+      const data = fase === "Vegetativa" ? MATRIZ_VEGETATIVA : MATRIZ_PRODUCTIVA;
+      const [sel, setSel] = useState(null);
+
+      const maxMes = useMemo(() => Math.max(...data.map(d => d.fin)), [data]);
+      const meses = useMemo(() => Array.from({length: maxMes}, (_,i) => i+1), [maxMes]);
+
+      return (
+        <div className="max-w-7xl mx-auto p-6 space-y-6">
+          <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <div>
+              <h1 className="text-2xl font-semibold">Matriz preliminar de riesgos agroclimáticos · Cacao</h1>
+              <p className="text-sm text-gray-600">
+                Los meses representan <b>fases del ciclo</b>, no un calendario fijo. “Mes 1” = primer mes del evento en campo.
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
+              <label className="text-sm text-gray-600">Fase:</label>
+              <select value={fase} onChange={e => setFase(e.target.value)}
+                      className="border rounded-lg px-3 py-2 text-sm">
+                <option>Vegetativa</option>
+                <option>Productiva</option>
+              </select>
+            </div>
+          </header>
+
+          <div className="overflow-auto border rounded-2xl">
+            <table className="min-w-full text-sm">
+              <thead>
+                <tr className="bg-gray-50">
+                  <th className="text-left px-3 py-2 sticky left-0 bg-gray-50 z-10">Elemento expuesto</th>
+                  {meses.map(m => <th key={m} className="px-3 py-2 text-center border-l">M{m}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((row, i) => {
+                  const activo = (m) => m >= row.ini && m <= row.fin;
+                  return (
+                    <tr key={i} className={i%2 ? "bg-white" : "bg-gray-50/50 hover:bg-emerald-50"}>
+                      <td className="px-3 py-2 sticky left-0 bg-inherit max-w-[360px]">
+                        <button onClick={() => setSel(row)} className="text-left hover:underline">
+                          {row.elem}
+                        </button>
+                      </td>
+                      {meses.map((m, j) =>
+                        <td key={j} className={`h-9 border-l ${activo(m) ? "bg-emerald-200" : ""}`}></td>
+                      )}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          <section className="text-xs text-gray-600">
+            <div className="flex items-center gap-2">
+              <Pill>Déficit hídrico</Pill>
+              <Pill>Exceso hídrico</Pill>
+              <Pill>Tmax</Pill>
+              <Pill>Tmin</Pill>
+            </div>
+            <p className="mt-2">Haz clic en el nombre de la fila para ver el detalle y las referencias.</p>
+          </section>
+
+          <PanelDetalle fila={sel} onClose={() => setSel(null)} />
+        </div>
+      );
+    }
+
+    function App() {
+      const [paso, setPaso] = useState("intro");
+      return paso === "intro"
+        ? <Intro onStart={() => setPaso("matriz")} />
+        : <MatrizCacao onBack={() => setPaso("intro")} />;
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
 
