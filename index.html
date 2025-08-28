@@ -260,7 +260,11 @@
               <h3 className="text-lg font-semibold">{fila.elem}</h3>
               <button onClick={onClose} className="text-gray-500 hover:text-gray-700">✕</button>
             </div>
-            <p className="text-sm text-gray-600 mb-3">Ventana: M{fila.ini} – M{fila.fin}</p>
+           <p className="text-sm text-gray-600 mb-3">
+  {Array.isArray(fila?.meses) && fila.meses.length
+    ? `Meses: ${fila.meses.map(m => `M${m}`).join(", ")}`
+    : `Ventana: M${fila.ini} – M${fila.fin}`}
+</p>
             <div className="grid md:grid-cols-2 gap-3 text-sm">
               <div className="border rounded-xl p-3"><b>Déficit hídrico:</b> {R.deficit || "—"}</div>
               <div className="border rounded-xl p-3"><b>Exceso hídrico:</b> {R.exceso || "—"}</div>
