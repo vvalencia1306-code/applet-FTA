@@ -268,7 +268,10 @@
               <thead>
                 <tr className="bg-gray-50">
                   <th className="text-left px-3 py-2 sticky left-0 bg-gray-50 z-10">Elemento expuesto</th>
-                  {meses.map(m => <th key={m} className="px-3 py-2 text-center border-l">M{m}</th>)}
+                  {meses.map(m => <th key={m} className={`px-3 py-2 text-center border-l 
+      ${m % 2 === 0 ? "bg-slate-50" : "bg-white"} 
+      ${m % 3 === 0 ? "border-l-2 border-l-gray-300" : "border-l-gray-200"}
+    `}
                 </tr>
               </thead>
               <tbody>
