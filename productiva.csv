@@ -1,65 +1,65 @@
 elem;ini;fin;;defucit;exceso;Tmax;Tmin;ref
-Poda de mantenimiento ;1;1;;"Entrada de hongos, pat骻enos o formaci髇 de nudos
-Formaci髇 de nudos";Proliferaci髇 de hongos sapr骹itos  (Ceratocystis) en cortes;;;
-Aplicaci髇 de enmiendas (Correcci髇 de acidez y enmienda organica) ;2;2;;Deficiencia de nutrientes esenciales debido a la baja disponibilidad de agua para la absorci髇.;Anegamiento y Lixiviaci髇 acelerada de iones.;Reducci髇 de actividad de enzimas de s韓tesis de materia org醤ica;;
-Deschuponado (cada 2 meses);3;12;;"Producci髇 acelerada de chupones, 
+Poda de mantenimiento ;1;1;;"Entrada de hongos, pat贸genos o formaci贸n de nudos
+Formaci贸n de nudos";Proliferaci贸n de hongos sapr贸fitos  (Ceratocystis) en cortes;;;
+Aplicaci贸n de enmiendas (Correcci贸n de acidez y enmienda organica) ;2;2;;Deficiencia de nutrientes esenciales debido a la baja disponibilidad de agua para la absorci贸n.;Anegamiento y Lixiviaci贸n acelerada de iones.;Reducci贸n de actividad de enzimas de s铆ntesis de materia org谩nica;;
+Deschuponado (cada 2 meses);3;12;;"Producci贸n acelerada de chupones, 
 Desarrollo de brotes inproductivos";;;;
-Control de arvenses y plateo (cada 2 meses);2;12;;Baja retenci髇 de humedad del suelo;;;;
-Fertilizaci髇 ;;;3,9;Baja absorci髇 de nutrientes y volatilizaci髇 de los elementos minerales;P閞dida de nutrientes esenciales por lixiviaci髇 y posible anegamiento del suelo.;;;
-Cosecha ;9;12;;Retraso en la maduraci髇 del grano;Dificultad en la cosecha por humedad;"Disminuci髇 en la calidad del grano por estr閟 t閞mico durante la maduraci髇.
-variaciones en la actividad enzim醫ica de la ruta de los 醕idos grasos
+Control de arvenses y plateo (cada 2 meses);2;12;;Baja retenci贸n de humedad del suelo;;;;
+Fertilizaci贸n ;;;3,9;Baja absorci贸n de nutrientes y volatilizaci贸n de los elementos minerales;P茅rdida de nutrientes esenciales por lixiviaci贸n y posible anegamiento del suelo.;;;
+Cosecha ;9;12;;Retraso en la maduraci贸n del grano;Dificultad en la cosecha por humedad;"Disminuci贸n en la calidad del grano por estr茅s t茅rmico durante la maduraci贸n.
+variaciones en la actividad enzim谩tica de la ruta de los 谩cidos grasos
 Presencia de phytophthora";;"Daymond A et al (2007);
 Rodriguez P (2015)."
-Raices ;1;12;;"Reducci髇 en la absorci髇 de agua y nutrientes afectando el crecimiento general de la planta, 
-No logra abastecer el ritmo de la transpiraci髇, aumentando la tensi髇 en el xilema. 
-Potencial hidrico de las plantas se torna m醩 negativo. 
-Defoliaci髇 parcial o total de la planta";"Da駉 en el sistema  radical ,
+Raices ;1;12;;"Reducci贸n en la absorci贸n de agua y nutrientes afectando el crecimiento general de la planta, 
+No logra abastecer el ritmo de la transpiraci贸n, aumentando la tensi贸n en el xilema. 
+Potencial hidrico de las plantas se torna m谩s negativo. 
+Defoliaci贸n parcial o total de la planta";"Da帽o en el sistema  radical ,
 Asfixia de las raices.
-Muerte de la planta por afecci髇 de Phythoptora y Ceratosystis";"Formaci髇 de burbujas de aire en el xilema bloquenado el transporte de agua,
-Afectaci髇 de raices superficiales, limitando su capacidad de absorci髇";Disminuci髇 en actividades de las raices;"Opoku E. (2024);
+Muerte de la planta por afecci贸n de Phythoptora y Ceratosystis";"Formaci贸n de burbujas de aire en el xilema bloquenado el transporte de agua,
+Afectaci贸n de raices superficiales, limitando su capacidad de absorci贸n";Disminuci贸n en actividades de las raices;"Opoku E. (2024);
 Rodriguez P (2015);
 Paredes M (2003). "
-Tallo y corteza;1;12;;"P閞dida de turgencia y  reducci髇 de la resistencia estructural.
-";Mayor incidencia de phytophthora (Cancer de tallo) y Fusarium.;Deshidrataci髇 y fisuras en la corteza, favoreciendo la entrada de pat骻enos.;;"Rodriguez P (2015);
+Tallo y corteza;1;12;;"P茅rdida de turgencia y  reducci贸n de la resistencia estructural.
+";Mayor incidencia de phytophthora (Cancer de tallo) y Fusarium.;Deshidrataci贸n y fisuras en la corteza, favoreciendo la entrada de pat贸genos.;;"Rodriguez P (2015);
 Daymond A et al (2007); 
 Agudelo G et al ( 2021). "
-Ramificaci髇;1;12;;Menor n鷐ero de ramas laterales, reducci髇 en producci髇 potencial;Mayor incidencia de phytophthora y lasiodiplodia;"Disminuci髇 en la capacidad de la ramificaci髇 para sostener frutos debido al estr閟 t閞mico
+Ramificaci贸n;1;12;;Menor n煤mero de ramas laterales, reducci贸n en producci贸n potencial;Mayor incidencia de phytophthora y lasiodiplodia;"Disminuci贸n en la capacidad de la ramificaci贸n para sostener frutos debido al estr茅s t茅rmico
 ";;"Rodriguez P (2015). 
 Daymond A et al (2007). "
-Brotes y Yemas axilares ;1;12;;"Menor formaci髇 de brotes y secamiento de brotes.
+Brotes y Yemas axilares ;1;12;;"Menor formaci贸n de brotes y secamiento de brotes.
 Acortamientoen la distancia de los lanzamientos vegetativos.";Mayor incidencia de escoba de bruja;;;"
 "
-Hojas;1;12;;"Defoliaci髇 de la planta.
-Cierre parcial de estomas para conservaci髇 de agua a costa de disminuir la absorci髇 de CO2. 
+Hojas;1;12;;"Defoliaci贸n de la planta.
+Cierre parcial de estomas para conservaci贸n de agua a costa de disminuir la absorci贸n de CO2. 
 ";Mayor incidencia de phytophthora y antracnosis;"Marchitamiento de hojas por aumento de temperatura foliar. 
-Mayor densidad de estomas por unidad de 醨ea.
-Disminuci髇 de fotosintes韘 debido a la fotorespiraci髇 y a la desnaturalizaci髇 de enzimas ";;"Opoku E. (2024);
+Mayor densidad de estomas por unidad de 谩rea.
+Disminuci贸n de fotosintes铆s debido a la fotorespiraci贸n y a la desnaturalizaci贸n de enzimas ";;"Opoku E. (2024);
 Rodriguez P (2015). "
-Floraci髇;4;6;;"Retraso en la floraci髇 o p閞dida de la floraci髇 programada.
-Detenci髇 del desarrollo o botones muy peque駉s.
-Inducci髇 de senescencia prematura de botones florales y ca韉a o aborto floral. 
-Reducci髇 de la apertura de las flores. Menor secreci髇 de n閏tar, disminuyendo la atracci髇 de polinizadores (como Forcipomyia spp.). Abortos florales tempranos por falta de recursos fisiol骻icos. Menor cantidad de flores abiertas, baja tasa de polinizaci髇 y fecundaci髇.";"Inhibici髇 por hipoxia, se puede inducir mayor desarrollo vegetativo en lugar de reproductivo. 
-Aumento de enfermedades f鷑gicas (Phytophthora o Colletotrichum) que atacan los botones. Ca韉a prematura de botones antes de alcanzar la antesis y baja floraci髇 efectiva.
-Alta humedad ambiental favorece el crecimiento de pat骻enos (Phytophthora, Moniliophthora).  Lavado de n閏tar o polen por lluvias, interfiriendo con la polinizaci髇 y 
-actividad reducida para insectos polinizadores. Ca韉a de flores por da駉 en el coj韓 floral o por infecciones.
-Presencia de escoba de bruja (Moniliophthora perniciosa)";"Disminuye la viabilidad floral, inhibe activaci髇. Reducci髇 de la inducci髇 floral, flores d閎iles o abortadas. 
+Floraci贸n;4;6;;"Retraso en la floraci贸n o p茅rdida de la floraci贸n programada.
+Detenci贸n del desarrollo o botones muy peque帽os.
+Inducci贸n de senescencia prematura de botones florales y ca铆da o aborto floral. 
+Reducci贸n de la apertura de las flores. Menor secreci贸n de n茅ctar, disminuyendo la atracci贸n de polinizadores (como Forcipomyia spp.). Abortos florales tempranos por falta de recursos fisiol贸gicos. Menor cantidad de flores abiertas, baja tasa de polinizaci贸n y fecundaci贸n.";"Inhibici贸n por hipoxia, se puede inducir mayor desarrollo vegetativo en lugar de reproductivo. 
+Aumento de enfermedades f煤ngicas (Phytophthora o Colletotrichum) que atacan los botones. Ca铆da prematura de botones antes de alcanzar la antesis y baja floraci贸n efectiva.
+Alta humedad ambiental favorece el crecimiento de pat贸genos (Phytophthora, Moniliophthora).  Lavado de n茅ctar o polen por lluvias, interfiriendo con la polinizaci贸n y 
+actividad reducida para insectos polinizadores. Ca铆da de flores por da帽o en el coj铆n floral o por infecciones.
+Presencia de escoba de bruja (Moniliophthora perniciosa)";"Disminuye la viabilidad floral, inhibe activaci贸n. Reducci贸n de la inducci贸n floral, flores d茅biles o abortadas. 
 Botones mal formados, menor viabilidad floral, apertura incompleta.
-R醦ido marchitamiento floral, disminuyendo el tiempo disponible para la polinizaci髇. Reducci髇 en la viabilidad del polen. Estr閟 fisiol骻ico general que interfiere con la apertura completa de la flor.";"Ralentiza procesos metab髄icos y hormonales. Inducci髇 floral muy limitada o detenida. 
-Lentificaci髇 del metabolismo desarrollo floral muy lento.  Botones permanecen inactivos o se desarrollan en forma anormal. Botones no evolucionan o se estancan, floraci髇 irregular.
-Disminuci髇 en la tasa metab髄ica, lo que retrasa la apertura floral (antesis). Baja producci髇 de n閏tar, reduciendo atracci髇 de polinizadores. Menor producci髇 de hormonas florales (giberelinas), dificultando la fecundaci髇.";"Osorio Zambrano, M. A. (2021).  Opoku E. (2024). 
+R谩pido marchitamiento floral, disminuyendo el tiempo disponible para la polinizaci贸n. Reducci贸n en la viabilidad del polen. Estr茅s fisiol贸gico general que interfiere con la apertura completa de la flor.";"Ralentiza procesos metab贸licos y hormonales. Inducci贸n floral muy limitada o detenida. 
+Lentificaci贸n del metabolismo desarrollo floral muy lento.  Botones permanecen inactivos o se desarrollan en forma anormal. Botones no evolucionan o se estancan, floraci贸n irregular.
+Disminuci贸n en la tasa metab贸lica, lo que retrasa la apertura floral (antesis). Baja producci贸n de n茅ctar, reduciendo atracci贸n de polinizadores. Menor producci贸n de hormonas florales (giberelinas), dificultando la fecundaci贸n.";"Osorio Zambrano, M. A. (2021).  Opoku E. (2024). 
 Agudelo G et al ( 2021). "
-Polinizacion y fecundaci髇;5;7;;Menor actividad de polinizadores;Menor 閤ito en el desarrollo de la polinizaci髇;;Dificulta la polinizaci髇, debido a la menor movilidad de los polinizadores;Agudelo G et al ( 2021). 
-Cuajado de frutos ;5;8;;"Menor retenci髇 de frutos 
-Abortos de frutos y menor desarrollo del grano debido a estr閟 h韉rico.";"Aborto de frutos jovenes. 
+Polinizacion y fecundaci贸n;5;7;;Menor actividad de polinizadores;Menor 茅xito en el desarrollo de la polinizaci贸n;;Dificulta la polinizaci贸n, debido a la menor movilidad de los polinizadores;Agudelo G et al ( 2021). 
+Cuajado de frutos ;5;8;;"Menor retenci贸n de frutos 
+Abortos de frutos y menor desarrollo del grano debido a estr茅s h铆drico.";"Aborto de frutos jovenes. 
 Presencia de Monialisis.
-Producci髇 de alta cantidad de esporangios ";"Maduraci髇 acelerada y frutos peque駉s.
-Presencia de phytophthora. Momificaci髇 de frutos";Frutos peque駉s y menos desarrollados;Rodriguez P (2015). 
-Crecimiento y maduraci髇 del fruto;7;12;;"Secado acelerado de fruto.
+Producci贸n de alta cantidad de esporangios ";"Maduraci贸n acelerada y frutos peque帽os.
+Presencia de phytophthora. Momificaci贸n de frutos";Frutos peque帽os y menos desarrollados;Rodriguez P (2015). 
+Crecimiento y maduraci贸n del fruto;7;12;;"Secado acelerado de fruto.
 Incremento de la Presencia de Carmenta";"Presencia de Monialisis, Phythopthora y Monalonion
-Reducci髇 en tama駉 de fruto";"Disminuci髇 en el tiempo de maduraci髇 del fruto.
-Alteraci髇 de la composici髇 del fruto.
+Reducci贸n en tama帽o de fruto";"Disminuci贸n en el tiempo de maduraci贸n del fruto.
+Alteraci贸n de la composici贸n del fruto.
 Presencia de phytophthora";;"Daymond A et al (2007);
 Rodriguez P (2015). "
-Fermentaci髇;1;12;;;Riesgo de fermentaci髇 inadecuada y desarrollo de moho en los granos.;;Fermentaci髇 lenta, menor desarrollo de sabor;
-Secado;1;12;;Secado acelerado con baja calidad;Proliferaci髇 de mohos;;;
-Almacenamiento;1;12;;Aumento de las plagas en almacenamiento;Proliferaci髇 de mohos;;;
+Fermentaci贸n;1;12;;;Riesgo de fermentaci贸n inadecuada y desarrollo de moho en los granos.;;Fermentaci贸n lenta, menor desarrollo de sabor;
+Secado;1;12;;Secado acelerado con baja calidad;Proliferaci贸n de mohos;;;
+Almacenamiento;1;12;;Aumento de las plagas en almacenamiento;Proliferaci贸n de mohos;;;
