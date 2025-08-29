@@ -1,0 +1,55 @@
+elem;ini;fin;meses;deficit;exceso;Tmax;Tmin;ref
+Establecimiento del sombrio permanente  y transitorio;1;6;;;;;;
+Preparacion del terreno (Trazado, Ahoyado y drenajes);6;6;;"Reducción en la humedad del suelo afectando  establecimiento del cultivo,
+Endurecimiento del suelo menor disponibilidad de nutrientes.";Saturación del suelo, erosión, compactación y pérdida de nutrientes;Evaporación rápida, estrés térmico, descomposición acelerada;Disminución de actividad microbiana y lentitud en descomposición de materia orgánica.;Opoku E. (2024). 
+Aplicación de enmiendas (Corrección de acidez y enmienda organica);6;6;;"Deficiencia de nutrientes esenciales debido a la baja disponibilidad edáfica de las enmiendas y agua para la absorción.
+Baja eficiencia en la incorporación de enmiendas.
+Reducción en la actividad microbiana, afectando la mineralización de materia orgánica.";"Lixiviación acelerada de iones.
+Anegamiento aumentando el riesgo de erosión.
+Pérdida de enmiendas por escorrentía.
+Fermentación anaerobia en materia orgánica mal manejada.";"Evaporación rápida de la humedad del suelo, impidiendo que las enmiendas se disuelvan o reaccionen bien. 
+Descomposición rápida de materia orgánica, pero con posible pérdida de nutrientes por volatilización (nitrógeno en compost mal manejado). Estrés térmico en microorganismos del suelo, reduciendo su eficiencia.";Retraso en los efectos esperados de las enmiendas, y lenta mejora del suelo. Baja actividad microbiana, especialmente en suelos fríos o mal aireados.;
+Establecimiento en campo;7;7;;"Deshidratación de plántulas recién trasplantadas, que aún no desarrollan raíces profundas.
+Falta de humedad en el hoyo de siembra, que limita la activación de raíces y absorción de nutrientes.
+Reducción de la tasa de crecimiento ";"Encharcamiento del hoyo de siembra produciendo Asfixia radicular (anoxia), que impide el desarrollo normal del sistema radicular.
+Aumento en la incidencia de enfermedades como Phytophthora, Pythium o Fusarium. Lavado de nutrientes, especialmente nitrógeno, necesarios en esta etapa.";"Estrés térmico en la planta reduciendo la tasa de crecimiento. 
+Daños en hojas jóvenes. 
+Marchitamiento rápido en horas del mediodía, sobre todo si no hay protección adecuada.
+Afectación del sistema radicular superficial por suelos muy calientes o secos. ";"Crecimiento lento o nulo de raíces y brotes. 
+Incremento en la susceptibilidad a patógenos de cuello y raíz. 
+Mayor vulnerabilidad y retraso en adaptación al campo.";
+Fertilización edafica ;;;9,10,13,21;Baja absorción de nutrientes;Pérdida de nutrientes esenciales por lixiviación y posible anegamiento del suelo.;;;
+Deschuponado (cada mes);9;16;;"Reducción de la capacidad de la planta para cicatrizar las heridas del deschuponado. Baja brotación posterior, se limita el crecimiento de nuevos brotes por falta de agua.
+Riesgo de entrada de patógenos por heridas no cicatrizadas rápidamente.";"Alta humedad en las heridas recientes favorece la entrada de hongos patógenos (Phytophthora, Ceratocystis, etc.).
+Suelo encharcado puede limitar la absorción de nutrientes necesarios para la regeneración.
+Mayor rebrote de chupones, especialmente en clones vigorosos.";"Rápida deshidratación en las heridas, que puede causar quemaduras o daño tisular en la zona podada y por consiguiente una cicatrización deficiente
+Estrés térmico en la planta, que limita la regeneración ordenada de brotes.
+Mayor atracción de insectos a las heridas expuestas, como escarabajos vectores de enfermedades.";"Cicatrización muy lenta de las heridas del deschuponado.
+Mayor exposición a patógenos.";
+Poda de formación (Antes de fertilización);20;20;;Aborto floral- Podas fuertes puede producir secamiento total de las plantas;Proliferación de hongos saprófitos  (Ceratocystis y Corticium salmonicolor (mal rosado) en cortes ;;;
+Control de arvenses y plateo (cada 2 meses);8;8;;Baja retención de humedad del suelo;;;;
+Raices ;6;23;;"Reducción en la absorción de agua y nutrientes afectando el crecimiento general de la planta, 
+No logra abastecer el ritmo de la transpiración, aumentando la tensión en el xilema. 
+Potencial hidrico de las plantas se torna más negativo. 
+Muerte de la planta desde el establecimiento hasta el mes 9";"Daño en el sistema  radical ,
+Asfixia de las raices.
+Muerte de la planta por afección de Phythoptora";"Formación de burbujas de aire en el xilema bloquenado el transporte de agua,
+Afectación de raices superficiales, limitando su capacidad de absorción";Disminución en actividades de las raices;"Opoku E. (2024); 
+Rodriguez P (2015);
+Paredes M (2003). "
+Tallo y corteza;6;23;;"Pérdida de turgencia y  reducción de la resistencia estructural 
+";Mayor incidencia de phytophthora (Cancer de tallo) y Fusarium.;Deshidratación y fisuras en la corteza, favoreciendo la entrada de patógenos.;;"Rodriguez P (2015);
+Daymond A et al (2007);
+Agudelo G et al ( 2021). "
+Ramificación;6;23;;Menor número de ramas laterales, reducción en producción potencial;Mayor incidencia de phytophthora y lasiodiplodia;"Disminución en la capacidad de la ramificación para sostener frutos debido al estrés térmico
+";;"Rodriguez P (2015); 
+Daymond A et al (2007). "
+Brotes y Yemas axilares ;6;23;;"Menor formación de brotes y secamiento de brotes.
+Acortamientoen la distancia de los lanzamientos vegetativos.";Mayor incidencia de escoba de bruja;;;"
+"
+Hojas;6;23;;"Defoliación de la planta.
+Cierre parcial de estomas para conservación de agua a costa de disminuir la absorción de CO2. 
+";Mayor incidencia de phytophthora y antracnosis;"Marchitamiento de hojas por aumento de temperatura foliar. 
+Mayor densidad de estomas por unidad de área.
+Disminución de fotosintesís debido a la fotorespiración y a la desnaturalización de enzimas ";;"Opoku E. (2024);
+Rodriguez P (2015). "
