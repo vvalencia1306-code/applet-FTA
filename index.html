@@ -7,6 +7,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FTA Cacao - AGRORAC</title>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -27,180 +28,29 @@
     // Estructura de cada fila:
     // { elem, ini, fin, riesgos: { deficit, exceso, Tmax, Tmin }, ref }
     // ===========================
-    const MATRIZ_VEGETATIVA = [
-      {
-        elem: "Establecimiento del sombrío (permanente y transitorio)",
-        ini: 1, fin: 6,
-      },
-      {
-        elem: "Preparación del terreno (trazado, ahoyado y drenajes)",
-        ini: 6, fin: 6,
-        riesgos: {
-          deficit: "Deficiencia de nutrientes esenciales debido a la baja disponibilidad edáfica de las enmiendas y agua para la absorción; Baja eficiencia en la incorporación de enmiendas; Reducción en la actividad microbiana, afectando la mineralización de materia orgánica.",
-          exceso: "Saturación del suelo; erosión; compactación y pérdida de nutrientes",
-          Tmax: "Evaporación rápida; estrés térmico; descomposición acelerada",
-          Tmin: "Disminución de actividad microbiana y lentitud en descomposición de materia orgánica."
-        },
-        ref: "Opoku (2024)."
-      },
-      {
-        elem: "Aplicación de enmiendas (corrección de acidez y enmienda orgánica)",
-        ini: 6, fin: 6,
-        riesgos: {
-          deficit: "Deficiencia de nutrientes esenciales debido a la baja disponibilidad edáfica de las enmiendas y agua para la absorción; Baja eficiencia en la incorporación de enmiendas; Reducción en la actividad microbiana, afectando la mineralización de materia orgánica.",
-          exceso: "Encharcamiento del hoyo de siembra produciendo Asfixia radicular (anoxia), que impide el desarrollo normal del sistema radicular; Aumento en la incidencia de enfermedades como Phytophthora, Pythium o Fusarium; Lavado de nutrientes, especialmente nitrógeno, necesarios en esta etapa.",
-          Tmax: "Estrés térmico en la planta reduciendo la tasa de crecimiento; Daños en hojas jóvenes; Marchitamiento rápido en horas del mediodía, sobre todo si no hay protección adecuada; Afectación del sistema radicular superficial por suelos muy calientes o secos. ",
-          Tmin: "Crecimiento lento o nulo de raíces y brotes; Incremento en la susceptibilidad a patógenos de cuello y raíz; Mayor vulnerabilidad y retraso en adaptación al campo."
-        },
-        ref: "Opoku (2024); Rodriguez (2015)."
-      },
-       {
-        elem: "Establecimiento en campo",
-         ini: 7, fin: 7,
-        riesgos: {
-          deficit: "Deficiencia de nutrientes esenciales debido a la baja disponibilidad edáfica de las enmiendas y agua para la absorción; Baja eficiencia en la incorporación de enmiendas; Reducción en la actividad microbiana, afectando la mineralización de materia orgánica.",
-          exceso: "Encharcamiento del hoyo de siembra produciendo Asfixia radicular (anoxia), que impide el desarrollo normal del sistema radicular; Aumento en la incidencia de enfermedades como Phytophthora, Pythium o Fusarium; Lavado de nutrientes, especialmente nitrógeno, necesarios en esta etapa.",
-          Tmax: "Estrés térmico en la planta reduciendo la tasa de crecimiento; Daños en hojas jóvenes; Marchitamiento rápido en horas del mediodía, sobre todo si no hay protección adecuada; Afectación del sistema radicular superficial por suelos muy calientes o secos. ",
-          Tmin: "Crecimiento lento o nulo de raíces y brotes; Incremento en la susceptibilidad a patógenos de cuello y raíz; Mayor vulnerabilidad y retraso en adaptación al campo."
-        },
-        ref: "Opoku (2024); Rodriguez (2015)."
-      },
-      {
-        elem: "Fertlización edáfica",
-        meses: [9, 13, 17, 21],
-        riesgos: {
-          deficit: "Deshidratación de plántulas recién trasplantadas, que aún no desarrollan raíces profundas; Falta de humedad en el hoyo de siembra, que limita la activación de raíces y absorción de nutrientes; Reducción de la tasa de crecimiento.",
-          exceso: "Anoxia en hoyo; ↑Phytophthora/Pythium/Fusarium; lavado de N.",
-          Tmax: "Marchitez al mediodía; daño en hojas jóvenes.",
-          Tmin: "Crecimiento lento y mayor susceptibilidad a patógenos de cuello/raíz."
-        },
-        ref: "Rodriguez (2015)."
-      },
-      {
-        elem: "Deschuponado (cada mes)",
-        ini: 9, fin: 16,
-        riesgos: {
-          deficit: "Cicatrización lenta; baja brotación posterior.",
-          exceso: "Alta humedad en heridas ↑hongos (Phytophthora, Ceratocystis).",
-          Tmax: "Quemadura de heridas; estrés térmico limita regeneración.",
-          Tmin: "Cicatrización muy lenta; ↑susceptibilidad a patógenos."
-        },
-        ref: "Rodriguez (2015)."
-      },
-      {
-        elem: "Raíces",
-        ini: 6, fin: 23,
-        riesgos: {
-          deficit: "Menor absorción de agua/nutrientes; potencial hídrico más negativo.",
-          exceso: "Asfixia radicular; Phytophthora.",
-          Tmax: "Cavitación (burbujas) en xilema; daño en raíces superficiales.",
-          Tmin: "↓Actividad radicular."
-        },
-        ref: "Opoku (2024); Paredes (2003)."
-      },
-      {
-        elem: "Hojas",
-        ini: 6, fin: 23,
-        riesgos: {
-          deficit: "Defoliación; cierre estomático → ↓CO₂.",
-          exceso: "↑Phytophthora/Antracnosis.",
-          Tmax: "Marchitez; ↑densidad estomática; ↓fotosíntesis por fotorrespiración.",
-          Tmin: "↓Actividad enzimática."
-        },
-        ref: "Opoku (2024); Rodriguez (2015)."
-      },
-    ];
+   const [dataVeg, setDataVeg] = useState([]);
+   const [dataProd, setDataProd] = useState([]);
 
-    const MATRIZ_PRODUCTIVA = [
-      {
-        elem: "Fertilización edáfica 1",
-        ini: 9, fin: 9,
-        riesgos: {
-          deficit: "Baja absorción de nutrientes.",
-          exceso: "Pérdida por lixiviación; posible anegamiento.",
-          Tmax: "—",
-          Tmin: "—"
-        },
-        ref: "Rodriguez (2015)."
-      },
-      {
-        elem: "Deschuponado (cada mes)",
-        ini: 9, fin: 16,
-        riesgos: {
-          deficit: "Menor capacidad de cicatrizar; menor brotación.",
-          exceso: "Heridas húmedas favorecen patógenos.",
-          Tmax: "Quemadura de heridas; estrés térmico.",
-          Tmin: "Cicatrización lenta; ↑riesgo de infección."
-        },
-        ref: "Rodriguez (2015)."
-      },
-      {
-        elem: "Floración",
-        ini: 4, fin: 6,
-        riesgos: {
-          deficit: "Pérdida/aborto floral; menos néctar; baja polinización.",
-          exceso: "Hipoxia; ↑Phytophthora/Colletotrichum; lavado de néctar/polen.",
-          Tmax: "Menor viabilidad floral; polen menos viable; apertura incompleta.",
-          Tmin: "Ralentiza metabolismo; baja producción de néctar y hormonas."
-        },
-        ref: "Osorio (2021); Opoku (2024); Agudelo (2021)."
-      },
-      {
-        elem: "Polinización y fecundación",
-        ini: 5, fin: 7,
-        riesgos: {
-          deficit: "Menor actividad de polinizadores.",
-          exceso: "Menor éxito de polinización.",
-          Tmax: "—",
-          Tmin: "↓movilidad de polinizadores."
-        },
-        ref: "Agudelo (2021)."
-      },
-      {
-        elem: "Cuajado de frutos",
-        ini: 5, fin: 8,
-        riesgos: {
-          deficit: "Menor retención; abortos; menor desarrollo del grano.",
-          exceso: "Aborto de frutos jóvenes; ↑Moniliasis.",
-          Tmax: "Maduración acelerada; frutos pequeños; Phytophthora.",
-          Tmin: "Frutos poco desarrollados."
-        },
-        ref: "Rodriguez (2015)."
-      },
-      {
-        elem: "Crecimiento y maduración del fruto",
-        ini: 7, fin: 12,
-        riesgos: {
-          deficit: "Secado acelerado; ↑Carmenta.",
-          exceso: "↑Moniliasis, Phytophthora y Monalonion; ↓tamaño del fruto.",
-          Tmax: "↓tiempo de maduración; cambios en composición; Phytophthora.",
-          Tmin: "—"
-        },
-        ref: "Daymond (2007); Rodriguez (2015)."
-      },
-      {
-        elem: "Cosecha",
-        ini: 9, fin: 12,
-        riesgos: {
-          deficit: "Retraso en maduración.",
-          exceso: "Cosecha difícil por humedad.",
-          Tmax: "Calidad del grano afectada; variación en rutas enzimáticas.",
-          Tmin: "—"
-        },
-        ref: "Daymond (2007); Rodriguez (2015)."
-      },
-      {
-        elem: "Postcosecha – Fermentación",
-        ini: 1, fin: 12,
-        riesgos: {
-          deficit: "—",
-          exceso: "Fermentación inadecuada; desarrollo de mohos.",
-          Tmax: "—",
-          Tmin: "Fermentación lenta; menor desarrollo de sabor."
-        },
-        ref: "—"
-      },
-    ];
+React.useEffect(() => {
+  // Cargar vegetativa
+  Papa.parse("https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/vegetativa.csv", {
+    download: true,
+    header: true,
+    complete: (result) => {
+      setDataVeg(result.data);
+    }
+  });
+
+  // Cargar productiva
+  Papa.parse("https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/productiva.csv", {
+    download: true,
+    header: true,
+    complete: (result) => {
+      setDataProd(result.data);
+    }
+  });
+}, []);
+
 
     // ===========================
     // COMPONENTES
@@ -382,4 +232,3 @@
   </script>
 </body>
 </html>
-
