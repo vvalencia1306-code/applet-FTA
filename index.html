@@ -307,17 +307,6 @@
               </tbody>
             </table>
           </div>
-
-          <section className="text-xs text-gray-600">
-            <div className="flex items-center gap-2">
-              <Pill>Déficit hídrico</Pill>
-              <Pill>Exceso hídrico</Pill>
-              <Pill>Temperatura máxima</Pill>
-              <Pill>Temperatura mínima</Pill>
-            </div>
-            <p className="mt-2">Haz clic en el nombre de la fila para ver el detalle y las referencias.</p>
-          </section>
-
           <PanelDetalle fila={sel} onClose={() => setSel(null)} />
         </div>
       );
