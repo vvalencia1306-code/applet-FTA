@@ -57,7 +57,6 @@
           Papa.parse(url, {
             download: true,
             header: true,
-            // Si tus CSV usan ; y/o tienen acentos extraños, descomenta:
             // encoding: "ISO-8859-1",
             // delimiter: ";",
             skipEmptyLines: true,
@@ -268,10 +267,17 @@
               <thead>
                 <tr className="bg-gray-50">
                   <th className="text-left px-3 py-2 sticky left-0 bg-gray-50 z-10">Elemento expuesto</th>
-                  {meses.map(m => <th key={m} className={`px-3 py-2 text-center border-l 
-      ${m % 2 === 0 ? "bg-slate-50" : "bg-white"} 
-      ${m % 3 === 0 ? "border-l-2 border-l-gray-300" : "border-l-gray-200"}
-    `}
+                  {meses.map(m => (
+                    <th
+                      key={m}
+                      className={`px-3 py-2 text-center 
+                        ${m % 2 === 0 ? "bg-slate-50" : "bg-white"}
+                        border-l ${m % 3 === 0 ? "border-l-2 border-l-gray-300" : "border-l-gray-200"}
+                      `}
+                    >
+                      M{m}
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
@@ -288,7 +294,10 @@
                         </button>
                       </td>
                       {meses.map((m, j) => (
-                        <td key={j} className={`h-9 border-l ${activo(m, row) ? "bg-emerald-200" : ""}`} />
+                        <td
+                          key={j}
+                          className={`h-9 border-l ${activo(m, row) ? "bg-emerald-200" : ""}`}
+                        />
                       ))}
                     </tr>
                   );
