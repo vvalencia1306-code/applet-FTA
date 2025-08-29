@@ -30,7 +30,7 @@
       const [prod, setProd] = useState([]);
 
       useEffect(() => {
-        const norm = (rows) =>
+        const normalizar = (rows) =>
           rows
             .filter(r => r.elem && r.elem.trim())
             .map(r => {
@@ -55,16 +55,16 @@
               };
             });
 
-        const load = (url, set) =>
+        const cargar = (url, set) =>
           Papa.parse(url, {
             download: true,
             header: true,
             skipEmptyLines: true,
-            complete: ({ data }) => set(norm(data))
+            complete: ({ data }) => set(normalizar(data))
           });
 
-        load("https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/vegetativa.csv", setVeg);
-        load("https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/productiva.csv", setProd);
+        cargar("https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/vegetativa.csv", setVeg);
+        cargar("https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/productiva.csv", setProd);
       }, []);
 
       return { veg, prod };
@@ -84,8 +84,8 @@
               <b> amenazas climáticas</b> como <i>déficit y exceso hídrico</i> y <i>temperaturas extremas</i>.
             </p>
             <div className="p-4 rounded-xl bg-amber-50 text-amber-900">
-              <b>Importante:</b> Mes 1 no es enero, sino el primer mes del evento en campo.  
-              Esto permite adaptar la FTA a la variabilidad y cambio climático.
+              <b>Importante:</b> Mes 1 no corresponde a enero, sino al primer mes del evento en campo.  
+              Esto permite adaptar la FTA a la variabilidad y al cambio climático.
             </div>
           </header>
 
@@ -93,14 +93,15 @@
             <div className="rounded-2xl border p-5">
               <h2 className="font-semibold mb-2"> Componentes de la FTA </h2>
               <ul className="list-disc ml-6 text-gray-700 space-y-1">
-                <li>Filas = <b>elementos expuestos</b> (fase fenológica o prácticas agrícolas)</li>
-                <li>Columnas = <b>meses del ciclo</b></li>
+                <li>Filas = <b>elementos expuestos</b> (fases fenológicas o prácticas agrícolas)</li>
+                <li>Columnas = <b>meses del ciclo productivo</b></li>
               </ul>
             </div>
             <div className="rounded-2xl border p-5">
               <h2 className="font-semibold mb-2"> Público objetivo </h2>
               <p className="text-gray-700">
                 Actores del territorio con conocimiento técnico o práctico sobre los sistemas productivos.
+                Su rol es validar, complementar o ajustar los riesgos identificados y facilitar la apropiación local.
               </p>
             </div>
           </section>
@@ -137,8 +138,8 @@
             <div className="grid md:grid-cols-2 gap-3 text-sm">
               <div className="border rounded-xl p-3"><b>Déficit hídrico:</b> {R.deficit || "—"}</div>
               <div className="border rounded-xl p-3"><b>Exceso hídrico:</b> {R.exceso || "—"}</div>
-              <div className="border rounded-xl p-3"><b>Tmax:</b> {R.Tmax || "—"}</div>
-              <div className="border rounded-xl p-3"><b>Tmin:</b> {R.Tmin || "—"}</div>
+              <div className="border rounded-xl p-3"><b>Temperatura máxima:</b> {R.Tmax || "—"}</div>
+              <div className="border rounded-xl p-3"><b>Temperatura mínima:</b> {R.Tmin || "—"}</div>
             </div>
             <p className="text-xs text-gray-500 mt-4"><b>Referencias:</b> {fila.ref || "—"}</p>
           </div>
@@ -211,7 +212,7 @@
 
           <section className="text-xs text-gray-600">
             <div className="flex items-center gap-2">
-              <Pill>Déficit hídrico</Pill><Pill>Exceso hídrico</Pill><Pill>Tmax</Pill><Pill>Tmin</Pill>
+              <Pill>Déficit hídrico</Pill><Pill>Exceso hídrico</Pill><Pill>Temperatura máxima</Pill><Pill>Temperatura mínima</Pill>
             </div>
             <p className="mt-2">Haz clic en el nombre de la fila para ver el detalle y las referencias.</p>
           </section>
