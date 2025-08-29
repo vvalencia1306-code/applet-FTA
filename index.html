@@ -76,8 +76,15 @@
     // ===========================
     function Intro({ onStart }) {
       return (
-        <div className="max-w-5xl mx-auto p-6 space-y-6">
-          <header className="space-y-2">
+         <div className="max-w-5xl mx-auto p-6 space-y-6">
+      <header className="space-y-6">
+        {/* Logo + título en fila */}
+        <div className="flex items-center gap-4">
+          <img 
+            src="assets/Logo_Agrorac.png" 
+            alt="Logo AGRORAC" 
+            className="w-32"
+          />
             <h1 className="text-3xl font-semibold mb-16 text-center">
               ¿QUÉ ES UNA FICHA TÉCNICA AGROCLIMÁTICA (FTA)?
             </h1>
@@ -138,7 +145,7 @@
                   <span className="relative group inline-block cursor-help">
                     <b>amenazas climáticas</b>
                     <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-blue-800 text-white text-xs rounded-lg shadow-lg">
-                      Condiciones externas al sistema productivo y fuera del control humano, con capacidad de generar efectos adversos sobre el cultivo (déficit hídrico, exceso hídrico, temperaturas extremas.
+                      Condiciones externas al sistema productivo y fuera del control humano, con capacidad de generar efectos adversos sobre el cultivo (déficit hídrico, exceso hídrico, temperaturas extremas).
                     </span>
                   </span>
                 </li>
