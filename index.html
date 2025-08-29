@@ -7,14 +7,11 @@
 
   <!-- PapaParse para leer CSV -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
-
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-
   <!-- React 18 -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-
   <!-- Babel para JSX -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
@@ -30,7 +27,6 @@
     function useCsvData() {
       const [veg, setVeg] = useState([]);
       const [prod, setProd] = useState([]);
-      const [err, setErr] = useState(null);
 
       useEffect(() => {
         const normalizar = (rows) =>
@@ -41,15 +37,49 @@
                 .replace(/[\[\]\s]/g, "")
                 .split(",")
                 .filter(Boolean)
-                .map(n => Number(n))
-                .filter(n => Number.isFinite(n) && n > 0);
-
+                .map(n => Number(n));
               return {
                 elem: r.elem?.trim() || "",
-                ini: r.ini !== undefined && r.ini !== "" ? Number(r.ini) : null,
-                fin: r.fin !== undefined && r.fin !== "" ? Number(r.fin) : null,
+                ini: r.ini ? Number(r.ini) : null,
+                fin: r.fin ? Number(r.fin) : null,
                 meses,
                 riesgos: {
                   deficit: r.deficit || "",
-                  exceso:  r.exceso  || "",
+                  exceso: r.exceso || "",
+                  Tmax: r.Tmax || "",
+                  Tmin: r.Tmin || ""
+                },
+                ref: r.ref || ""
+              };
+            });
+
+        const cargar = (url, set) =>
+          Papa.parse(url, {
+            download: true,
+            header: true,
+            // Si tus CSV usan ; y/o tienen acentos extraños, descomenta:
+            // encoding: "ISO-8859-1",
+            // delimiter: ";",
+            skipEmptyLines: true,
+            complete: ({ data }) => set(normalizar(data))
+          });
+
+        cargar("https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/vegetativa.csv", setVeg);
+        cargar("https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/productiva.csv", setProd);
+      }, []);
+
+      return { veg, prod };
+    }
+
+    // ===========================
+    // COMPONENTES
+    // ===========================
+    function Intro({ onStart }) {
+      return (
+        <div className="max-w-5xl mx-auto p-6 space-y-6">
+          <header className="space-y-2">
+            <h1 className="text-3xl font-semibold">¿Qué es una Ficha Técnica Agroclimática (FTA)?</h1>
+            <p className="text-gray-700">
+              Una FTA es un instrumento <b>técnico</b> que organiza y sintetiza los principales <b>riesgos
+              agroclimáticos</b> que afectan un sistema productivo agrícola. Para ello, se identifican los
 
