@@ -77,7 +77,16 @@
     function Intro({ onStart }) {
       return (
         <div className="max-w-5xl mx-auto p-6 space-y-6">
-          <header className="space-y-2">
+          <header className="space-y-6">
+            {/* Logo + título en fila */}
+            <div className="flex items-center gap-4">
+              <img
+                src="assets/Logo_Agrorac.png"
+                alt="Logo AGRORAC"
+                className="w-32"
+              />
+            </div>
+
             <h1 className="text-3xl font-semibold mb-16 text-center">
               ¿QUÉ ES UNA FICHA TÉCNICA AGROCLIMÁTICA (FTA)?
             </h1>
@@ -118,29 +127,27 @@
                   Filas ={" "}
                   <span className="relative group inline-block cursor-help">
                     <b>elementos expuestos</b>
-                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
-                      Componentes del cultivo susceptibles a los riesgos climáticos, como raíces,
-                      tallo, hojas o prácticas agrícolas.
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-blue-800 text-white text-xs rounded-lg shadow-lg">
+                      Componentes específicos del cultivo susceptibles al impacto de eventos climáticos. 
+                      Los elementos expuestos pueden corresponder tanto a fases fenológicas como a prácticas de manejo.
                     </span>
-                  </span>{" "}
-                  (fases fenológicas o prácticas agrícolas)
+                  </span>
                 </li>
 
                 <li>
                   Columnas ={" "}
                   <span className="relative group inline-block cursor-help">
                     <b>ventana de temporalidad</b>
-                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
-                      Intervalos de tiempo dentro del ciclo productivo en los que se presentan
-                      riesgos climáticos.
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-blue-800 text-white text-xs rounded-lg shadow-lg">
+                      Intervalos de tiempo dentro del ciclo productivo en los que se pueden presentar
+                      riesgos agroclimáticos.
                     </span>
                   </span>{" "}
                   y{" "}
                   <span className="relative group inline-block cursor-help">
                     <b>amenazas climáticas</b>
-                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
-                      Condiciones como déficit hídrico, exceso hídrico y temperaturas extremas que
-                      afectan al cultivo.
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-blue-800 text-white text-xs rounded-lg shadow-lg">
+                      Condiciones externas al sistema productivo y fuera del control humano, con capacidad de generar efectos adversos sobre el cultivo (déficit hídrico, exceso hídrico, temperaturas extremas).
                     </span>
                   </span>
                 </li>
@@ -322,4 +329,3 @@
   </script>
 </body>
 </html>
-
