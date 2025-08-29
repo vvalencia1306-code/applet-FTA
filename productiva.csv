@@ -2,10 +2,10 @@ elem;ini;fin;;deficit;exceso;Tmax;Tmin;ref
 Poda de mantenimiento ;1;1;;"Entrada de hongos, patógenos o formación de nudos
 Formación de nudos";Proliferación de hongos saprófitos  (Ceratocystis) en cortes;;;
 Aplicación de enmiendas (Corrección de acidez y enmienda organica) ;2;2;;Deficiencia de nutrientes esenciales debido a la baja disponibilidad de agua para la absorción.;Anegamiento y Lixiviación acelerada de iones.;Reducción de actividad de enzimas de síntesis de materia orgánica;;
-Deschuponado ;;;3,5,7,9,11;"Producción acelerada de chupones, 
+Deschuponado ;;;3,5,7,9,11; ;"Producción acelerada de chupones, 
 Desarrollo de brotes inproductivos";;;;
-Control de arvenses y plateo ;;;2,4,6,8,10,12;Baja retención de humedad del suelo;;;;
-Fertilización ;;;3,9;Baja absorción de nutrientes y volatilización de los elementos minerales;Pérdida de nutrientes esenciales por lixiviación y posible anegamiento del suelo.;;;
+Control de arvenses y plateo ;;;2,4,6,8,10,12; ;Baja retención de humedad del suelo;;;;
+Fertilización ;;;3,9; ;Baja absorción de nutrientes y volatilización de los elementos minerales;Pérdida de nutrientes esenciales por lixiviación y posible anegamiento del suelo.;;;
 Cosecha ;9;12; ;Retraso en la maduración del grano;Dificultad en la cosecha por humedad;"Disminución en la calidad del grano por estrés térmico durante la maduración.
 variaciones en la actividad enzimática de la ruta de los ácidos grasos
 Presencia de phytophthora";;"Daymond A et al (2007);
@@ -63,3 +63,4 @@ Rodriguez P (2015). "
 Fermentación;1;12;;;Riesgo de fermentación inadecuada y desarrollo de moho en los granos.;;Fermentación lenta, menor desarrollo de sabor;
 Secado;1;12;;Secado acelerado con baja calidad;Proliferación de mohos;;;
 Almacenamiento;1;12;;Aumento de las plagas en almacenamiento;Proliferación de mohos;;;
+
