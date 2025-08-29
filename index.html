@@ -78,81 +78,96 @@
       return (
         <div className="max-w-5xl mx-auto p-6 space-y-6">
           <header className="space-y-2">
-            <h1 className="text-3xl font-semibold mb-16 text-center">¿QUÉ ES UNA FICHA TÉCNICA AGROCLIMÁTICA (FTA)?</h1>
+            <h1 className="text-3xl font-semibold mb-16 text-center">
+              ¿QUÉ ES UNA FICHA TÉCNICA AGROCLIMÁTICA (FTA)?
+            </h1>
+
             <p className="text-gray-700 mb-10">
-              Una FTA es un instrumento <b>técnico</b> que organiza y sintetiza los principales <b>riesgos
-              agroclimáticos</b> que afectan un sistema productivo agrícola. Para ello, se identifican los
-              <b> elementos expuestos</b> del cultivo (raíces, tallo, floración, prácticas de manejo) y se relacionan
-              con <b>amenazas climáticas</b> como <i>déficit y exceso hídrico</i> y <i>temperaturas extremas</i>.
-              Este instrumento permite la toma de decisiones oportunas y <b>adaptativas</b> por parte de los actores del
-              sistema productivo con el fin de fortalecer la planificación agrícola.
+              Una FTA es un instrumento <b>técnico</b> que organiza y sintetiza los principales
+              <b> riesgos agroclimáticos</b> que afectan un sistema productivo agrícola. Para ello,
+              se identifican los <b>elementos expuestos</b> del cultivo (raíces, tallo, floración,
+              prácticas de manejo) y se relacionan con <b>amenazas climáticas</b> como
+              <i> déficit y exceso hídrico</i> y <i>temperaturas extremas</i>. Este instrumento
+              permite la toma de decisiones oportunas y <b>adaptativas</b> por parte de los actores
+              del sistema productivo con el fin de fortalecer la planificación agrícola.
             </p>
+
             <div className="p-4 rounded-xl bg-amber-50 text-amber-900 mb-16">
-              <b>Importante:</b> Los campos <i>Mes inicio</i> y <i>Mes fin</i> <b>no son meses de calendario</b>.
-              “Mes 1” es el primer mes del evento dentro del sistema productivo. Por ejemplo, puede coincidir con
-              octubre si allí inicia la preparación del terreno. Esto es clave porque las siembras ya no ocurren
-              siempre en las mismas fechas históricas. 
+              <b>Importante:</b> Los campos <i>Mes inicio</i> y <i>Mes fin</i>
+              <b> no son meses de calendario</b>. “Mes 1” es el primer mes del evento dentro del
+              sistema productivo. Por ejemplo, puede coincidir con octubre si allí inicia la
+              preparación del terreno. Esto es clave porque las siembras ya no ocurren siempre en
+              las mismas fechas históricas.
             </div>
+
             <p className="text-gray-700 mb-16">
-              Esta forma relativa de representar la temporalidad permite
-              adaptar la ficha a ciclos productivos variables, evitando rigideces en fechas históricas de siembra o
-              manejo. Así, la FTA se convierte en una herramienta flexible y útil frente a la variabilidad y el
-              cambio climático, facilitando su contextualización territorial.
-             </p>
+              Esta forma relativa de representar la temporalidad permite adaptar la ficha a ciclos
+              productivos variables, evitando rigideces en fechas históricas de siembra o manejo.
+              Así, la FTA se convierte en una herramienta flexible y útil frente a la variabilidad
+              y el cambio climático, facilitando su contextualización territorial.
+            </p>
           </header>
 
+          {/* Dos tarjetas: Componentes / Público objetivo */}
           <section className="grid md:grid-cols-2 gap-6">
+            {/* Tarjeta 1 */}
             <div className="rounded-2xl border p-5">
               <h2 className="font-semibold mb-2">Componentes de la FTA</h2>
               <ul className="list-disc ml-6 text-gray-700 space-y-1">
-                  <li>
-                    Filas = 
-                      <span className="relative group cursor-help">
-                      <b>elementos expuestos</b>
-                        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
-                          Componentes del cultivo susceptibles a los riesgos climáticos, como raíces, tallo, hojas o prácticas agrícolas.
-                        </span>
-                      </span> 
+                <li>
+                  Filas ={" "}
+                  <span className="relative group inline-block cursor-help">
+                    <b>elementos expuestos</b>
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
+                      Componentes del cultivo susceptibles a los riesgos climáticos, como raíces,
+                      tallo, hojas o prácticas agrícolas.
+                    </span>
+                  </span>{" "}
                   (fases fenológicas o prácticas agrícolas)
-                  </li>
-                  <li>
-                    Columnas = 
-                      <span className="relative group cursor-help">
-                      <b>ventana de temporalidad</b>
-                        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
-                            Intervalos de tiempo dentro del ciclo productivo en los que se presentan riesgos climáticos.
-                        </span>
-                      </span>
-                            y 
-                      <span className="relative group cursor-help">
-                      <b>amenazas climáticas</b>
-                        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
-                          Condiciones como déficit hídrico, exceso hídrico y temperaturas extremas que afectan al cultivo.
-                        </span>
-                      </span>
-                 </li>
-            </ul>
-        </div>
-</section>
+                </li>
+
+                <li>
+                  Columnas ={" "}
+                  <span className="relative group inline-block cursor-help">
+                    <b>ventana de temporalidad</b>
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
+                      Intervalos de tiempo dentro del ciclo productivo en los que se presentan
+                      riesgos climáticos.
+                    </span>
+                  </span>{" "}
+                  y{" "}
+                  <span className="relative group inline-block cursor-help">
+                    <b>amenazas climáticas</b>
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
+                      Condiciones como déficit hídrico, exceso hídrico y temperaturas extremas que
+                      afectan al cultivo.
+                    </span>
+                  </span>
+                </li>
               </ul>
             </div>
+
+            {/* Tarjeta 2 */}
             <div className="rounded-2xl border p-5">
               <h2 className="font-semibold mb-2">Público objetivo</h2>
               <p className="text-gray-700">
-                Actores del territorio que tienen conocimiento directo, técnico o práctico sobre los sistemas
-                productivos priorizados. Su propósito es validar, complementar o ajustar las FTA preliminares y
-                facilitar su apropiación local.
+                Actores del territorio que tienen conocimiento directo, técnico o práctico sobre los
+                sistemas productivos priorizados. Su propósito es validar, complementar o ajustar las
+                FTA preliminares y facilitar su apropiación local.
               </p>
             </div>
           </section>
+
+          {/* Imagen de apoyo */}
           <div className="mt-6 flex justify-center">
-            <img 
-              src="assets/DiseñoFTA.png" 
-              alt="Diseño FTA" 
+            <img
+              src="assets/DiseñoFTA.png"
+              alt="Diseño FTA"
               className="rounded-xl shadow-lg max-w-2xl w-full"
             />
           </div>
 
+          {/* Botón */}
           <div className="pt-2">
             <button
               onClick={onStart}
@@ -166,7 +181,11 @@
     }
 
     function Pill({ children }) {
-      return <span className="px-2 py-0.5 rounded-full bg-gray-100 border text-gray-800 text-xs">{children}</span>;
+      return (
+        <span className="px-2 py-0.5 rounded-full bg-gray-100 border text-gray-800 text-xs">
+          {children}
+        </span>
+      );
     }
 
     function PanelDetalle({ fila, onClose }) {
@@ -181,11 +200,9 @@
             </div>
 
             <p className="text-sm text-gray-600 mb-3">
-              {fila.meses?.length ? (
-                <>Meses: {fila.meses.map(m => `M${m}`).join(", ")}</>
-              ) : (
-                <>Ventana: M{fila.ini ?? "—"} – M{fila.fin ?? "—"}</>
-              )}
+              {fila.meses?.length
+                ? <>Meses: {fila.meses.map(m => `M${m}`).join(", ")}</>
+                : <>Ventana: M{fila.ini ?? "—"} – M{fila.fin ?? "—"}</>}
             </p>
 
             <div className="grid md:grid-cols-2 gap-3 text-sm">
@@ -194,6 +211,7 @@
               <div className="border rounded-xl p-3"><b>Temperatura máxima:</b> {R.Tmax || "—"}</div>
               <div className="border rounded-xl p-3"><b>Temperatura mínima:</b> {R.Tmin || "—"}</div>
             </div>
+
             <p className="text-xs text-gray-500 mt-4"><b>Referencias:</b> {fila.ref || "—"}</p>
           </div>
         </div>
@@ -227,7 +245,11 @@
             <div className="flex items-center gap-2">
               <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
               <label className="text-sm text-gray-600">Fase:</label>
-              <select value={fase} onChange={e => setFase(e.target.value)} className="border rounded-lg px-3 py-2 text-sm">
+              <select
+                value={fase}
+                onChange={e => setFase(e.target.value)}
+                className="border rounded-lg px-3 py-2 text-sm"
+              >
                 <option>Vegetativa</option>
                 <option>Productiva</option>
               </select>
@@ -251,13 +273,12 @@
                   return (
                     <tr key={i} className={i % 2 ? "bg-white" : "bg-gray-50/50 hover:bg-emerald-50"}>
                       <td className="px-3 py-2 sticky left-0 bg-inherit max-w-[360px]">
-                        <button onClick={() => setSel(row)} className="text-left hover:underline">{row.elem}</button>
+                        <button onClick={() => setSel(row)} className="text-left hover:underline">
+                          {row.elem}
+                        </button>
                       </td>
                       {meses.map((m, j) => (
-                        <td
-                          key={j}
-                          className={`h-9 border-l ${activo(m, row) ? "bg-emerald-200" : ""}`}
-                        />
+                        <td key={j} className={`h-9 border-l ${activo(m, row) ? "bg-emerald-200" : ""}`} />
                       ))}
                     </tr>
                   );
@@ -301,4 +322,3 @@
   </script>
 </body>
 </html>
-
