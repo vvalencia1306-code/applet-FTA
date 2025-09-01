@@ -1,73 +1,74 @@
 elem;ini;fin;meses;deficit;exceso;Tmax;Tmin;ref
-Preparación del terreno;1;1;;Compactación del suelo, Dificultades en el labrado por falta de humedad, Erosión, Aumento de costos, Retraso en la siembra;Erosión del terreno, Pérdida de nutrientes, Dificultades en el labrado por saturación de agua, El suelo no se pulveriza, Aumento de costos;Evaporación rápida, estrés térmico, descomposición acelerada;Disminución de actividad microbiana y lentitud en descomposición de materia orgánica.;
-Siembra y Germinación;1;1;;Retraso de la germinación, Muerte de la planta por sequía, Disminución del crecimiento radical ;Pudrición de semillas, Asfixia radicular, Baja germinación, Desuniformidad en la germinanción, Plagas en el suelo y Plagas en el refugio;Reducción en el contenido de agua en las glumas de la panoja, dehiscencia de anteras, reducción en el tamaño de las semillas. Reducción en el vigor de la semilla, pérdida de viabilidad y reducción de la germinación de semillas y pérdida de población.;"Retraso en emergencia, germinación tardía, pérdida de latencia. limitan el crecimiento de las plántulas, y desestabilizan el mecanismo de defensa antioxidante.
-Daño por enfriamiento de imbibición, pudrición de semillas y clorosis.
-Reducción de la energía de germinación, azúcares solubles y actividad de la alfa-amilasa";"Niu, S. et al. (2024); Chandna, P. et al  (2023).  Djalovic et al (2023); 
+PreparaciÃ³n del terreno;1;1;;CompactaciÃ³n del suelo, Dificultades en el labrado por falta de humedad, ErosiÃ³n, Aumento de costos, Retraso en la siembra;ErosiÃ³n del terreno, PÃ©rdida de nutrientes, Dificultades en el labrado por saturaciÃ³n de agua, El suelo no se pulveriza, Aumento de costos;EvaporaciÃ³n rÃ¡pida, estrÃ©s tÃ©rmico, descomposiciÃ³n acelerada;DisminuciÃ³n de actividad microbiana y lentitud en descomposiciÃ³n de materia orgÃ¡nica.;
+Siembra y GerminaciÃ³n;1;1;;Retraso de la germinaciÃ³n, Muerte de la planta por sequÃ­a, DisminuciÃ³n del crecimiento radical ;PudriciÃ³n de semillas, Asfixia radicular, Baja germinaciÃ³n, Desuniformidad en la germinanciÃ³n, Plagas en el suelo y Plagas en el refugio;ReducciÃ³n en el contenido de agua en las glumas de la panoja, dehiscencia de anteras, reducciÃ³n en el tamaÃ±o de las semillas. ReducciÃ³n en el vigor de la semilla, pÃ©rdida de viabilidad y reducciÃ³n de la germinaciÃ³n de semillas y pÃ©rdida de poblaciÃ³n.;"Retraso en emergencia, germinaciÃ³n tardÃ­a, pÃ©rdida de latencia. limitan el crecimiento de las plÃ¡ntulas, y desestabilizan el mecanismo de defensa antioxidante.
+DaÃ±o por enfriamiento de imbibiciÃ³n, pudriciÃ³n de semillas y clorosis.
+ReducciÃ³n de la energÃ­a de germinaciÃ³n, azÃºcares solubles y actividad de la alfa-amilasa";"Niu, S. et al. (2024); Chandna, P. et al  (2023).  Djalovic et al (2023); 
 "
-Primera Fertilización;1;1;;Reducción en la absorción de nutrientes especialmente de fósforo, Evaporación y volatilización de nitrógeno.;Lixiviación y lavado de nutrientes principalmente nitrógeno, Dilución rápida, Intoxicación por transporte excesivo de elementos móviles como N y K, Plantas débiles;;"El estrés por bajas temperaturas también provoca deficiencia de macronutrientes (N, P, K, Ca, Mg) en brotes y raíces, al limitar el transporte de metabolitos. 
-La planta presenta síntomas de estrés por sequía y deficiencia de fósforo";Chandna, P. et al  (2023). 
-Aplicación de herbicida preemergente;;;;Reducción de la eficacia en el control de malezas;Movimiento del herbicida más allá de la zona de las raíces de las malezas disminuyendo su efectividad, Reducción en el control de malezas y potencial contaminación de aguas subterráneas.;;;
-Aplicación de insecticidas ;;;;;;"Ataque de insectos como Spodoptera frugiperda, Helicoverpa zea o trips (Frankliniella williamsi), Supervivencia de artropodos.
+Primera FertilizaciÃ³n;1;1;;ReducciÃ³n en la absorciÃ³n de nutrientes especialmente de fÃ³sforo, EvaporaciÃ³n y volatilizaciÃ³n de nitrÃ³geno.;LixiviaciÃ³n y lavado de nutrientes principalmente nitrÃ³geno, DiluciÃ³n rÃ¡pida, IntoxicaciÃ³n por transporte excesivo de elementos mÃ³viles como N y K, Plantas dÃ©biles;;"El estrÃ©s por bajas temperaturas tambiÃ©n provoca deficiencia de macronutrientes (N, P, K, Ca, Mg) en brotes y raÃ­ces, al limitar el transporte de metabolitos. 
+La planta presenta sÃ­ntomas de estrÃ©s por sequÃ­a y deficiencia de fÃ³sforo";Chandna, P. et al  (2023). 
+AplicaciÃ³n de herbicida preemergente;;;;ReducciÃ³n de la eficacia en el control de malezas;Movimiento del herbicida mÃ¡s allÃ¡ de la zona de las raÃ­ces de las malezas disminuyendo su efectividad, ReducciÃ³n en el control de malezas y potencial contaminaciÃ³n de aguas subterrÃ¡neas.;;;
+AplicaciÃ³n de insecticidas ;;;;;;"Ataque de insectos como Spodoptera frugiperda, Helicoverpa zea o trips (Frankliniella williamsi), Supervivencia de artropodos.
 Las altas temperaturas aceleran el metabolismo de los insectos, aumentando su tasa de crecimiento, consumo y desarrollo. 
-El estrés térmico aumenta la susceptibilidad de las plantas a la invasión de patógenos al interferir con sus mecanismos de defensa. El estrés térmico afecta la síntesis de enzimas de defensa, como el ácido salicílico, que activa el sistema inmunitario de la planta.";;Djalovic, I. et al  (2023). 
-Etapa fenológica V1;;;;Sistema de raíces más pequeño, plantas mas pequeñas, Presencia de Áfidos y Pulgones vectores de virus.;Incremento de plagas en el suelo, Incremento de plagas en el refugio, Asfixia radicular, Enfermendades causadas por hongos y bacterias. ;"Alteración en las relaciones hídricas de la planta. 
-Alteración en la división y crecimiento celular. Alteración en la absorción de nutrientes. 
-Reducción en el crecimiento de raíces y ensanchamiento de las hojas. 
-Reducción en el crecimiento del tallo y la raíz.";"Desequilibrio fisiologico que afecta el rendimiento, enanismo en la planta, reducción de la actividad radicular disminuyendo la absorcion de agua desencadenando el marchitamiento de la planta.
-Disminución de la fluorescencia y concentración de clorofila";"Félix, P. et al. (2024)
+El estrÃ©s tÃ©rmico aumenta la susceptibilidad de las plantas a la invasiÃ³n de patÃ³genos al interferir con sus mecanismos de defensa. El estrÃ©s tÃ©rmico afecta la sÃ­ntesis de enzimas de defensa, como el Ã¡cido salicÃ­lico, que activa el sistema inmunitario de la planta.";;Djalovic, I. et al  (2023). 
+Etapa fenolÃ³gica V1;;;;Sistema de raÃ­ces mÃ¡s pequeÃ±o, plantas mas pequeÃ±as, Presencia de Ãfidos y Pulgones vectores de virus.;Incremento de plagas en el suelo, Incremento de plagas en el refugio, Asfixia radicular, Enfermendades causadas por hongos y bacterias. ;"AlteraciÃ³n en las relaciones hÃ­dricas de la planta. 
+AlteraciÃ³n en la divisiÃ³n y crecimiento celular. AlteraciÃ³n en la absorciÃ³n de nutrientes. 
+ReducciÃ³n en el crecimiento de raÃ­ces y ensanchamiento de las hojas. 
+ReducciÃ³n en el crecimiento del tallo y la raÃ­z.";"Desequilibrio fisiologico que afecta el rendimiento, enanismo en la planta, reducciÃ³n de la actividad radicular disminuyendo la absorcion de agua desencadenando el marchitamiento de la planta.
+DisminuciÃ³n de la fluorescencia y concentraciÃ³n de clorofila";"FÃ©lix, P. et al. (2024)
 Omar Nazhan (2018). 
 Chandna, P. et al  (2023).  "
-Aplicación de herbicida (V4-V5);;;;Reducción de la eficacia en el control de malezas;Movimiento del herbicida más allá de la zona de las raíces de las malezas disminuyendo su efectividad, Reducción en el control de malezas y potencial contaminación de aguas subterráneas.;;;
-Etapa fenologica (V6) ;;;;"Marchitamiento de las plantas jóvenes y reducción de la densidad de población. Baja absorción de nutrientes debido a la disminución en el uso del agua
-por parte de la planta.";Disminución del crecimiento y desarrollo de la planta;"Disminución en la tasa fotosintetica, Reducción de la elongación por bajo potencial hídrico. 
-Formación de espigas subdesarrolladas, que eventualmente mueren debido a la desecación, conocida como ""explosión de espigas"" (TSBL). Además, se ha informado que la lesión de los tejidos reproductivos en forma de TSBL reduce el número de polen viable. 
-Además, la formación dañada del tubo polínico junto con la receptividad estigmática deteriorada debido a la sequedad del estigma podría impactar directamente el establecimiento de semillas, lo que eventualmente resulta en un menor rendimiento bajo estrés por calor.";"Daño foliar, pérdida de intensidad en la coloración de la planta y una desaceleración del proceso fotosintético, prolongación del periodo vegetativo y retraso significativo en el inicio de la antesis.
-Disminución significativa de la altura de la planta y la biomasa total del cultivo de maíz. El desarrollo de las hojas se vuelve lento debido a un ciclo celular prolongado y una tasa de mitosis reducida ";"Baomei,W. et al. (2019). 
+AplicaciÃ³n de herbicida (V4-V5);;;;ReducciÃ³n de la eficacia en el control de malezas;Movimiento del herbicida mÃ¡s allÃ¡ de la zona de las raÃ­ces de las malezas disminuyendo su efectividad, ReducciÃ³n en el control de malezas y potencial contaminaciÃ³n de aguas subterrÃ¡neas.;;;
+Etapa fenologica (V6) ;;;;"Marchitamiento de las plantas jÃ³venes y reducciÃ³n de la densidad de poblaciÃ³n. Baja absorciÃ³n de nutrientes debido a la disminuciÃ³n en el uso del agua
+por parte de la planta.";DisminuciÃ³n del crecimiento y desarrollo de la planta;"DisminuciÃ³n en la tasa fotosintetica, ReducciÃ³n de la elongaciÃ³n por bajo potencial hÃ­drico. 
+FormaciÃ³n de espigas subdesarrolladas, que eventualmente mueren debido a la desecaciÃ³n, conocida como ""explosiÃ³n de espigas"" (TSBL). AdemÃ¡s, se ha informado que la lesiÃ³n de los tejidos reproductivos en forma de TSBL reduce el nÃºmero de polen viable. 
+AdemÃ¡s, la formaciÃ³n daÃ±ada del tubo polÃ­nico junto con la receptividad estigmÃ¡tica deteriorada debido a la sequedad del estigma podrÃ­a impactar directamente el establecimiento de semillas, lo que eventualmente resulta en un menor rendimiento bajo estrÃ©s por calor.";"DaÃ±o foliar, pÃ©rdida de intensidad en la coloraciÃ³n de la planta y una desaceleraciÃ³n del proceso fotosintÃ©tico, prolongaciÃ³n del periodo vegetativo y retraso significativo en el inicio de la antesis.
+DisminuciÃ³n significativa de la altura de la planta y la biomasa total del cultivo de maÃ­z. El desarrollo de las hojas se vuelve lento debido a un ciclo celular prolongado y una tasa de mitosis reducida ";"Baomei,W. et al. (2019). 
 Zaidi, P. H. et al (2016). 
-Félix, P. et al. (2024). 
-Sáez-Cigarruista, A. et al (2024).
+FÃ©lix, P. et al. (2024). 
+SÃ¡ez-Cigarruista, A. et al (2024).
 Djalovic, I. et al (2023). 
 Chandna, P. et al  (2023). "
-Segunda Fertilización (V6);;;;Reducción en la absorción de nutrientes especialmente de fósforo, Evaporación y volatilización de nitrógeno.;Lixiviación y lavado de nutrientes principalmente nitrógeno, Dilución rápida, Intoxicación por transporte excesivo de elementos móviles como N y K, Plantas débiles;;;
-Etapa Fenológica V10;;;;Disminución del área foliar y la capacidad fotosintética lo que reduce el potencial de rendimiento, Bajo desarrollo de raíces, Reducción en el tamaño de los granos;Asfixia de raíces por baja disponibilidad de oxigeno en el suelo, plantas débiles, Pobre desarrollo de la mazorca;Reducción en el tamaño final de hojas e internudos, retraso en la aparición de la espiga y los estigmas, disminución en la longitud promedio de la espiga, reducción del número de hileras, ausencia de granos en la porcion apical por la interupción del desarrollo de primordios, Disminución en la tasa fotosintetica,  Degradación de pigmentos fotosintéticos;"Aparición tardía de la espiga, daño foliar, retraso fenológico.
-Alteración del funcionamiento del fotosistema II y de la eficiencia en el uso del agua
-Trastornos en el intercambio gaseoso, división celular y elongación ";"Baomei,W. et al. (2019). 
-Félix, P. et al. (2024). 
+Segunda FertilizaciÃ³n (V6);;;;ReducciÃ³n en la absorciÃ³n de nutrientes especialmente de fÃ³sforo, EvaporaciÃ³n y volatilizaciÃ³n de nitrÃ³geno.;LixiviaciÃ³n y lavado de nutrientes principalmente nitrÃ³geno, DiluciÃ³n rÃ¡pida, IntoxicaciÃ³n por transporte excesivo de elementos mÃ³viles como N y K, Plantas dÃ©biles;;;
+Etapa FenolÃ³gica V10;;;;DisminuciÃ³n del Ã¡rea foliar y la capacidad fotosintÃ©tica lo que reduce el potencial de rendimiento, Bajo desarrollo de raÃ­ces, ReducciÃ³n en el tamaÃ±o de los granos;Asfixia de raÃ­ces por baja disponibilidad de oxigeno en el suelo, plantas dÃ©biles, Pobre desarrollo de la mazorca;ReducciÃ³n en el tamaÃ±o final de hojas e internudos, retraso en la apariciÃ³n de la espiga y los estigmas, disminuciÃ³n en la longitud promedio de la espiga, reducciÃ³n del nÃºmero de hileras, ausencia de granos en la porcion apical por la interupciÃ³n del desarrollo de primordios, DisminuciÃ³n en la tasa fotosintetica,  DegradaciÃ³n de pigmentos fotosintÃ©ticos;"ApariciÃ³n tardÃ­a de la espiga, daÃ±o foliar, retraso fenolÃ³gico.
+AlteraciÃ³n del funcionamiento del fotosistema II y de la eficiencia en el uso del agua
+Trastornos en el intercambio gaseoso, divisiÃ³n celular y elongaciÃ³n ";"Baomei,W. et al. (2019). 
+FÃ©lix, P. et al. (2024). 
 Chandna, P. et al  (2023). "
-Tercera fertilización V10;;;;Reducción en la absorción de nutrientes especialmente de fósforo, Evaporación y volatilización de nitrógeno;Lixiviación y lavado de nutrientes principalmente nitrógeno, Dilución rápida, Intoxicación por transporte excesivo de elementos móviles como N y K, Plantas débiles;Supresión del proceso de fertilización;;
-Espigamiento (VT);;;;"Bajo desarrollo de grano, Afectación en la viabilidad del polen, Reducción del rendimiento, asincronía entre la liberación de polen y la receptividad de los estigmas. 
-Desarrollo del área foliar y disminución de la capacidad de fotosíntesis de la planta.";Pudrición por hongos y bacterias, Caída de polen;Inhibición en el desarrollo de las flores masculinas alteran la dehiscencia de las anteras, reducción en la viabilidad del polen, Limitación en la acumulación de materia seca, reducción en el tamaño de la espiga. Alargamiento del intervalo antesis–emergencia de estigmas;"Crecimiento anormal de la espiga, lo que afecta los procesos de polinización y llenado de grano.
- Cierre estomático y explosión de la panoja";"Niu, S. et al. (2024). 
-Sáez-Cigarruista, A. et al (2024). 
+Tercera fertilizaciÃ³n V10;;;;ReducciÃ³n en la absorciÃ³n de nutrientes especialmente de fÃ³sforo, EvaporaciÃ³n y volatilizaciÃ³n de nitrÃ³geno;LixiviaciÃ³n y lavado de nutrientes principalmente nitrÃ³geno, DiluciÃ³n rÃ¡pida, IntoxicaciÃ³n por transporte excesivo de elementos mÃ³viles como N y K, Plantas dÃ©biles;SupresiÃ³n del proceso de fertilizaciÃ³n;;
+Espigamiento (VT);;;;"Bajo desarrollo de grano, AfectaciÃ³n en la viabilidad del polen, ReducciÃ³n del rendimiento, asincronÃ­a entre la liberaciÃ³n de polen y la receptividad de los estigmas. 
+Desarrollo del Ã¡rea foliar y disminuciÃ³n de la capacidad de fotosÃ­ntesis de la planta.";PudriciÃ³n por hongos y bacterias, CaÃ­da de polen;InhibiciÃ³n en el desarrollo de las flores masculinas alteran la dehiscencia de las anteras, reducciÃ³n en la viabilidad del polen, LimitaciÃ³n en la acumulaciÃ³n de materia seca, reducciÃ³n en el tamaÃ±o de la espiga. Alargamiento del intervalo antesisâ€“emergencia de estigmas;"Crecimiento anormal de la espiga, lo que afecta los procesos de polinizaciÃ³n y llenado de grano.
+ Cierre estomÃ¡tico y explosiÃ³n de la panoja";"Niu, S. et al. (2024). 
+SÃ¡ez-Cigarruista, A. et al (2024). 
 Chandna, P. et al  (2023). "
-Polinización - Emergencia estigma (R1);;;;Desarrollo del área foliar y disminución de la capacidad de fotosíntesis de la planta.;;"Reducción en la viabilidad del polen, formación anormal de embriones, disminución en el número de granos, Alargamiento del intervalo antesis–emergencia de estigmas, reducción en la tasa de germinación. 
-El estrés térmico provoca la inhibición de la dehiscencia de las anteras y la reducción de la viabilidad, la germinación y el crecimiento del tubo polínico del polen.
-El estrés térmico después de la polinización también provoca abortos de granos debido a la reducción en la disponibilidad de carbohidratos y daños.";"Reducción grave del rendimiento si se presentan en esta etapa reproductivas, ya que las plantas destinan más del 50 % de sus fotosintatos al desarrollo de granos durante esta fase hasta la madurez fisiológica. 
-Daño en los tubos polínicos y deshidratación de anteras
-Disminución en la retención de polen, formación del ovario y receptividad del estigma.
-Reducción en el número de estilos y flores";"Niu, S. et al. (2024). 
-Sáez-Cigarruista, A. et al  (2024). 
+PolinizaciÃ³n - Emergencia estigma (R1);;;;Desarrollo del Ã¡rea foliar y disminuciÃ³n de la capacidad de fotosÃ­ntesis de la planta.;;"ReducciÃ³n en la viabilidad del polen, formaciÃ³n anormal de embriones, disminuciÃ³n en el nÃºmero de granos, Alargamiento del intervalo antesisâ€“emergencia de estigmas, reducciÃ³n en la tasa de germinaciÃ³n. 
+El estrÃ©s tÃ©rmico provoca la inhibiciÃ³n de la dehiscencia de las anteras y la reducciÃ³n de la viabilidad, la germinaciÃ³n y el crecimiento del tubo polÃ­nico del polen.
+El estrÃ©s tÃ©rmico despuÃ©s de la polinizaciÃ³n tambiÃ©n provoca abortos de granos debido a la reducciÃ³n en la disponibilidad de carbohidratos y daÃ±os.";"ReducciÃ³n grave del rendimiento si se presentan en esta etapa reproductivas, ya que las plantas destinan mÃ¡s del 50 % de sus fotosintatos al desarrollo de granos durante esta fase hasta la madurez fisiolÃ³gica. 
+DaÃ±o en los tubos polÃ­nicos y deshidrataciÃ³n de anteras
+DisminuciÃ³n en la retenciÃ³n de polen, formaciÃ³n del ovario y receptividad del estigma.
+ReducciÃ³n en el nÃºmero de estilos y flores";"Niu, S. et al. (2024). 
+SÃ¡ez-Cigarruista, A. et al  (2024). 
 Djalovic, I. et al (2023). 
 Chandna, P. et al  (2023). "
-Llenado de grano (R2) ;;;;"Desarrollo del área foliar y disminución de la capacidad de fotosíntesis de la planta.
-Reducción del peso unitario del grano y el rendimiento";;"Disminución de la tasa de cuajado de semillas y del peso de los granos, aceleración en el llenado de grano, desarrollo anormal de los óvulos fecundados,  deterioración de la calidad del almidón,  aborto de granos superiores, retraso en el desarrollo del grano. Por otro lado, el estrés térmico durante el período de llenado del grano aumenta las pérdidas de carbono respiratorio y dificulta la distribución de asimilados de la fuente al sumidero. 
-Además, también acorta el período activo de llenado del grano lo que eventualmente conduce a la reducción del peso del grano y al deterioro de su calidad.
-Reducción en la tasa de fotosíntesis, aumento de las pérdidas de carbono por respiración, Alteración en la distribución de asimilados desde la fuente hacia el destino. 
-Deshidratación del grano.";Retraso en llenado de grano, lo que resulta en una producción de grano menor. Se puede alterar la composición del almidón al reducir el contenido de amilosa, lo que a su vez disminuye la solubilidad en agua y el poder de hinchamiento del almidón, y aumenta las temperaturas de gelatinización. ;"Niu, S. et al. (2024). 
-Félix, P. et al. (2024). 
-Barrera, J., & Ramos-Manzané, F. (2024). 
+Llenado de grano (R2) ;;;;"Desarrollo del Ã¡rea foliar y disminuciÃ³n de la capacidad de fotosÃ­ntesis de la planta.
+ReducciÃ³n del peso unitario del grano y el rendimiento";;"DisminuciÃ³n de la tasa de cuajado de semillas y del peso de los granos, aceleraciÃ³n en el llenado de grano, desarrollo anormal de los Ã³vulos fecundados,  deterioraciÃ³n de la calidad del almidÃ³n,  aborto de granos superiores, retraso en el desarrollo del grano. Por otro lado, el estrÃ©s tÃ©rmico durante el perÃ­odo de llenado del grano aumenta las pÃ©rdidas de carbono respiratorio y dificulta la distribuciÃ³n de asimilados de la fuente al sumidero. 
+AdemÃ¡s, tambiÃ©n acorta el perÃ­odo activo de llenado del grano lo que eventualmente conduce a la reducciÃ³n del peso del grano y al deterioro de su calidad.
+ReducciÃ³n en la tasa de fotosÃ­ntesis, aumento de las pÃ©rdidas de carbono por respiraciÃ³n, AlteraciÃ³n en la distribuciÃ³n de asimilados desde la fuente hacia el destino. 
+DeshidrataciÃ³n del grano.";Retraso en llenado de grano, lo que resulta en una producciÃ³n de grano menor. Se puede alterar la composiciÃ³n del almidÃ³n al reducir el contenido de amilosa, lo que a su vez disminuye la solubilidad en agua y el poder de hinchamiento del almidÃ³n, y aumenta las temperaturas de gelatinizaciÃ³n. ;"Niu, S. et al. (2024). 
+FÃ©lix, P. et al. (2024). 
+Barrera, J., & Ramos-ManzanÃ©, F. (2024). 
 Djalovic, I. et al (2023). 
 Chandna, P. et al  (2023). "
-Estado de leche (R3);;;;Reducción en el desarrollo de grano, Marchitamiento y reducción del área foliar;Asfixia radicular, Limitación en la absorción de agua y nutrientes, afectación en el llenado de los granos, Crecimiento débil, enfermedades por hongos y bacterias;Disminución en rendimiento y calidad (pérdida de biomasa, área foliar y formación de grano);Retraso en llenado de grano ;
-Estado pastoso (R4);;;;Reducción en el desarrollo de grano, Marchitamiento y reducción del área foliar, Reducción en el tamaño y peso de grano, Aborto de granos;Asfixia radicular, Limitación en la absorción de agua y nutrientes, afectación en el llenado de los granos, Crecimiento débil, Enfermedades por hongos y bacterias;Disminución en rendimiento y calidad (pérdida de biomasa, área foliar y formación de grano);"Alteraciones en la composición de almidón de los granos.
-Disminución en el contenido de amilosa.
-Movilización deficiente de asimilados hacia el grano";Chandna, P. et al  (2023). 
-Dentado (R5);;;;Reducción en el llenado del grano, Disminución en el número de granos por mazorca, Disminución en la calidad del grano, Marchitamiento, Reducción del área foliar;Asfixia radicular, Baja absorción de agua y nutrientes, Afectación en el llenado final de los granos, Desarrollo de enfermedades por hongos y bacterias, Baja calidad del grano;;"Pérdidas significativas en el rendimiento de grano.
-Periodo de llenado de grano acortado, espigas sin granos, aborto de granos. ";"Félix, P. et al. (2024).
+Estado de leche (R3);;;;ReducciÃ³n en el desarrollo de grano, Marchitamiento y reducciÃ³n del Ã¡rea foliar;Asfixia radicular, LimitaciÃ³n en la absorciÃ³n de agua y nutrientes, afectaciÃ³n en el llenado de los granos, Crecimiento dÃ©bil, enfermedades por hongos y bacterias;DisminuciÃ³n en rendimiento y calidad (pÃ©rdida de biomasa, Ã¡rea foliar y formaciÃ³n de grano);Retraso en llenado de grano ;
+Estado pastoso (R4);;;;ReducciÃ³n en el desarrollo de grano, Marchitamiento y reducciÃ³n del Ã¡rea foliar, ReducciÃ³n en el tamaÃ±o y peso de grano, Aborto de granos;Asfixia radicular, LimitaciÃ³n en la absorciÃ³n de agua y nutrientes, afectaciÃ³n en el llenado de los granos, Crecimiento dÃ©bil, Enfermedades por hongos y bacterias;DisminuciÃ³n en rendimiento y calidad (pÃ©rdida de biomasa, Ã¡rea foliar y formaciÃ³n de grano);"Alteraciones en la composiciÃ³n de almidÃ³n de los granos.
+DisminuciÃ³n en el contenido de amilosa.
+MovilizaciÃ³n deficiente de asimilados hacia el grano";Chandna, P. et al  (2023). 
+Dentado (R5);;;;ReducciÃ³n en el llenado del grano, DisminuciÃ³n en el nÃºmero de granos por mazorca, DisminuciÃ³n en la calidad del grano, Marchitamiento, ReducciÃ³n del Ã¡rea foliar;Asfixia radicular, Baja absorciÃ³n de agua y nutrientes, AfectaciÃ³n en el llenado final de los granos, Desarrollo de enfermedades por hongos y bacterias, Baja calidad del grano;;"PÃ©rdidas significativas en el rendimiento de grano.
+Periodo de llenado de grano acortado, espigas sin granos, aborto de granos. ";"FÃ©lix, P. et al. (2024).
  Chandna, P. et al  (2023). "
-Madurez Fisiológica (R6);;;;Granos excesivamente secos y frágiles, Granos propensos a daños mecánicos durante la cosecha y poscosecha;Dificultad de acceso para la maquinaria, Retraso en la cosecha, Aumento de costos operativos, Pérdida de calidad del grano;Disminución en el rendimiento del grano y la calidad del fruto, disminucióon en el peso individual del grano, disminución en el contenido de almidón;"Granos más propensos a la fisuración, con menor digestibilidad, ensilajes con menor contenido energético (almidón) y un aumento en la proporción de fibra respecto a lo normal.  
-Prolongación de la madurez de cosecha
-Alteraciones en la composición de almidón de los granos. ";"Niu, S. et al. (2024). 
-Félix, P. et al. (2024). 
+Madurez FisiolÃ³gica (R6);;;;Granos excesivamente secos y frÃ¡giles, Granos propensos a daÃ±os mecÃ¡nicos durante la cosecha y poscosecha;Dificultad de acceso para la maquinaria, Retraso en la cosecha, Aumento de costos operativos, PÃ©rdida de calidad del grano;DisminuciÃ³n en el rendimiento del grano y la calidad del fruto, disminuciÃ³on en el peso individual del grano, disminuciÃ³n en el contenido de almidÃ³n;"Granos mÃ¡s propensos a la fisuraciÃ³n, con menor digestibilidad, ensilajes con menor contenido energÃ©tico (almidÃ³n) y un aumento en la proporciÃ³n de fibra respecto a lo normal.  
+ProlongaciÃ³n de la madurez de cosecha
+Alteraciones en la composiciÃ³n de almidÃ³n de los granos. ";"Niu, S. et al. (2024). 
+FÃ©lix, P. et al. (2024). 
 Chandna, P. et al  (2023). "
-Cosecha;;;;Granos excesivamente secos y frágiles, Granos propensos a daños mecánicos durante la cosecha y poscosecha;Dificultad de acceso para la maquinaria, Retraso en la cosecha, Aumento de costos operativos, Pérdida de calidad del grano;Disminución en el peso seco del grano ;Influencia negativa en el rendimiento y calidad del grano;Baomei,W. et al. (2019). 
+Cosecha;5;5;;Granos excesivamente secos y frÃ¡giles, Granos propensos a daÃ±os mecÃ¡nicos durante la cosecha y poscosecha;Dificultad de acceso para la maquinaria, Retraso en la cosecha, Aumento de costos operativos, PÃ©rdida de calidad del grano;DisminuciÃ³n en el peso seco del grano ;Influencia negativa en el rendimiento y calidad del grano;Baomei,W. et al. (2019). 
+
