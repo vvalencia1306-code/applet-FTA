@@ -27,23 +27,32 @@
     // ===========================
     // Agrega aquí nuevos cultivos y/o CSV cuando los tengas.
     const CATALOGO = [
-      {
-        id: "cacao",
-        nombre: "Cacao",
-        tipo: "Perenne",
-        fases: ["Vegetativa", "Productiva"],
-        csv: {
-          Vegetativa: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/vegetativa.csv",
-          Productiva: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/productiva.csv",
-        },
-        imagen: "assets/DiseñoFTA.png",
-      },
-      // Ejemplos preparados para más tarde (deshabilitados por ahora)
-      { id: "aguacate", nombre: "Aguacate", tipo: "Perenne", fases: ["Vegetativa", "Productiva"], csv: {}, comingSoon: true },
-      { id: "capsicum", nombre: "Capsicum (ají/pimentón)", tipo: "Ciclo corto", fases: ["Única"], csv: {}, comingSoon: true },
-      { id: "zanahoria", nombre: "Zanahoria", tipo: "Ciclo corto", fases: ["Única"], csv: {}, comingSoon: true },
-    ];
-
+  {
+    id: "cacao",
+    nombre: "Cacao",
+    tipo: "Perenne",
+    fases: ["Vegetativa", "Productiva"],
+    csv: {
+      Vegetativa: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/vegetativa.csv",
+      Productiva: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/productiva.csv",
+    },
+    imagen: "assets/DiseñoFTA.png",
+  },
+  {
+    id: "maiz-eje-cafetero",
+    nombre: "Maíz · Eje Cafetero",
+    tipo: "Ciclo corto",
+    fases: ["Unica"],   // 👈 sin tilde, para evitar problemas
+    csv: {
+      Unica: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/maiz_eje_cafetero.csv",
+    },
+    imagen: "assets/DiseñoFTA.png",
+  },
+  // Ejemplos preparados para más tarde (deshabilitados por ahora)
+  { id: "aguacate", nombre: "Aguacate", tipo: "Perenne", fases: ["Vegetativa", "Productiva"], csv: {}, comingSoon: true },
+  { id: "capsicum", nombre: "Capsicum (ají/pimentón)", tipo: "Ciclo corto", fases: ["Unica"], csv: {}, comingSoon: true },
+  { id: "zanahoria", nombre: "Zanahoria", tipo: "Ciclo corto", fases: ["Unica"], csv: {}, comingSoon: true },
+];
     // ===========================
     // LECTOR DE CSV PARA LA FICHA SELECCIONADA
     // ===========================
@@ -122,7 +131,6 @@
           <div className="p-4 rounded-xl bg-amber-50 text-amber-900 mb-10">
             <b>Importante:</b> Los campos <i>Mes inicio</i> y <i>Mes fin</i> <b>no son meses de calendario</b>.
             “Mes 1” es el primer mes del evento dentro del sistema productivo. Por ejemplo, puede coincidir con octubre si allí inicia la preparación del terreno.
-            Esto es clave porque las siembras ya no ocurren siempre en las mismas fechas históricas.
           </div>
 
           <p className="text-gray-700 mb-12">
