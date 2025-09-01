@@ -23,13 +23,38 @@
     const { useState, useMemo, useEffect } = React;
 
     // ===========================
-    // CARGA DE CSV (Vegetativa / Productiva)
+    // CATÁLOGO DE FICHAS
     // ===========================
-    function useCsvData() {
+    // Agrega aquí nuevos cultivos y/o CSV cuando los tengas.
+    const CATALOGO = [
+      {
+        id: "cacao",
+        nombre: "Cacao",
+        tipo: "Perenne",
+        fases: ["Vegetativa", "Productiva"],
+        csv: {
+          Vegetativa: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/vegetativa.csv",
+          Productiva: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/productiva.csv",
+        },
+        imagen: "assets/DiseñoFTA.png",
+      },
+      // Ejemplos preparados para más tarde (deshabilitados por ahora)
+      { id: "aguacate", nombre: "Aguacate", tipo: "Perenne", fases: ["Vegetativa", "Productiva"], csv: {}, comingSoon: true },
+      { id: "capsicum", nombre: "Capsicum (ají/pimentón)", tipo: "Ciclo corto", fases: ["Única"], csv: {}, comingSoon: true },
+      { id: "zanahoria", nombre: "Zanahoria", tipo: "Ciclo corto", fases: ["Única"], csv: {}, comingSoon: true },
+    ];
+
+    // ===========================
+    // LECTOR DE CSV PARA LA FICHA SELECCIONADA
+    // ===========================
+    function useCsvData(entry) {
       const [veg, setVeg] = useState([]);
       const [prod, setProd] = useState([]);
 
       useEffect(() => {
+        setVeg([]); setProd([]);
+        if (!entry || entry.comingSoon) return;
+
         const normalizar = (rows) =>
           rows
             .filter(r => r.elem && r.elem.trim())
@@ -54,24 +79,31 @@
               };
             });
 
-        const cargar = (url, set) =>
+        const cargar = (url, set) => {
+          if (!url) return;
           Papa.parse(url, {
             download: true,
             header: true,
             skipEmptyLines: true,
             complete: ({ data }) => set(normalizar(data)),
           });
+        };
 
-        // Tus CSV actuales en GitHub
-        cargar("https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/vegetativa.csv", setVeg);
-        cargar("https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/productiva.csv", setProd);
-      }, []);
+        // Si hay dos fases
+        if (entry.fases?.includes("Vegetativa")) {
+          cargar(entry.csv?.Vegetativa, setVeg);
+        }
+        if (entry.fases?.includes("Productiva")) {
+          cargar(entry.csv?.Productiva, setProd);
+        }
+        // Si fuera "Única", puedes usar 'Vegetativa' para cargar y dejar 'prod' vacío.
+      }, [entry]);
 
       return { veg, prod };
     }
 
     // ===========================
-    // INTRO (igual a tu redacción + tooltips + imagen)
+    // INTRO (tu redacción + tooltips + imagen)
     // ===========================
     function Intro({ onStart }) {
       return (
@@ -153,15 +185,61 @@
               onClick={onStart}
               className="px-5 py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700"
             >
-              👉 Explorar matriz de cacao
+              👉 Explorar fichas técnicas
             </button>
           </div>
         </div>
       );
     }
 
-    function Pill({ children }) {
-      return <span className="px-2 py-0.5 rounded-full bg-gray-100 border text-gray-800 text-xs">{children}</span>;
+    // ===========================
+    // SELECTOR DE FICHAS (perennes / ciclo corto)
+    // ===========================
+    function SelectorFichas({ onBack, onPick }) {
+      const [tab, setTab] = useState("Perenne");
+      const items = CATALOGO.filter(c => c.tipo === tab);
+
+      return (
+        <div className="max-w-6xl mx-auto p-6 space-y-6">
+          <div className="flex items-center justify-between">
+            <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
+            <div className="flex gap-2">
+              <button
+                className={`px-3 py-2 rounded-lg border text-sm ${tab==="Perenne" ? "bg-gray-900 text-white" : ""}`}
+                onClick={() => setTab("Perenne")}
+              >Perennes</button>
+              <button
+                className={`px-3 py-2 rounded-lg border text-sm ${tab==="Ciclo corto" ? "bg-gray-900 text-white" : ""}`}
+                onClick={() => setTab("Ciclo corto")}
+              >Ciclo corto</button>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {items.map((it) => (
+              <div key={it.id}
+                   className={`rounded-2xl border p-5 shadow-sm ${it.comingSoon ? "opacity-60" : "hover:shadow-md"}`}>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold">{it.nombre}</h3>
+                  {it.comingSoon && (
+                    <span className="text-xs bg-gray-100 border px-2 py-1 rounded-full">Próximamente</span>
+                  )}
+                </div>
+                <p className="text-sm text-gray-600 mb-4">Tipo: {it.tipo}</p>
+                <button
+                  disabled={!!it.comingSoon}
+                  onClick={() => onPick(it)}
+                  className={`px-3 py-2 rounded-lg text-sm ${it.comingSoon
+                    ? "bg-gray-100 text-gray-400 border"
+                    : "bg-emerald-600 hover:bg-emerald-700 text-white"}`}
+                >
+                  Ver ficha
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
     }
 
     function PanelDetalle({ fila, onClose }) {
@@ -192,16 +270,16 @@
     }
 
     // ===========================
-    // MATRIZ
+    // MATRIZ (soporta 2 fases o única)
     // ===========================
-    function MatrizCacao({ onBack, dataVeg, dataProd }) {
-      const hasTwoPhases = (dataVeg?.length || 0) > 0 && (dataProd?.length || 0) > 0;
+    function Matriz({ onBack, entry, veg, prod }) {
+      const hasTwoPhases = entry?.fases?.includes("Vegetativa") && entry?.fases?.includes("Productiva");
       const [fase, setFase] = useState(hasTwoPhases ? "Vegetativa" : "Única");
       const [sel, setSel] = useState(null);
 
       const data = hasTwoPhases
-        ? (fase === "Productiva" ? dataProd : dataVeg)
-        : (dataVeg?.length ? dataVeg : dataProd);
+        ? (fase === "Productiva" ? prod : veg)
+        : (veg?.length ? veg : prod);
 
       const maxMes = useMemo(() => {
         const filaMax = (r) =>
@@ -218,7 +296,7 @@
         <div className="max-w-7xl mx-auto p-6 space-y-6">
           <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <div>
-              <h1 className="text-2xl font-semibold">Matriz preliminar de riesgos agroclimáticos · Cacao</h1>
+              <h1 className="text-2xl font-semibold">Matriz preliminar de riesgos agroclimáticos · {entry?.nombre || ""}</h1>
               <p className="text-sm text-gray-600">Los meses representan <b>fases del ciclo</b>.</p>
             </div>
             <div className="flex items-center gap-2">
@@ -270,7 +348,7 @@
             </table>
           </div>
 
-          {/* Se eliminó la hilera de píldoras/leyenda como pediste */}
+          {/* sin fila de "píldoras"/leyenda */}
           <PanelDetalle fila={sel} onClose={() => setSel(null)} />
         </div>
       );
@@ -280,23 +358,49 @@
     // APP
     // ===========================
     function App() {
-      const { veg, prod } = useCsvData();
-      const [paso, setPaso] = useState("intro");
+      const [paso, setPaso] = useState("intro");          // "intro" | "selector" | "matriz"
+      const [entry, setEntry] = useState(null);           // cultivo seleccionado del catálogo
+      const { veg, prod } = useCsvData(entry);
 
       if (paso === "intro") {
-        return <Intro onStart={() => setPaso("matriz")} />;
+        return <Intro onStart={() => setPaso("selector")} />;
       }
 
-      // Cargando
-      if ((veg.length === 0) && (prod.length === 0)) {
+      if (paso === "selector") {
+        return (
+          <SelectorFichas
+            onBack={() => setPaso("intro")}
+            onPick={(it) => { setEntry(it); setPaso("matriz"); }}
+          />
+        );
+      }
+
+      // Paso "matriz"
+      if (!entry) {
+        return <div className="p-6 text-center text-gray-500">Selecciona un sistema productivo…</div>;
+      }
+      // Si el cultivo está en "Próximamente"
+      if (entry.comingSoon) {
+        return (
+          <div className="max-w-xl mx-auto p-6 text-center space-y-4">
+            <button onClick={() => setPaso("selector")} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
+            <p className="text-gray-600">Esta ficha aún no está disponible.</p>
+          </div>
+        );
+      }
+      // Cargando CSV
+      const esperando = (entry.fases?.includes("Vegetativa") && veg.length === 0) ||
+                        (entry.fases?.includes("Productiva") && prod.length === 0);
+      if (esperando) {
         return <div className="p-6 text-center text-gray-500">Cargando datos…</div>;
       }
 
       return (
-        <MatrizCacao
-          onBack={() => setPaso("intro")}
-          dataVeg={veg}
-          dataProd={prod}
+        <Matriz
+          onBack={() => setPaso("selector")}
+          entry={entry}
+          veg={veg}
+          prod={prod}
         />
       );
     }
@@ -305,4 +409,3 @@
   </script>
 </body>
 </html>
-
