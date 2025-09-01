@@ -1,8 +1,7 @@
 elem;ini;fin;meses;deficit;exceso;Tmax;Tmin;ref
 Preparación del terreno;1;1;;Compactación del suelo, Dificultades en el labrado por falta de humedad, Erosión, Aumento de costos, Retraso en la siembra;Erosión del terreno, Pérdida de nutrientes, Dificultades en el labrado por saturación de agua, El suelo no se pulveriza, Aumento de costos;Evaporación rápida, estrés térmico, descomposición acelerada;Disminución de actividad microbiana y lentitud en descomposición de materia orgánica.;
 Siembra y Germinación;1;1;;Retraso de la germinación, Muerte de la planta por sequía, Disminución del crecimiento radical ;Pudrición de semillas, Asfixia radicular, Baja germinación, Desuniformidad en la germinanción, Plagas en el suelo y Plagas en el refugio;Reducción en el contenido de agua en las glumas de la panoja, dehiscencia de anteras, reducción en el tamaño de las semillas. Reducción en el vigor de la semilla, pérdida de viabilidad y reducción de la germinación de semillas y pérdida de población.;"Retraso en emergencia, germinación tardía, pérdida de latencia. limitan el crecimiento de las plántulas, y desestabilizan el mecanismo de defensa antioxidante.
-Daño por enfriamiento de imbibición, pudrición de semillas y clorosis.
-Reducción de la energía de germinación, azúcares solubles y actividad de la alfa-amilasa";"Niu, S. et al. (2024); Chandna, P. et al  (2023).  Djalovic et al (2023).
+Daño por enfriamiento de imbibición, pudrición de semillas y clorosis. Reducción de la energía de germinación, azúcares solubles y actividad de la alfa-amilasa";Niu, S. et al. (2024); Chandna, P. et al  (2023).  Djalovic et al (2023).
 Primera Fertilización;1;1;;Reducción en la absorción de nutrientes especialmente de fósforo, Evaporación y volatilización de nitrógeno.;Lixiviación y lavado de nutrientes principalmente nitrógeno, Dilución rápida, Intoxicación por transporte excesivo de elementos móviles como N y K, Plantas débiles;;"El estrés por bajas temperaturas también provoca deficiencia de macronutrientes (N, P, K, Ca, Mg) en brotes y raíces, al limitar el transporte de metabolitos. 
 La planta presenta síntomas de estrés por sequía y deficiencia de fósforo";Chandna, P. et al  (2023). 
 Aplicación de herbicida preemergente;;;;Reducción de la eficacia en el control de malezas;Movimiento del herbicida más allá de la zona de las raíces de las malezas disminuyendo su efectividad, Reducción en el control de malezas y potencial contaminación de aguas subterráneas.;;;
@@ -70,5 +69,6 @@ Alteraciones en la composición de almidón de los granos. ";"Niu, S. et al. (20
 Félix, P. et al. (2024). 
 Chandna, P. et al  (2023). "
 Cosecha;5;5;;Granos excesivamente secos y frágiles, Granos propensos a daños mecánicos durante la cosecha y poscosecha;Dificultad de acceso para la maquinaria, Retraso en la cosecha, Aumento de costos operativos, Pérdida de calidad del grano;Disminución en el peso seco del grano ;Influencia negativa en el rendimiento y calidad del grano;Baomei,W. et al. (2019). 
+
 
 
