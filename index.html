@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>FTA · AGRORAC</title>
+  <title>FTA Cacao - AGRORAC</title>
 
-  <!-- PapaParse (CSV) -->
+  <!-- PapaParse para leer CSV -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
-  <!-- Tailwind (CDN) -->
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- React 18 UMD -->
+  <!-- React 18 -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <!-- Babel para JSX en el navegador -->
+  <!-- Babel para JSX -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
@@ -22,44 +22,10 @@
   <script type="text/babel">
     const { useState, useMemo, useEffect } = React;
 
-    // =========================================================
-    // 1) Catálogo de cultivos / variantes (por ahora solo cacao)
-    //    Para agregar más, copia el bloque de cacao y ajusta URLs
-    // =========================================================
-    const CROPS = {
-      cacao: {
-        id: "cacao",
-        nombre: "Cacao",
-        variants: [
-          {
-            id: "general",
-            nombre: "General",
-            vegUrl:  "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/vegetativa.csv",
-            prodUrl: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/productiva.csv",
-          },
-        ],
-      },
-
-      // Ejemplos para el futuro (déjalos como referencia):
-      // zanahoria: {
-      //   id: "zanahoria",
-      //   nombre: "Zanahoria",
-      //   variants: [{ id: "general", nombre: "General", singleUrl: "https://.../zanahoria.csv" }],
-      // },
-      // capsicum: {
-      //   id: "capsicum",
-      //   nombre: "Capsicum (ají/pimentón)",
-      //   variants: [
-      //     { id: "annuum",   nombre: "C. annuum",   singleUrl: "https://.../capsicum_annuum.csv" },
-      //     { id: "baccatum", nombre: "C. baccatum", singleUrl: "https://.../capsicum_baccatum.csv" },
-      //   ],
-      // },
-    };
-
-    // =========================================================
-    // 2) Hook de carga de CSV (soporta: singleUrl o veg+prod)
-    // =========================================================
-    function useCsvData({ vegUrl, prodUrl, singleUrl }) {
+    // ===========================
+    // CARGA DE CSV (Vegetativa / Productiva)
+    // ===========================
+    function useCsvData() {
       const [veg, setVeg] = useState([]);
       const [prod, setProd] = useState([]);
 
@@ -96,24 +62,17 @@
             complete: ({ data }) => set(normalizar(data)),
           });
 
-        // Caso: una sola ficha (p. ej., zanahoria)
-        if (singleUrl) {
-          cargar(singleUrl, setVeg); // tratamos como "veg"
-          setProd([]);
-          return;
-        }
-
-        // Caso: dos fases (veg/prod)
-        if (vegUrl)  cargar(vegUrl,  setVeg);
-        if (prodUrl) cargar(prodUrl, setProd);
-      }, [vegUrl, prodUrl, singleUrl]);
+        // Tus CSV actuales en GitHub
+        cargar("https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/vegetativa.csv", setVeg);
+        cargar("https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/productiva.csv", setProd);
+      }, []);
 
       return { veg, prod };
     }
 
-    // =========================================================
-    // 3) Componentes: Intro, Picker (selector), Matriz, Detalle
-    // =========================================================
+    // ===========================
+    // INTRO (igual a tu redacción + tooltips + imagen)
+    // ===========================
     function Intro({ onStart }) {
       return (
         <div className="max-w-5xl mx-auto p-6">
@@ -121,133 +80,88 @@
             ¿QUÉ ES UNA FICHA TÉCNICA AGROCLIMÁTICA (FTA)?
           </h1>
 
-          <p className="text-gray-700 mb-6">
-            Una FTA es un instrumento <b>técnico</b> que organiza y sintetiza los principales{" "}
-            <b>riesgos agroclimáticos</b> que afectan un sistema productivo. Identifica los{" "}
-            <b>elementos expuestos</b> (raíces, tallo, floración, prácticas de manejo) y los relaciona
-            con <b>amenazas climáticas</b> como <i>déficit y exceso hídrico</i> y{" "}
-            <i>temperaturas extremas</i>. Facilita decisiones oportunas y <b>adaptativas</b>.
+          <p className="text-gray-700 mb-10">
+            Una FTA es un instrumento <b>técnico</b> que organiza y sintetiza los principales <b>riesgos agroclimáticos</b> que afectan un sistema productivo agrícola.
+            Para ello, se identifican los <b>elementos expuestos</b> del cultivo (raíces, tallo, floración, prácticas de manejo) y los relacionan con
+            <b> amenazas climáticas</b> como <i>déficit y exceso hídrico</i> y <i>temperaturas extremas</i>. Este instrumento permite la toma de decisiones oportunas y <b>adaptativas</b>
+            por parte de los actores del sistema productivo con el fin de fortalecer la planificación agrícola.
           </p>
 
           <div className="p-4 rounded-xl bg-amber-50 text-amber-900 mb-10">
             <b>Importante:</b> Los campos <i>Mes inicio</i> y <i>Mes fin</i> <b>no son meses de calendario</b>.
-            “Mes 1” es el primer mes del evento dentro del sistema productivo. Por ejemplo, puede coincidir con
-            octubre si allí inicia la preparación del terreno.
+            “Mes 1” es el primer mes del evento dentro del sistema productivo. Por ejemplo, puede coincidir con octubre si allí inicia la preparación del terreno.
+            Esto es clave porque las siembras ya no ocurren siempre en las mismas fechas históricas.
           </div>
 
           <p className="text-gray-700 mb-12">
-            Esta forma relativa de representar la temporalidad permite adaptar la ficha a ciclos productivos
-            variables, evitando rigideces en fechas históricas de siembra o manejo. Así, la FTA se convierte en
-            una herramienta flexible y útil frente a la variabilidad y el cambio climático.
+            Esta forma relativa de representar la temporalidad permite adaptar la ficha a ciclos productivos variables, evitando rigideces en fechas históricas de siembra o manejo.
+            Así, la FTA se convierte en una herramienta flexible y útil frente a la variabilidad y el cambio climático, facilitando su contextualización territorial.
           </p>
+
+          <section className="grid md:grid-cols-2 gap-6 mb-10">
+            <div className="rounded-2xl border p-5">
+              <h2 className="font-semibold mb-2">Componentes de la FTA</h2>
+              <ul className="list-disc ml-6 text-gray-700 space-y-1">
+                <li>
+                  Filas ={" "}
+                  <span className="relative group cursor-help inline-block">
+                    <b>elementos expuestos</b>
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
+                      Componentes del cultivo susceptibles a los riesgos climáticos, como raíces, tallo, hojas o prácticas agrícolas.
+                    </span>
+                  </span>{" "}
+                  (fases fenológicas o prácticas agrícolas)
+                </li>
+                <li>
+                  Columnas ={" "}
+                  <span className="relative group cursor-help inline-block">
+                    <b>ventana de temporalidad</b>
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
+                      Intervalos de tiempo dentro del ciclo productivo en los que se presentan riesgos climáticos.
+                    </span>
+                  </span>{" "}
+                  y{" "}
+                  <span className="relative group cursor-help inline-block">
+                    <b>amenazas climáticas</b>
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
+                      Condiciones como déficit hídrico, exceso hídrico y temperaturas extremas que afectan al cultivo.
+                    </span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border p-5">
+              <h2 className="font-semibold mb-2">Público objetivo</h2>
+              <p className="text-gray-700">
+                Actores del territorio que tienen conocimiento directo, técnico o práctico sobre los sistemas productivos priorizados.
+                Su propósito es validar, complementar o ajustar las FTA preliminares y facilitar su apropiación local.
+              </p>
+            </div>
+          </section>
+
+          <div className="mb-12 flex justify-center">
+            <img
+              src="assets/DiseñoFTA.png"
+              alt="Diseño de la FTA"
+              className="rounded-xl shadow-lg max-w-3xl w-full"
+            />
+          </div>
 
           <div className="flex justify-center">
             <button
               onClick={onStart}
               className="px-5 py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700"
             >
-              👉 Explorar fichas técnicas
+              👉 Explorar matriz de cacao
             </button>
           </div>
         </div>
       );
     }
 
-    // Selector de cultivo / variante / fase (según aplique)
-    function Picker({ onConfirm }) {
-      const cropIds = Object.keys(CROPS);
-      const [cropId, setCropId] = useState(cropIds[0] || "");
-      const crop = CROPS[cropId];
-
-      const [variantId, setVariantId] = useState(crop?.variants?.[0]?.id || "");
-      useEffect(() => {
-        setVariantId(CROPS[cropId]?.variants?.[0]?.id || "");
-      }, [cropId]);
-
-      const variant = crop?.variants?.find(v => v.id === variantId);
-
-      const hasVeg  = !!variant?.vegUrl || !!variant?.singleUrl;
-      const hasProd = !!variant?.prodUrl;
-      const fases   = hasVeg && hasProd ? ["Vegetativa", "Productiva"] : ["Única"];
-
-      const [fase, setFase] = useState(fases[0]);
-      useEffect(() => {
-        setFase(fases[0]);
-      }, [variantId, cropId]);
-
-      const handleGo = () => {
-        // Empaquetamos lo necesario para cargar y mostrar
-        const cfg = {
-          cropId,
-          cropName: crop.nombre,
-          variantId,
-          variantName: variant?.nombre || "General",
-          fase, // "Vegetativa" | "Productiva" | "Única"
-          urls: {
-            vegUrl:  variant?.vegUrl  || null,
-            prodUrl: variant?.prodUrl || null,
-            singleUrl: variant?.singleUrl || null,
-          },
-        };
-        onConfirm(cfg);
-      };
-
-      return (
-        <div className="max-w-3xl mx-auto p-6 space-y-6">
-          <h2 className="text-2xl font-semibold">Selecciona la ficha a explorar</h2>
-
-          <div className="grid md:grid-cols-3 gap-4">
-            <div>
-              <label className="text-sm text-gray-600">Sistema productivo</label>
-              <select
-                className="mt-1 w-full border rounded-lg px-3 py-2"
-                value={cropId}
-                onChange={e => setCropId(e.target.value)}
-              >
-                {cropIds.map(id => (
-                  <option key={id} value={id}>{CROPS[id].nombre}</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="text-sm text-gray-600">Variante / Especie</label>
-              <select
-                className="mt-1 w-full border rounded-lg px-3 py-2"
-                value={variantId}
-                onChange={e => setVariantId(e.target.value)}
-              >
-                {(crop?.variants || []).map(v => (
-                  <option key={v.id} value={v.id}>{v.nombre}</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="text-sm text-gray-600">Fase</label>
-              <select
-                className="mt-1 w-full border rounded-lg px-3 py-2"
-                value={fase}
-                onChange={e => setFase(e.target.value)}
-                disabled={fases.length === 1}
-              >
-                {fases.map(f => (
-                  <option key={f} value={f}>{f === "Única" ? "Única" : f}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div className="pt-2">
-            <button
-              onClick={handleGo}
-              className="px-5 py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700"
-            >
-              Continuar
-            </button>
-          </div>
-        </div>
-      );
+    function Pill({ children }) {
+      return <span className="px-2 py-0.5 rounded-full bg-gray-100 border text-gray-800 text-xs">{children}</span>;
     }
 
     function PanelDetalle({ fila, onClose }) {
@@ -260,13 +174,11 @@
               <h3 className="text-lg font-semibold">{fila.elem}</h3>
               <button onClick={onClose} className="text-gray-500 hover:text-gray-700">✕</button>
             </div>
-
             <p className="text-sm text-gray-600 mb-3">
               {fila.meses?.length
                 ? <>Meses: {fila.meses.map(m => `M${m}`).join(", ")}</>
                 : <>Ventana: M{fila.ini ?? "—"} – M{fila.fin ?? "—"}</>}
             </p>
-
             <div className="grid md:grid-cols-2 gap-3 text-sm">
               <div className="border rounded-xl p-3"><b>Déficit hídrico:</b> {R.deficit || "—"}</div>
               <div className="border rounded-xl p-3"><b>Exceso hídrico:</b> {R.exceso || "—"}</div>
@@ -279,16 +191,16 @@
       );
     }
 
-    function Matriz({ onBack, title, fase, dataVeg, dataProd }) {
-      // si hay dos fases, usamos el select; si no, ocultamos
+    // ===========================
+    // MATRIZ
+    // ===========================
+    function MatrizCacao({ onBack, dataVeg, dataProd }) {
       const hasTwoPhases = (dataVeg?.length || 0) > 0 && (dataProd?.length || 0) > 0;
-      const [faseSel, setFaseSel] = useState(hasTwoPhases ? fase : "Única");
-      useEffect(() => {
-        setFaseSel(hasTwoPhases ? fase : "Única");
-      }, [fase, hasTwoPhases]);
+      const [fase, setFase] = useState(hasTwoPhases ? "Vegetativa" : "Única");
+      const [sel, setSel] = useState(null);
 
       const data = hasTwoPhases
-        ? (faseSel === "Productiva" ? dataProd : dataVeg)
+        ? (fase === "Productiva" ? dataProd : dataVeg)
         : (dataVeg?.length ? dataVeg : dataProd);
 
       const maxMes = useMemo(() => {
@@ -306,7 +218,7 @@
         <div className="max-w-7xl mx-auto p-6 space-y-6">
           <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <div>
-              <h1 className="text-2xl font-semibold">{title}</h1>
+              <h1 className="text-2xl font-semibold">Matriz preliminar de riesgos agroclimáticos · Cacao</h1>
               <p className="text-sm text-gray-600">Los meses representan <b>fases del ciclo</b>.</p>
             </div>
             <div className="flex items-center gap-2">
@@ -315,8 +227,8 @@
                 <>
                   <label className="text-sm text-gray-600">Fase:</label>
                   <select
-                    value={faseSel}
-                    onChange={e => setFaseSel(e.target.value)}
+                    value={fase}
+                    onChange={e => setFase(e.target.value)}
                     className="border rounded-lg px-3 py-2 text-sm"
                   >
                     <option>Vegetativa</option>
@@ -343,7 +255,11 @@
                   };
                   return (
                     <tr key={i} className={i % 2 ? "bg-white" : "bg-gray-50/50 hover:bg-emerald-50"}>
-                      <td className="px-3 py-2 sticky left-0 bg-inherit max-w-[360px]">{row.elem}</td>
+                      <td className="px-3 py-2 sticky left-0 bg-inherit max-w-[360px]">
+                        <button onClick={() => setSel(row)} className="text-left hover:underline">
+                          {row.elem}
+                        </button>
+                      </td>
                       {meses.map((m, j) => (
                         <td key={j} className={`h-9 border-l ${activo(m, row) ? "bg-emerald-200" : ""}`} />
                       ))}
@@ -354,50 +270,31 @@
             </table>
           </div>
 
-          <p className="text-xs text-gray-500">
-            Haz clic en el nombre de la fila para ver el detalle y las referencias (funcionalidad opcional).
-          </p>
+          {/* Se eliminó la hilera de píldoras/leyenda como pediste */}
+          <PanelDetalle fila={sel} onClose={() => setSel(null)} />
         </div>
       );
     }
 
-    // =========================================================
-    // 4) App principal
-    // =========================================================
+    // ===========================
+    // APP
+    // ===========================
     function App() {
-      const [step, setStep] = useState("intro");    // intro | picker | matrix
-      const [cfg, setCfg]   = useState(null);       // { cropName, variantName, fase, urls }
+      const { veg, prod } = useCsvData();
+      const [paso, setPaso] = useState("intro");
 
-      // Carga de datos según la selección
-      const { veg, prod } = useCsvData(cfg?.urls || {});
-
-      // Título dinámico para la matriz
-      const title = cfg
-        ? `Matriz preliminar de riesgos agroclimáticos · ${CROPS[cfg.cropId].nombre}` +
-          (cfg.variantName ? ` (${cfg.variantName})` : "")
-        : "Matriz";
-
-      if (step === "intro") {
-        return <Intro onStart={() => setStep("picker")} />;
+      if (paso === "intro") {
+        return <Intro onStart={() => setPaso("matriz")} />;
       }
 
-      if (step === "picker") {
-        return (
-          <Picker
-            onConfirm={(selection) => {
-              setCfg(selection);
-              setStep("matrix");
-            }}
-          />
-        );
+      // Cargando
+      if ((veg.length === 0) && (prod.length === 0)) {
+        return <div className="p-6 text-center text-gray-500">Cargando datos…</div>;
       }
 
-      // step === "matrix"
       return (
-        <Matriz
-          onBack={() => setStep("picker")}
-          title={title}
-          fase={cfg?.fase || "Vegetativa"}
+        <MatrizCacao
+          onBack={() => setPaso("intro")}
           dataVeg={veg}
           dataProd={prod}
         />
