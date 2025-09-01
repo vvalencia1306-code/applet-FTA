@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Applet FTA</title>
+  <title>FTA Cacao - AGRORAC</title>
 
   <!-- PapaParse para leer CSV -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
@@ -22,47 +22,88 @@
   <script type="text/babel">
     const { useState, useMemo, useEffect } = React;
 
-    // ===========================
-    // CATÁLOGO DE FICHAS
-    // ===========================
-    // Agrega aquí nuevos cultivos y/o CSV cuando los tengas.
+    // =========================================================
+    // CATÁLOGO DE FICHAS (ahora soporta variedades p/ Capsicum)
+    // =========================================================
     const CATALOGO = [
-  {
-    id: "cacao",
-    nombre: "Cacao",
-    tipo: "Perenne",
-    fases: ["Vegetativa", "Productiva"],
-    csv: {
-      Vegetativa: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/vegetativa.csv",
-      Productiva: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/productiva.csv",
-    },
-    imagen: "assets/DiseñoFTA.png",
-  },
-  {
-    id: "maiz-eje-cafetero",
-    nombre: "Maíz · Eje Cafetero",
-    tipo: "Ciclo corto",
-    fases: ["Vegetativa"],   
-    csv: {
-      Vegetativa: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/maiz_eje_cafetero.csv",
-    },
-    imagen: "assets/DiseñoFTA.png",
-  },
-  // Ejemplos preparados para más tarde (deshabilitados por ahora)
-  { id: "aguacate", nombre: "Aguacate", tipo: "Perenne", fases: ["Vegetativa", "Productiva"], csv: {}, comingSoon: true },
-  { id: "capsicum", nombre: "Capsicum (ají/pimentón)", tipo: "Ciclo corto", fases: ["Unica"], csv: {}, comingSoon: true },
-  { id: "zanahoria", nombre: "Zanahoria", tipo: "Ciclo corto", fases: ["Unica"], csv: {}, comingSoon: true },
-];
-    // ===========================
-    // LECTOR DE CSV PARA LA FICHA SELECCIONADA
-    // ===========================
-    function useCsvData(entry) {
+      {
+        id: "cacao",
+        nombre: "Cacao",
+        tipo: "Perenne",
+        fases: ["Vegetativa", "Productiva"],
+        csv: {
+          Vegetativa: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/vegetativa.csv",
+          Productiva: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/productiva.csv",
+        },
+        imagen: "assets/DiseñoFTA.png",
+      },
+      {
+        id: "maiz-eje-cafetero",
+        nombre: "Maíz · Eje Cafetero",
+        tipo: "Ciclo corto",
+        fases: ["Vegetativa"],  // fase única
+        csv: {
+          Vegetativa: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/maiz_eje_cafetero.csv",
+        },
+        imagen: "assets/DiseñoFTA.png",
+      },
+
+      // === NUEVO: capsicum con variedades ===
+      {
+        id: "capsicum",
+        nombre: "Capsicum (ají/pimentón)",
+        tipo: "Ciclo corto",
+        // Las variedades definen sus propias fases y CSV
+        variedades: {
+          "Cayenne · Palmira": {
+            nombre: "Cayenne · Palmira",
+            fases: ["Unica"],
+            csv: {
+              Unica: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/Cayenne_Palmira.csv"
+            }
+          },
+          "Habanero · Palmira": {
+            nombre: "Habanero · Palmira",
+            fases: ["Unica"],
+            csv: {
+              Unica: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/Habanero_Palmira.csv"
+            }
+          },
+          "Tabasco · Palmira": {
+            nombre: "Tabasco · Palmira",
+            fases: ["Unica"],
+            csv: {
+              Unica: "https://raw.githubusercontent.com/vvalencia1306-code/applet-Fenologia-Riesgos-Capsicum/main/Tabasco_Palmira.csv"
+            }
+          },
+          // Agrega más variedades aquí...
+          // "c-chinense": { nombre:"Capsicum chinense", fases:["Unica"], csv:{ Unica:"..." } },
+        },
+        imagen: "assets/DiseñoFTA.png",
+      },
+
+      // Otros (placeholder)
+      { id: "aguacate", nombre: "Aguacate", tipo: "Perenne", fases: ["Vegetativa", "Productiva"], csv: {}, comingSoon: true },
+      { id: "zanahoria", nombre: "Zanahoria", tipo: "Ciclo corto", fases: ["Unica"], csv: {}, comingSoon: true },
+    ];
+
+    // =========================================================
+    // LECTOR DE CSV — ahora acepta variedad (si aplica)
+    // =========================================================
+    function useCsvData(entry, variedadKey) {
       const [veg, setVeg] = useState([]);
       const [prod, setProd] = useState([]);
 
       useEffect(() => {
         setVeg([]); setProd([]);
         if (!entry || entry.comingSoon) return;
+
+        // Si el cultivo tiene "variedades", usa la variedad elegida; si no, usa el propio entry.
+        const fuente = entry.variedades
+          ? (entry.variedades[variedadKey] || Object.values(entry.variedades)[0])
+          : entry;
+
+        if (!fuente) return;
 
         const normalizar = (rows) =>
           rows
@@ -98,22 +139,18 @@
           });
         };
 
-        // Si hay dos fases
-        if (entry.fases?.includes("Vegetativa")) {
-          cargar(entry.csv?.Vegetativa, setVeg);
-        }
-        if (entry.fases?.includes("Productiva")) {
-          cargar(entry.csv?.Productiva, setProd);
-        }
-        // Si fuera "Única", puedes usar 'Vegetativa' para cargar y dejar 'prod' vacío.
-      }, [entry]);
+        // Soporta Vegetativa / Productiva / Unica
+        if (fuente.fases?.includes("Vegetativa")) cargar(fuente.csv?.Vegetativa, setVeg);
+        if (fuente.fases?.includes("Productiva")) cargar(fuente.csv?.Productiva, setProd);
+        if (fuente.fases?.includes("Unica"))      cargar(fuente.csv?.Unica,       setVeg);
+      }, [entry, variedadKey]);
 
       return { veg, prod };
     }
 
-    // ===========================
-    // INTRO (tu redacción + tooltips + imagen)
-    // ===========================
+    // =========================================================
+    // INTRO — (sin cambios en tu redacción / tooltips / imagen)
+    // =========================================================
     function Intro({ onStart }) {
       return (
         <div className="max-w-5xl mx-auto p-6">
@@ -200,9 +237,9 @@
       );
     }
 
-    // ===========================
-    // SELECTOR DE FICHAS (perennes / ciclo corto)
-    // ===========================
+    // =========================================================
+    // SELECTOR DE FICHAS (sin cambios visuales)
+    // =========================================================
     function SelectorFichas({ onBack, onPick }) {
       const [tab, setTab] = useState("Perenne");
       const items = CATALOGO.filter(c => c.tipo === tab);
@@ -250,6 +287,9 @@
       );
     }
 
+    // =========================================================
+    // PANEL DETALLE (sin cambios)
+    // =========================================================
     function PanelDetalle({ fila, onClose }) {
       if (!fila) return null;
       const R = fila.riesgos || {};
@@ -277,13 +317,24 @@
       );
     }
 
-    // ===========================
-    // MATRIZ (soporta 2 fases o única)
-    // ===========================
-    function Matriz({ onBack, entry, veg, prod }) {
-      const hasTwoPhases = entry?.fases?.includes("Vegetativa") && entry?.fases?.includes("Productiva");
+    // =========================================================
+    // MATRIZ — añade selector de variedad si existe
+    // =========================================================
+    function Matriz({ onBack, entry, veg, prod, variedadKey, setVariedadKey }) {
+      const variedades = entry?.variedades || null;
+      const fuente = variedades
+        ? (variedades[variedadKey] || Object.values(variedades)[0])
+        : entry;
+
+      const hasTwoPhases = fuente?.fases?.includes("Vegetativa") && fuente?.fases?.includes("Productiva");
       const [fase, setFase] = useState(hasTwoPhases ? "Vegetativa" : "Única");
       const [sel, setSel] = useState(null);
+
+      // Si cambia la variedad (o entrada), re-sincroniza la fase inicial
+      useEffect(() => {
+        setFase(hasTwoPhases ? "Vegetativa" : "Única");
+        setSel(null);
+      }, [entry, variedadKey]);
 
       const data = hasTwoPhases
         ? (fase === "Productiva" ? prod : veg)
@@ -300,15 +351,36 @@
 
       const meses = useMemo(() => Array.from({ length: maxMes }, (_, i) => i + 1), [maxMes]);
 
+      // Título con nombre del cultivo y, si aplica, de la variedad
+      const titulo = variedades
+        ? `${entry?.nombre} · ${variedades[variedadKey]?.nombre || ""}`
+        : entry?.nombre || "";
+
       return (
         <div className="max-w-7xl mx-auto p-6 space-y-6">
           <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <div>
-              <h1 className="text-2xl font-semibold">Matriz preliminar de riesgos agroclimáticos · {entry?.nombre || ""}</h1>
+              <h1 className="text-2xl font-semibold">Matriz preliminar de riesgos agroclimáticos · {titulo}</h1>
               <p className="text-sm text-gray-600">Los meses representan <b>fases del ciclo</b>.</p>
             </div>
             <div className="flex items-center gap-2">
               <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
+
+              {variedades && (
+                <>
+                  <label className="text-sm text-gray-600">Variedad:</label>
+                  <select
+                    value={variedadKey}
+                    onChange={e => setVariedadKey(e.target.value)}
+                    className="border rounded-lg px-3 py-2 text-sm"
+                  >
+                    {Object.entries(variedades).map(([key, v]) => (
+                      <option key={key} value={key}>{v.nombre}</option>
+                    ))}
+                  </select>
+                </>
+              )}
+
               {hasTwoPhases && (
                 <>
                   <label className="text-sm text-gray-600">Fase:</label>
@@ -356,19 +428,20 @@
             </table>
           </div>
 
-          {/* sin fila de "píldoras"/leyenda */}
           <PanelDetalle fila={sel} onClose={() => setSel(null)} />
         </div>
       );
     }
 
-    // ===========================
-    // APP
-    // ===========================
+    // =========================================================
+    // APP — ahora guarda la variedad seleccionada
+    // =========================================================
     function App() {
-      const [paso, setPaso] = useState("intro");          // "intro" | "selector" | "matriz"
-      const [entry, setEntry] = useState(null);           // cultivo seleccionado del catálogo
-      const { veg, prod } = useCsvData(entry);
+      const [paso, setPaso] = useState("intro");     // "intro" | "selector" | "matriz"
+      const [entry, setEntry] = useState(null);      // cultivo seleccionado
+      const [variedadKey, setVariedadKey] = useState(null); // clave de variedad (si aplica)
+
+      const { veg, prod } = useCsvData(entry, variedadKey);
 
       if (paso === "intro") {
         return <Intro onStart={() => setPaso("selector")} />;
@@ -378,7 +451,16 @@
         return (
           <SelectorFichas
             onBack={() => setPaso("intro")}
-            onPick={(it) => { setEntry(it); setPaso("matriz"); }}
+            onPick={(it) => {
+              setEntry(it);
+              if (it.variedades) {
+                const firstKey = Object.keys(it.variedades)[0];
+                setVariedadKey(firstKey);
+              } else {
+                setVariedadKey(null);
+              }
+              setPaso("matriz");
+            }}
           />
         );
       }
@@ -387,7 +469,6 @@
       if (!entry) {
         return <div className="p-6 text-center text-gray-500">Selecciona un sistema productivo…</div>;
       }
-      // Si el cultivo está en "Próximamente"
       if (entry.comingSoon) {
         return (
           <div className="max-w-xl mx-auto p-6 text-center space-y-4">
@@ -396,9 +477,17 @@
           </div>
         );
       }
-      // Cargando CSV
-      const esperando = (entry.fases?.includes("Vegetativa") && veg.length === 0) ||
-                        (entry.fases?.includes("Productiva") && prod.length === 0);
+
+      // Esperando carga CSV (según fases de la fuente actual)
+      const fuente = entry.variedades
+        ? (entry.variedades[variedadKey] || Object.values(entry.variedades)[0])
+        : entry;
+
+      const esperando =
+        (fuente?.fases?.includes("Vegetativa") && veg.length === 0) ||
+        (fuente?.fases?.includes("Productiva") && prod.length === 0) ||
+        (fuente?.fases?.includes("Unica")      && veg.length === 0);
+
       if (esperando) {
         return <div className="p-6 text-center text-gray-500">Cargando datos…</div>;
       }
@@ -409,6 +498,8 @@
           entry={entry}
           veg={veg}
           prod={prod}
+          variedadKey={variedadKey}
+          setVariedadKey={setVariedadKey}
         />
       );
     }
