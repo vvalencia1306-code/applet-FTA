@@ -1,5 +1,5 @@
 elem;ini;fin;meses;deficit;exceso;Tmax;Tmin;ref
-Preparación del terreno;1;1;;"Reducción en la humedad del suelo afectando  establecimiento del cultivo, Endurecimiento del suelo menor disponibilidad de nutrientes";Saturación del suelo, compactación del suelo, pérdida de nutrientes;Evaporación rápida, estrés térmico, descomposición acelerada;Disminución de actividad microbiana y lentitud en descomposición de materia orgánica.;
+Preparación del terreno;1;1;;"Reducción en la humedad del suelo afectando  establecimiento del cultivo, Endurecimiento del suelo menor disponibilidad de nutrientes";Saturación del suelo, compactación del suelo, pérdida de nutrientes;Evaporación rápida, estrés térmico, descomposición acelerada;Disminución de actividad microbiana y lentitud en descomposición de materia orgánica.
 Germinacion ;1;1;;Baja germinación, plántulas débiles bajo déficit hídrico;Pudrición de semillas y damping-off en ambientes encharcados;Altas temperaturas reduce la germinación, alargamiento radicular;Temperaturas bajas disminuyen germinación y vigor;
 Emergencia;1;1;;Retraso en emergencia, alta mortalidad en plántulas;Muerte de plántulas por asfixia radicular;Estrés oxidativo, clorosis, debilitamiento;Crecimiento lento;
 Desarrollo de tallo principal y ramificacion;1;1;;Menor ramificación, reducción en biomasa aérea;Tallos débiles, susceptibilidad a Phytophthora;Debilitamiento de la planta favoreciendo la multiplicación de vectores, color (moteado) en hojas y tallos jóvenes,;retraso en ramificación;
@@ -13,4 +13,5 @@ Floración;1;2;;Aborto floral por sequía;Pérdida de flores por hongos y caída
 Cuajado y desarrollo inicial del fruto;2;7;;Caída temprana y bajo calibre;Deterioro del furto;Malformaciones y quemaduras solares;Bajo cuajado, frutos pequeños;
 Desarrollo del fruto;3;8;;Frutos pequeños, arrugados;Pudrición apical asociada a exceso de agua;Maduración acelerada, frutos blandos y poco pungentes;Maduración retrasada, frutos de menor tamaño;
 Cosecha;3;8;;Bajo rendimiento total, frutos secos;Dificultad por encharcamiento, pérdidas mecánicas;Maduración irregular, pérdida de calidad postcosecha;Retraso en maduración y poscosecha deficiente;
+
 
