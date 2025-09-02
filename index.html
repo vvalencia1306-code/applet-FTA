@@ -247,56 +247,66 @@
     // =========================================================
     function SelectorFichas({ onBack, onPick }) {
       const [tab, setTab] = useState("Perenne");
-      const items = CATALOGO; // hotfix: mostrar todo sin filtrar por pestaña
+      function SelectorFichas({ onBack, onPick }) {
+  const [tab, setTab] = useState("Perenne");
 
-      return (
-        <div className="max-w-6xl mx-auto p-6 space-y-6">
-          <div className="flex items-center justify-between">
-            <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
-            <div className="flex gap-2">
-              <button
-                className={`px-3 py-2 rounded-lg border text-sm ${tab==="Perenne" ? "bg-gray-900 text-white" : ""}`}
-                onClick={() => setTab("Perenne")}
-              >
-                Perennes
-              </button>
-              <button
-                className={`px-3 py-2 rounded-lg border text-sm ${tab==="Ciclo corto" ? "bg-gray-900 text-white" : ""}`}
-                onClick={() => setTab("Ciclo corto")}
-              >
-                Ciclo corto
-              </button>
-            </div>
-          </div>
+  // Filtra por tipología (normalizando mayúsculas/minúsculas y espacios)
+  const items = useMemo(() => {
+    const t = (tab || "").toLowerCase().trim();
+    return CATALOGO.filter(
+      c => (c.tipo || "").toLowerCase().trim() === t
+    );
+  }, [tab]);
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {items.map((it) => (
-              <div
-                key={it.id}
-                className={`rounded-2xl border p-5 shadow-sm ${it.comingSoon ? "opacity-60" : "hover:shadow-md"}`}
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-semibold">{it.nombre}</h3>
-                  {it.comingSoon && (
-                    <span className="text-xs bg-gray-100 border px-2 py-1 rounded-full">Próximamente</span>
-                  )}
-                </div>
-                <p className="text-sm text-gray-600 mb-4">Tipo: {it.tipo}</p>
-                <button
-                  disabled={!!it.comingSoon}
-                  onClick={() => onPick(it)}
-                  className={`px-3 py-2 rounded-lg text-sm ${it.comingSoon
-                    ? "bg-gray-100 text-gray-400 border"
-                    : "bg-emerald-600 hover:bg-emerald-700 text-white"}`}
-                >
-                  Ver ficha
-                </button>
-              </div>
-            ))}
-          </div>
+  return (
+    <div className="max-w-6xl mx-auto p-6 space-y-6">
+      <div className="flex items-center justify-between">
+        <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
+        <div className="flex gap-2">
+          <button
+            className={`px-3 py-2 rounded-lg border text-sm ${tab==="Perenne" ? "bg-gray-900 text-white" : ""}`}
+            onClick={() => setTab("Perenne")}
+          >
+            Perennes
+          </button>
+          <button
+            className={`px-3 py-2 rounded-lg border text-sm ${tab==="Ciclo corto" ? "bg-gray-900 text-white" : ""}`}
+            onClick={() => setTab("Ciclo corto")}
+          >
+            Ciclo corto
+          </button>
         </div>
-      );
-    }
+      </div>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {items.map((it) => (
+          <div
+            key={it.id}
+            className={`rounded-2xl border p-5 shadow-sm ${it.comingSoon ? "opacity-60" : "hover:shadow-md"}`}
+          >
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-semibold">{it.nombre}</h3>
+              {it.comingSoon && (
+                <span className="text-xs bg-gray-100 border px-2 py-1 rounded-full">Próximamente</span>
+              )}
+            </div>
+            <p className="text-sm text-gray-600 mb-4">Tipo: {it.tipo}</p>
+            <button
+              disabled={!!it.comingSoon}
+              onClick={() => onPick(it)}
+              className={`px-3 py-2 rounded-lg text-sm ${
+                it.comingSoon ? "bg-gray-100 text-gray-400 border" : "bg-emerald-600 hover:bg-emerald-700 text-white"
+              }`}
+            >
+              Ver ficha
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
     // =========================================================
     // PANEL DETALLE (sin cambios)
