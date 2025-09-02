@@ -1,91 +1,159 @@
-function Intro({ onStart }) {
-  return (
-    <div className="max-w-5xl mx-auto p-6">
-      <h1 className="text-3xl font-semibold mb-10 text-center">
-        ¿QUÉ ES UNA FICHA TÉCNICA AGROCLIMÁTICA (FTA)?
-      </h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Applet FTA</title>
 
-      {/* Párrafo inicial (igual) */}
-      <p className="text-gray-700 mb-10">
-        Una FTA es un instrumento <b>técnico</b> que organiza y sintetiza los principales <b>riesgos agroclimáticos</b> que afectan un sistema productivo agrícola.
-        Para ello, se identifican los <b>elementos expuestos</b> del cultivo (raíces, tallo, floración, prácticas de manejo) y los relacionan con
-        <b> amenazas climáticas</b> como <i>déficit y exceso hídrico</i> y <i>temperaturas extremas</i>. Este instrumento permite la toma de decisiones oportunas y <b>adaptativas</b>
-        por parte de los actores del sistema productivo con el fin de fortalecer la planificación agrícola.
-      </p>
+  <!-- PapaParse para leer CSV -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- React 18 -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Babel para JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
 
-      {/* Primero los DOS cuadros */}
-      <section className="grid md:grid-cols-2 gap-6 mb-10">
-        <div className="rounded-2xl border p-5">
-          <h2 className="font-semibold mb-2">Componentes de la FTA</h2>
-          <ul className="list-disc ml-6 text-gray-700 space-y-1">
-            <li>
-              Filas ={" "}
-              <span className="relative group cursor-help inline-block">
-                <b>elementos expuestos</b>
-                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
-                  Componentes del cultivo susceptibles a los riesgos climáticos, como raíces, tallo, hojas o prácticas agrícolas.
-                </span>
-              </span>{" "}
-              (fases fenológicas o prácticas agrícolas)
-            </li>
-            <li>
-              Columnas ={" "}
-              <span className="relative group cursor-help inline-block">
-                <b>ventana de temporalidad</b>
-                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
-                  Intervalos de tiempo dentro del ciclo productivo en los que se presentan riesgos climáticos.
-                </span>
-              </span>{" "}
-              y{" "}
-              <span className="relative group cursor-help inline-block">
-                <b>amenazas climáticas</b>
-                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
-                  Condiciones como déficit hídrico, exceso hídrico y temperaturas extremas que afectan al cultivo.
-                </span>
-              </span>
-            </li>
-          </ul>
-        </div>
+<body class="bg-white text-gray-800">
+  <div id="root"></div>
 
-        <div className="rounded-2xl border p-5">
-          <h2 className="font-semibold mb-2">Público objetivo</h2>
-          <p className="text-gray-700">
-            Actores del territorio que tienen conocimiento directo, técnico o práctico sobre los sistemas productivos priorizados.
-            Su propósito es validar, complementar o ajustar las FTA preliminares y facilitar su apropiación local.
+  <script type="text/babel">
+    const { useState, useMemo, useEffect } = React;
+
+    // =========================================================
+    // CATÁLOGO DE FICHAS (ejemplo: Cacao y Maíz)
+    // =========================================================
+    const CATALOGO = [
+      {
+        id: "cacao",
+        nombre: "Cacao",
+        tipo: "Perenne",
+        fases: ["Vegetativa", "Productiva"],
+        csv: {
+          Vegetativa: "https://raw.githubusercontent.com/vvalencia1306-code/applet-FTA/main/vegetativa.csv",
+          Productiva: "https://raw.githubusercontent.com/vvalencia1306-code/applet-FTA/main/productiva.csv",
+        },
+        imagen: "assets/DiseñoFTA.png",
+      },
+      {
+        id: "maiz-eje-cafetero",
+        nombre: "Maíz · Eje Cafetero",
+        tipo: "Ciclo corto",
+        fases: ["Vegetativa"], 
+        csv: {
+          Vegetativa: "https://raw.githubusercontent.com/vvalencia1306-code/applet-FTA/main/maiz_eje_cafetero.csv",
+        },
+        imagen: "assets/DiseñoFTA.png",
+      },
+    ];
+
+    // =========================================================
+    // INTRO (cambio de ubicación solicitado)
+    // =========================================================
+    function Intro({ onStart }) {
+      return (
+        <div className="max-w-5xl mx-auto p-6">
+          <h1 className="text-3xl font-semibold mb-10 text-center">
+            ¿QUÉ ES UNA FICHA TÉCNICA AGROCLIMÁTICA (FTA)?
+          </h1>
+
+          {/* Párrafo inicial */}
+          <p className="text-gray-700 mb-10">
+            Una FTA es un instrumento <b>técnico</b> que organiza y sintetiza los principales <b>riesgos agroclimáticos</b> que afectan un sistema productivo agrícola.
+            Para ello, se identifican los <b>elementos expuestos</b> del cultivo (raíces, tallo, floración, prácticas de manejo) y los relacionan con
+            <b> amenazas climáticas</b> como <i>déficit y exceso hídrico</i> y <i>temperaturas extremas</i>. Este instrumento permite la toma de decisiones oportunas y <b>adaptativas</b>
+            por parte de los actores del sistema productivo con el fin de fortalecer la planificación agrícola.
           </p>
+
+          {/* Cuadros primero */}
+          <section className="grid md:grid-cols-2 gap-6 mb-10">
+            <div className="rounded-2xl border p-5">
+              <h2 className="font-semibold mb-2">Componentes de la FTA</h2>
+              <ul className="list-disc ml-6 text-gray-700 space-y-1">
+                <li>
+                  Filas ={" "}
+                  <span className="relative group cursor-help inline-block">
+                    <b>elementos expuestos</b>
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
+                      Componentes del cultivo susceptibles a los riesgos climáticos, como raíces, tallo, hojas o prácticas agrícolas.
+                    </span>
+                  </span>{" "}
+                  (fases fenológicas o prácticas agrícolas)
+                </li>
+                <li>
+                  Columnas ={" "}
+                  <span className="relative group cursor-help inline-block">
+                    <b>ventana de temporalidad</b>
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
+                      Intervalos de tiempo dentro del ciclo productivo en los que se presentan riesgos climáticos.
+                    </span>
+                  </span>{" "}
+                  y{" "}
+                  <span className="relative group cursor-help inline-block">
+                    <b>amenazas climáticas</b>
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
+                      Condiciones como déficit hídrico, exceso hídrico y temperaturas extremas que afectan al cultivo.
+                    </span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border p-5">
+              <h2 className="font-semibold mb-2">Público objetivo</h2>
+              <p className="text-gray-700">
+                Actores del territorio que tienen conocimiento directo, técnico o práctico sobre los sistemas productivos priorizados.
+                Su propósito es validar, complementar o ajustar las FTA preliminares y facilitar su apropiación local.
+              </p>
+            </div>
+          </section>
+
+          {/* Recuadro amarillo después */}
+          <div className="p-4 rounded-xl bg-amber-50 text-amber-900 mb-10">
+            <b>Importante:</b> Los campos <i>Mes inicio</i> y <i>Mes fin</i> <b>no son meses de calendario</b>. “Mes 1” es el primer mes del evento dentro del sistema productivo.
+            Por ejemplo, puede coincidir con octubre si allí inicia la preparación del terreno.
+          </div>
+
+          {/* Párrafo largo después */}
+          <p className="text-gray-700 mb-12">
+            Esta forma relativa de representar la temporalidad permite adaptar la ficha a ciclos productivos variables, evitando rigideces en fechas históricas de siembra o manejo.
+            Así, la FTA se convierte en una herramienta flexible y útil frente a la variabilidad y el cambio climático, facilitando su contextualización territorial.
+          </p>
+
+          {/* Imagen */}
+          <div className="mb-12 flex justify-center">
+            <img
+              src="assets/DiseñoFTA.png"
+              alt="Diseño de la FTA"
+              className="rounded-xl shadow-lg max-w-3xl w-full"
+            />
+          </div>
+
+          {/* Botón */}
+          <div className="flex justify-center">
+            <button
+              onClick={onStart}
+              className="px-5 py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700"
+            >
+              👉 Explorar fichas técnicas
+            </button>
+          </div>
         </div>
-      </section>
+      );
+    }
 
-      {/* Ahora el RECUADRO AMARILLO */}
-      <div className="p-4 rounded-xl bg-amber-50 text-amber-900 mb-10">
-        <b>Importante:</b> Los campos <i>Mes inicio</i> y <i>Mes fin</i> <b>no son meses de calendario</b>.
-        “Mes 1” es el primer mes del evento dentro del sistema productivo. Por ejemplo, puede coincidir con octubre si allí inicia la preparación del terreno.
-      </div>
+    // =========================================================
+    // APP SIMPLE (Intro + placeholder)
+    // =========================================================
+    function App() {
+      const [paso, setPaso] = useState("intro");
+      if (paso === "intro") return <Intro onStart={() => setPaso("selector")} />;
+      return <div className="p-6 text-center">Aquí iría el selector de fichas…</div>;
+    }
 
-      {/* Y luego el PÁRRAFO largo */}
-      <p className="text-gray-700 mb-12">
-        Esta forma relativa de representar la temporalidad permite adaptar la ficha a ciclos productivos variables, evitando rigideces en fechas históricas de siembra o manejo.
-        Así, la FTA se convierte en una herramienta flexible y útil frente a la variabilidad y el cambio climático, facilitando su contextualización territorial.
-      </p>
-
-      {/* Imagen + botón (igual) */}
-      <div className="mb-12 flex justify-center">
-        <img
-          src="assets/DiseñoFTA.png"
-          alt="Diseño de la FTA"
-          className="rounded-xl shadow-lg max-w-3xl w-full"
-        />
-      </div>
-
-      <div className="flex justify-center">
-        <button
-          onClick={onStart}
-          className="px-5 py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700"
-        >
-          👉 Explorar fichas técnicas
-        </button>
-      </div>
-    </div>
-  );
-}
-
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
