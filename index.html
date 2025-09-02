@@ -245,17 +245,13 @@
     // =========================================================
     // SELECTOR DE FICHAS (sin cambios visuales)
     // =========================================================
-    function SelectorFichas({ onBack, onPick }) {
-      const [tab, setTab] = useState("Perenne");
-      function SelectorFichas({ onBack, onPick }) {
+   function SelectorFichas({ onBack, onPick }) {
   const [tab, setTab] = useState("Perenne");
 
   // Filtra por tipología (normalizando mayúsculas/minúsculas y espacios)
   const items = useMemo(() => {
     const t = (tab || "").toLowerCase().trim();
-    return CATALOGO.filter(
-      c => (c.tipo || "").toLowerCase().trim() === t
-    );
+    return CATALOGO.filter(c => (c.tipo || "").toLowerCase().trim() === t);
   }, [tab]);
 
   return (
@@ -264,13 +260,13 @@
         <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
         <div className="flex gap-2">
           <button
-            className={`px-3 py-2 rounded-lg border text-sm ${tab==="Perenne" ? "bg-gray-900 text-white" : ""}`}
+            className={`px-3 py-2 rounded-lg border text-sm ${tab === "Perenne" ? "bg-gray-900 text-white" : ""}`}
             onClick={() => setTab("Perenne")}
           >
             Perennes
           </button>
           <button
-            className={`px-3 py-2 rounded-lg border text-sm ${tab==="Ciclo corto" ? "bg-gray-900 text-white" : ""}`}
+            className={`px-3 py-2 rounded-lg border text-sm ${tab === "Ciclo corto" ? "bg-gray-900 text-white" : ""}`}
             onClick={() => setTab("Ciclo corto")}
           >
             Ciclo corto
@@ -307,6 +303,7 @@
   );
 }
 
+    
 
     // =========================================================
     // PANEL DETALLE (sin cambios)
@@ -337,7 +334,6 @@
         </div>
       );
     }
-
     // =========================================================
     // MATRIZ — añade selector de variedad si existe
     // =========================================================
