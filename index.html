@@ -1,510 +1,91 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Applet FTA</title>
+function Intro({ onStart }) {
+  return (
+    <div className="max-w-5xl mx-auto p-6">
+      <h1 className="text-3xl font-semibold mb-10 text-center">
+        ¿QUÉ ES UNA FICHA TÉCNICA AGROCLIMÁTICA (FTA)?
+      </h1>
 
-  <!-- PapaParse para leer CSV -->
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- React 18 -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <!-- Babel para JSX -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-</head>
+      {/* Párrafo inicial (igual) */}
+      <p className="text-gray-700 mb-10">
+        Una FTA es un instrumento <b>técnico</b> que organiza y sintetiza los principales <b>riesgos agroclimáticos</b> que afectan un sistema productivo agrícola.
+        Para ello, se identifican los <b>elementos expuestos</b> del cultivo (raíces, tallo, floración, prácticas de manejo) y los relacionan con
+        <b> amenazas climáticas</b> como <i>déficit y exceso hídrico</i> y <i>temperaturas extremas</i>. Este instrumento permite la toma de decisiones oportunas y <b>adaptativas</b>
+        por parte de los actores del sistema productivo con el fin de fortalecer la planificación agrícola.
+      </p>
 
-<body class="bg-white text-gray-800">
-  <div id="root"></div>
+      {/* Primero los DOS cuadros */}
+      <section className="grid md:grid-cols-2 gap-6 mb-10">
+        <div className="rounded-2xl border p-5">
+          <h2 className="font-semibold mb-2">Componentes de la FTA</h2>
+          <ul className="list-disc ml-6 text-gray-700 space-y-1">
+            <li>
+              Filas ={" "}
+              <span className="relative group cursor-help inline-block">
+                <b>elementos expuestos</b>
+                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
+                  Componentes del cultivo susceptibles a los riesgos climáticos, como raíces, tallo, hojas o prácticas agrícolas.
+                </span>
+              </span>{" "}
+              (fases fenológicas o prácticas agrícolas)
+            </li>
+            <li>
+              Columnas ={" "}
+              <span className="relative group cursor-help inline-block">
+                <b>ventana de temporalidad</b>
+                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
+                  Intervalos de tiempo dentro del ciclo productivo en los que se presentan riesgos climáticos.
+                </span>
+              </span>{" "}
+              y{" "}
+              <span className="relative group cursor-help inline-block">
+                <b>amenazas climáticas</b>
+                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
+                  Condiciones como déficit hídrico, exceso hídrico y temperaturas extremas que afectan al cultivo.
+                </span>
+              </span>
+            </li>
+          </ul>
+        </div>
 
-  <script type="text/babel">
-    const { useState, useMemo, useEffect } = React;
-
-    // =========================================================
-    // CATÁLOGO DE FICHAS (ahora soporta variedades p/ Capsicum)
-    // =========================================================
-    const CATALOGO = [
-      {
-        id: "cacao",
-        nombre: "Cacao",
-        tipo: "Perenne",
-        fases: ["Vegetativa", "Productiva"],
-        csv: {
-          Vegetativa: "https://raw.githubusercontent.com/vvalencia1306-code/applet-FTA/main/vegetativa.csv",
-          Productiva: "https://raw.githubusercontent.com/vvalencia1306-code/applet-FTA/main/productiva.csv",
-        },
-        imagen: "assets/DiseñoFTA.png",
-      },
-      {
-        id: "maiz-eje-cafetero",
-        nombre: "Maíz · Eje Cafetero",
-        tipo: "Ciclo corto",
-        fases: ["Vegetativa"],  // fase única
-        csv: {
-          Vegetativa: "https://raw.githubusercontent.com/vvalencia1306-code/applet-FTA/main/maiz_eje_cafetero.csv",
-        },
-        imagen: "assets/DiseñoFTA.png",
-      },
-
-      // === NUEVO: capsicum con variedades ===
-      {
-        id: "capsicum",
-        nombre: "Capsicum (ají/pimentón)",
-        tipo: "Ciclo corto",
-        // Las variedades definen sus propias fases y CSV
-        variedades: {
-          "Cayenne · Palmira": {
-            nombre: "Cayenne · Palmira",
-            fases: ["Unica"],
-            csv: {
-              Unica: "https://raw.githubusercontent.com/vvalencia1306-code/applet-FTA/main/Cayenne_Palmira.csv"
-            }
-          },
-          "Habanero · Palmira": {
-            nombre: "Habanero · Palmira",
-            fases: ["Unica"],
-            csv: {
-              Unica: "https://raw.githubusercontent.com/vvalencia1306-code/applet-FTA/main/Habanero_Palmira.csv"
-            }
-          },
-          "Tabasco · Palmira": {
-            nombre: "Tabasco · Palmira",
-            fases: ["Unica"],
-            csv: {
-              Unica: "https://raw.githubusercontent.com/vvalencia1306-code/applet-FTA/main/Tabasco_Palmira.csv"
-            }
-          },
-          // Agrega más variedades aquí...
-          // "c-chinense": { nombre:"Capsicum chinense", fases:["Unica"], csv:{ Unica:"..." } },
-        },
-        imagen: "assets/DiseñoFTA.png",
-      },
-
-      // Otros (placeholder)
-      { id: "aguacate", nombre: "Aguacate", tipo: "Perenne", fases: ["Vegetativa", "Productiva"], csv: {}, comingSoon: true },
-      { id: "zanahoria", nombre: "Zanahoria", tipo: "Ciclo corto", fases: ["Unica"], csv: {}, comingSoon: true },
-    ];
-
-    // =========================================================
-    // LECTOR DE CSV — ahora acepta variedad (si aplica)
-    // =========================================================
-    function useCsvData(entry, variedadKey) {
-      const [veg, setVeg] = useState([]);
-      const [prod, setProd] = useState([]);
-
-      useEffect(() => {
-        setVeg([]); setProd([]);
-        if (!entry || entry.comingSoon) return;
-
-        // Si el cultivo tiene "variedades", usa la variedad elegida; si no, usa el propio entry.
-        const fuente = entry.variedades
-          ? (entry.variedades[variedadKey] || Object.values(entry.variedades)[0])
-          : entry;
-
-        if (!fuente) return;
-
-        const normalizar = (rows) =>
-          rows
-            .filter(r => r.elem && r.elem.trim())
-            .map(r => {
-              const meses = (r.meses || "")
-                .replace(/[\[\]\s]/g, "")
-                .split(",")
-                .filter(Boolean)
-                .map(n => Number(n));
-              return {
-                elem: r.elem?.trim() || "",
-                ini: r.ini ? Number(r.ini) : null,
-                fin: r.fin ? Number(r.fin) : null,
-                meses,
-                riesgos: {
-                  deficit: r.deficit || "",
-                  exceso:  r.exceso  || "",
-                  Tmax:    r.Tmax    || "",
-                  Tmin:    r.Tmin    || "",
-                },
-                ref: r.ref || "",
-              };
-            });
-
-        const cargar = (url, set) => {
-          if (!url) return;
-          Papa.parse(url, {
-            download: true,
-            header: true,
-            skipEmptyLines: true,
-            complete: ({ data }) => set(normalizar(data)),
-          });
-        };
-
-        // Soporta Vegetativa / Productiva / Unica
-        if (fuente.fases?.includes("Vegetativa")) cargar(fuente.csv?.Vegetativa, setVeg);
-        if (fuente.fases?.includes("Productiva")) cargar(fuente.csv?.Productiva, setProd);
-        if (fuente.fases?.includes("Unica"))      cargar(fuente.csv?.Unica,       setVeg);
-      }, [entry, variedadKey]);
-
-      return { veg, prod };
-    }
-
-    // =========================================================
-    // INTRO — (sin cambios en tu redacción / tooltips / imagen)
-    // =========================================================
-    function Intro({ onStart }) {
-      return (
-        <div className="max-w-5xl mx-auto p-6">
-          <h1 className="text-3xl font-semibold mb-10 text-center">
-            ¿QUÉ ES UNA FICHA TÉCNICA AGROCLIMÁTICA (FTA)?
-          </h1>
-
-          <p className="text-gray-700 mb-10">
-            Una FTA es un instrumento <b>técnico</b> que organiza y sintetiza los principales <b>riesgos agroclimáticos</b> que afectan un sistema productivo agrícola.
-            Para ello, se identifican los <b>elementos expuestos</b> del cultivo (raíces, tallo, floración, prácticas de manejo) y los relacionan con
-            <b> amenazas climáticas</b> como <i>déficit y exceso hídrico</i> y <i>temperaturas extremas</i>. Este instrumento permite la toma de decisiones oportunas y <b>adaptativas</b>
-            por parte de los actores del sistema productivo con el fin de fortalecer la planificación agrícola.
+        <div className="rounded-2xl border p-5">
+          <h2 className="font-semibold mb-2">Público objetivo</h2>
+          <p className="text-gray-700">
+            Actores del territorio que tienen conocimiento directo, técnico o práctico sobre los sistemas productivos priorizados.
+            Su propósito es validar, complementar o ajustar las FTA preliminares y facilitar su apropiación local.
           </p>
-
-          <div className="p-4 rounded-xl bg-amber-50 text-amber-900 mb-10">
-            <b>Importante:</b> Los campos <i>Mes inicio</i> y <i>Mes fin</i> <b>no son meses de calendario</b>.
-            “Mes 1” es el primer mes del evento dentro del sistema productivo. Por ejemplo, puede coincidir con octubre si allí inicia la preparación del terreno.
-          </div>
-
-          <p className="text-gray-700 mb-12">
-            Esta forma relativa de representar la temporalidad permite adaptar la ficha a ciclos productivos variables, evitando rigideces en fechas históricas de siembra o manejo.
-            Así, la FTA se convierte en una herramienta flexible y útil frente a la variabilidad y el cambio climático, facilitando su contextualización territorial.
-          </p>
-
-          <section className="grid md:grid-cols-2 gap-6 mb-10">
-            <div className="rounded-2xl border p-5">
-              <h2 className="font-semibold mb-2">Componentes de la FTA</h2>
-              <ul className="list-disc ml-6 text-gray-700 space-y-1">
-                <li>
-                  Filas ={" "}
-                  <span className="relative group cursor-help inline-block">
-                    <b>elementos expuestos</b>
-                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
-                      Componentes del cultivo susceptibles a los riesgos climáticos, como raíces, tallo, hojas o prácticas agrícolas.
-                    </span>
-                  </span>{" "}
-                  (fases fenológicas o prácticas agrícolas)
-                </li>
-                <li>
-                  Columnas ={" "}
-                  <span className="relative group cursor-help inline-block">
-                    <b>ventana de temporalidad</b>
-                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
-                      Intervalos de tiempo dentro del ciclo productivo en los que se presentan riesgos climáticos.
-                    </span>
-                  </span>{" "}
-                  y{" "}
-                  <span className="relative group cursor-help inline-block">
-                    <b>amenazas climáticas</b>
-                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
-                      Condiciones como déficit hídrico, exceso hídrico y temperaturas extremas que afectan al cultivo.
-                    </span>
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="rounded-2xl border p-5">
-              <h2 className="font-semibold mb-2">Público objetivo</h2>
-              <p className="text-gray-700">
-                Actores del territorio que tienen conocimiento directo, técnico o práctico sobre los sistemas productivos priorizados.
-                Su propósito es validar, complementar o ajustar las FTA preliminares y facilitar su apropiación local.
-              </p>
-            </div>
-          </section>
-
-          <div className="mb-12 flex justify-center">
-            <img
-              src="assets/DiseñoFTA.png"
-              alt="Diseño de la FTA"
-              className="rounded-xl shadow-lg max-w-3xl w-full"
-            />
-          </div>
-
-          <div className="flex justify-center">
-            <button
-              onClick={onStart}
-              className="px-5 py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700"
-            >
-              👉 Explorar fichas técnicas
-            </button>
-          </div>
         </div>
-      );
-    }
+      </section>
 
-    // =========================================================
-    // SELECTOR DE FICHAS (sin cambios visuales)
-    // =========================================================
-    function SelectorFichas({ onBack, onPick }) {
-      const [tab, setTab] = useState("Perenne");
-      const items = CATALOGO.filter(c => c.tipo === tab);
+      {/* Ahora el RECUADRO AMARILLO */}
+      <div className="p-4 rounded-xl bg-amber-50 text-amber-900 mb-10">
+        <b>Importante:</b> Los campos <i>Mes inicio</i> y <i>Mes fin</i> <b>no son meses de calendario</b>.
+        “Mes 1” es el primer mes del evento dentro del sistema productivo. Por ejemplo, puede coincidir con octubre si allí inicia la preparación del terreno.
+      </div>
 
-      return (
-        <div className="max-w-6xl mx-auto p-6 space-y-6">
-          <div className="flex items-center justify-between">
-            <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
-            <div className="flex gap-2">
-              <button
-                className={`px-3 py-2 rounded-lg border text-sm ${tab==="Perenne" ? "bg-gray-900 text-white" : ""}`}
-                onClick={() => setTab("Perenne")}
-              >Perennes</button>
-              <button
-                className={`px-3 py-2 rounded-lg border text-sm ${tab==="Ciclo corto" ? "bg-gray-900 text-white" : ""}`}
-                onClick={() => setTab("Ciclo corto")}
-              >Ciclo corto</button>
-            </div>
-          </div>
+      {/* Y luego el PÁRRAFO largo */}
+      <p className="text-gray-700 mb-12">
+        Esta forma relativa de representar la temporalidad permite adaptar la ficha a ciclos productivos variables, evitando rigideces en fechas históricas de siembra o manejo.
+        Así, la FTA se convierte en una herramienta flexible y útil frente a la variabilidad y el cambio climático, facilitando su contextualización territorial.
+      </p>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {items.map((it) => (
-              <div key={it.id}
-                   className={`rounded-2xl border p-5 shadow-sm ${it.comingSoon ? "opacity-60" : "hover:shadow-md"}`}>
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-semibold">{it.nombre}</h3>
-                  {it.comingSoon && (
-                    <span className="text-xs bg-gray-100 border px-2 py-1 rounded-full">Próximamente</span>
-                  )}
-                </div>
-                <p className="text-sm text-gray-600 mb-4">Tipo: {it.tipo}</p>
-                <button
-                  disabled={!!it.comingSoon}
-                  onClick={() => onPick(it)}
-                  className={`px-3 py-2 rounded-lg text-sm ${it.comingSoon
-                    ? "bg-gray-100 text-gray-400 border"
-                    : "bg-emerald-600 hover:bg-emerald-700 text-white"}`}
-                >
-                  Ver ficha
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    // =========================================================
-    // PANEL DETALLE (sin cambios)
-    // =========================================================
-    function PanelDetalle({ fila, onClose }) {
-      if (!fila) return null;
-      const R = fila.riesgos || {};
-      return (
-        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex">
-          <div className="m-auto w-[95%] max-w-3xl bg-white rounded-2xl shadow-lg p-5">
-            <div className="flex items-start justify-between gap-4">
-              <h3 className="text-lg font-semibold">{fila.elem}</h3>
-              <button onClick={onClose} className="text-gray-500 hover:text-gray-700">✕</button>
-            </div>
-            <p className="text-sm text-gray-600 mb-3">
-              {fila.meses?.length
-                ? <>Meses: {fila.meses.map(m => `M${m}`).join(", ")}</>
-                : <>Ventana: M{fila.ini ?? "—"} – M{fila.fin ?? "—"}</>}
-            </p>
-            <div className="grid md:grid-cols-2 gap-3 text-sm">
-              <div className="border rounded-xl p-3"><b>Déficit hídrico:</b> {R.deficit || "—"}</div>
-              <div className="border rounded-xl p-3"><b>Exceso hídrico:</b> {R.exceso || "—"}</div>
-              <div className="border rounded-xl p-3"><b>Temperatura máxima:</b> {R.Tmax || "—"}</div>
-              <div className="border rounded-xl p-3"><b>Temperatura mínima:</b> {R.Tmin || "—"}</div>
-            </div>
-            <p className="text-xs text-gray-500 mt-4"><b>Referencias:</b> {fila.ref || "—"}</p>
-          </div>
-        </div>
-      );
-    }
-
-    // =========================================================
-    // MATRIZ — añade selector de variedad si existe
-    // =========================================================
-    function Matriz({ onBack, entry, veg, prod, variedadKey, setVariedadKey }) {
-      const variedades = entry?.variedades || null;
-      const fuente = variedades
-        ? (variedades[variedadKey] || Object.values(variedades)[0])
-        : entry;
-
-      const hasTwoPhases = fuente?.fases?.includes("Vegetativa") && fuente?.fases?.includes("Productiva");
-      const [fase, setFase] = useState(hasTwoPhases ? "Vegetativa" : "Única");
-      const [sel, setSel] = useState(null);
-
-      // Si cambia la variedad (o entrada), re-sincroniza la fase inicial
-      useEffect(() => {
-        setFase(hasTwoPhases ? "Vegetativa" : "Única");
-        setSel(null);
-      }, [entry, variedadKey]);
-
-      const data = hasTwoPhases
-        ? (fase === "Productiva" ? prod : veg)
-        : (veg?.length ? veg : prod);
-
-      const maxMes = useMemo(() => {
-        const filaMax = (r) =>
-          Array.isArray(r?.meses) && r.meses.length ? Math.max(...r.meses) :
-          (typeof r?.fin === "number" ? r.fin : 0);
-        const vals = (data || []).map(filaMax);
-        const max = vals.length ? Math.max(...vals) : 0;
-        return max > 0 ? max : 22;
-      }, [data]);
-
-      const meses = useMemo(() => Array.from({ length: maxMes }, (_, i) => i + 1), [maxMes]);
-
-      // Título con nombre del cultivo y, si aplica, de la variedad
-      const titulo = variedades
-        ? `${entry?.nombre} · ${variedades[variedadKey]?.nombre || ""}`
-        : entry?.nombre || "";
-
-      return (
-        <div className="max-w-7xl mx-auto p-6 space-y-6">
-          <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-            <div>
-              <h1 className="text-2xl font-semibold">Matriz preliminar de riesgos agroclimáticos · {titulo}</h1>
-              <p className="text-sm text-gray-600">Los meses representan <b>fases del ciclo</b>.</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
-
-              {variedades && (
-                <>
-                  <label className="text-sm text-gray-600">Variedad:</label>
-                  <select
-                    value={variedadKey}
-                    onChange={e => setVariedadKey(e.target.value)}
-                    className="border rounded-lg px-3 py-2 text-sm"
-                  >
-                    {Object.entries(variedades).map(([key, v]) => (
-                      <option key={key} value={key}>{v.nombre}</option>
-                    ))}
-                  </select>
-                </>
-              )}
-
-              {hasTwoPhases && (
-                <>
-                  <label className="text-sm text-gray-600">Fase:</label>
-                  <select
-                    value={fase}
-                    onChange={e => setFase(e.target.value)}
-                    className="border rounded-lg px-3 py-2 text-sm"
-                  >
-                    <option>Vegetativa</option>
-                    <option>Productiva</option>
-                  </select>
-                </>
-              )}
-            </div>
-          </header>
-
-          <div className="overflow-auto border rounded-2xl">
-            <table className="min-w-full text-sm">
-              <thead>
-                <tr className="bg-gray-50">
-                  <th className="text-left px-3 py-2 sticky left-0 bg-gray-50 z-10">Elemento expuesto</th>
-                  {meses.map(m => <th key={m} className="px-3 py-2 text-center border-l">M{m}</th>)}
-                </tr>
-              </thead>
-              <tbody>
-                {(data || []).map((row, i) => {
-                  const activo = (m, r) => {
-                    if (Array.isArray(r?.meses) && r.meses.length) return r.meses.includes(m);
-                    return typeof r.ini === "number" && typeof r.fin === "number" && m >= r.ini && m <= r.fin;
-                  };
-                  return (
-                    <tr key={i} className={i % 2 ? "bg-white" : "bg-gray-50/50 hover:bg-emerald-50"}>
-                      <td className="px-3 py-2 sticky left-0 bg-inherit max-w-[360px]">
-                        <button onClick={() => setSel(row)} className="text-left hover:underline">
-                          {row.elem}
-                        </button>
-                      </td>
-                      {meses.map((m, j) => (
-                        <td key={j} className={`h-9 border-l ${activo(m, row) ? "bg-emerald-200" : ""}`} />
-                      ))}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-
-          <PanelDetalle fila={sel} onClose={() => setSel(null)} />
-        </div>
-      );
-    }
-
-    // =========================================================
-    // APP — ahora guarda la variedad seleccionada
-    // =========================================================
-    function App() {
-      const [paso, setPaso] = useState("intro");     // "intro" | "selector" | "matriz"
-      const [entry, setEntry] = useState(null);      // cultivo seleccionado
-      const [variedadKey, setVariedadKey] = useState(null); // clave de variedad (si aplica)
-
-      const { veg, prod } = useCsvData(entry, variedadKey);
-
-      if (paso === "intro") {
-        return <Intro onStart={() => setPaso("selector")} />;
-      }
-
-      if (paso === "selector") {
-        return (
-          <SelectorFichas
-            onBack={() => setPaso("intro")}
-            onPick={(it) => {
-              setEntry(it);
-              if (it.variedades) {
-                const firstKey = Object.keys(it.variedades)[0];
-                setVariedadKey(firstKey);
-              } else {
-                setVariedadKey(null);
-              }
-              setPaso("matriz");
-            }}
-          />
-        );
-      }
-
-      // Paso "matriz"
-      if (!entry) {
-        return <div className="p-6 text-center text-gray-500">Selecciona un sistema productivo…</div>;
-      }
-      if (entry.comingSoon) {
-        return (
-          <div className="max-w-xl mx-auto p-6 text-center space-y-4">
-            <button onClick={() => setPaso("selector")} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
-            <p className="text-gray-600">Esta ficha aún no está disponible.</p>
-          </div>
-        );
-      }
-
-      // Esperando carga CSV (según fases de la fuente actual)
-      const fuente = entry.variedades
-        ? (entry.variedades[variedadKey] || Object.values(entry.variedades)[0])
-        : entry;
-
-      const esperando =
-        (fuente?.fases?.includes("Vegetativa") && veg.length === 0) ||
-        (fuente?.fases?.includes("Productiva") && prod.length === 0) ||
-        (fuente?.fases?.includes("Unica")      && veg.length === 0);
-
-      if (esperando) {
-        return <div className="p-6 text-center text-gray-500">Cargando datos…</div>;
-      }
-
-      return (
-        <Matriz
-          onBack={() => setPaso("selector")}
-          entry={entry}
-          veg={veg}
-          prod={prod}
-          variedadKey={variedadKey}
-          setVariedadKey={setVariedadKey}
+      {/* Imagen + botón (igual) */}
+      <div className="mb-12 flex justify-center">
+        <img
+          src="assets/DiseñoFTA.png"
+          alt="Diseño de la FTA"
+          className="rounded-xl shadow-lg max-w-3xl w-full"
         />
-      );
-    }
+      </div>
 
-    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-  </script>
-</body>
-</html>
+      <div className="flex justify-center">
+        <button
+          onClick={onStart}
+          className="px-5 py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700"
+        >
+          👉 Explorar fichas técnicas
+        </button>
+      </div>
+    </div>
+  );
+}
+
