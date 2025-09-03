@@ -23,7 +23,7 @@
     const { useState, useMemo, useEffect } = React;
 
     // =========================================================
-    // CATÁLOGO DE FICHAS (ahora soporta variedades p/ Capsicum)
+    //  FICHAS TÉCNICAS AGROCLIMÁTICAS // CATALOGOS 
     // =========================================================
     const CATALOGO = [
       {
@@ -88,7 +88,7 @@
     ];
 
     // =========================================================
-    // LECTOR DE CSV — ahora acepta variedad (si aplica)
+    // LEER CSV CON VARIEDAD SI APLICA
     // =========================================================
     function useCsvData(entry, variedadKey) {
       const [veg, setVeg] = useState([]);
@@ -149,7 +149,7 @@
     }
 
     // =========================================================
-    // INTRO — (mantiene texto; SOLO CAMBIÓ EL ORDEN pedido)
+    // INTRODUCCIÓN
     // =========================================================
     function Intro({ onStart }) {
       return (
@@ -243,7 +243,7 @@
     }
 
     // =========================================================
-    // SELECTOR DE FICHAS (sin cambios visuales)
+    // SELECCIONAR LAS FICHAS TÉCNICAS AGROCLIMÁTICAS //OJO IMPORTANTE ESTABLECER EL TIPO (PERENNE O CICLO CORTO)
     // =========================================================
    function SelectorFichas({ onBack, onPick }) {
   const [tab, setTab] = useState("Perenne");
@@ -335,7 +335,7 @@
       );
     }
     // =========================================================
-    // MATRIZ — añade selector de variedad si existe
+    // MATRIZ — SELECTOR DE VARIEDAD EN CASO DE QUE SEA (POR EJEMPLO CAPSICUM ESTAMOS TRABAJANDO CON TRES CAYYENE-TABASCO-HABANERO)
     // =========================================================
     function Matriz({ onBack, entry, veg, prod, variedadKey, setVariedadKey }) {
       const variedades = entry?.variedades || null;
@@ -451,7 +451,7 @@
     }
 
     // =========================================================
-    // APP — ahora guarda la variedad seleccionada
+    // SELECTOR DE MATRIZ 
     // =========================================================
     function App() {
       const [paso, setPaso] = useState("intro");     // "intro" | "selector" | "matriz"
