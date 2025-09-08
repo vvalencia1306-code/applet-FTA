@@ -1,65 +1,53 @@
-elem;ini;fin;meses;deficit;exceso;Tmax;Tmin;ref
-Poda de mantenimiento ;1;1;;"Entrada de hongos, patógenos o formación de nudos
-Formación de nudos";Proliferación de hongos saprófitos  (Ceratocystis) en cortes;;;
-Aplicación de enmiendas (Corrección de acidez y enmienda organica) ;2;2;;Deficiencia de nutrientes esenciales debido a la baja disponibilidad de agua para la absorción.;Anegamiento y Lixiviación acelerada de iones.;Reducción de actividad de enzimas de síntesis de materia orgánica;;
-Deschuponado ;;;3,5,7,9,11;"Producción acelerada de chupones, 
-Desarrollo de brotes inproductivos";;;;
-Control de arvenses y plateo ;;;2,4,6,8,10,12; ;Baja retención de humedad del suelo;;;;
-Fertilización ;;;3,9;Baja absorción de nutrientes y volatilización de los elementos minerales;Pérdida de nutrientes esenciales por lixiviación y posible anegamiento del suelo.;;;
-Cosecha;9;12;;Retraso en la maduración del grano;Dificultad en la cosecha por humedad;"Disminución en la calidad del grano por estrés térmico durante la maduración.
-variaciones en la actividad enzimática de la ruta de los ácidos grasos
-Presencia de phytophthora";;"Daymond A et al (2007);
-Rodriguez P (2015)."
-Raices ;1;12;;"Reducción en la absorción de agua y nutrientes afectando el crecimiento general de la planta, 
-No logra abastecer el ritmo de la transpiración, aumentando la tensión en el xilema. 
-Potencial hidrico de las plantas se torna más negativo. 
-Defoliación parcial o total de la planta";"Daño en el sistema  radical ,
-Asfixia de las raices.
-Muerte de la planta por afección de Phythoptora y Ceratosystis";"Formación de burbujas de aire en el xilema bloquenado el transporte de agua,
-Afectación de raices superficiales, limitando su capacidad de absorción";Disminución en actividades de las raices;"Opoku E. (2024);
-Rodriguez P (2015);
-Paredes M (2003). "
-Tallo y corteza;1;12;;"Pérdida de turgencia y  reducción de la resistencia estructural.
-";Mayor incidencia de phytophthora (Cancer de tallo) y Fusarium.;Deshidratación y fisuras en la corteza, favoreciendo la entrada de patógenos.;;"Rodriguez P (2015);
-Daymond A et al (2007); 
-Agudelo G et al ( 2021). "
-Ramificación;1;12;;Menor número de ramas laterales, reducción en producción potencial;Mayor incidencia de phytophthora y lasiodiplodia;"Disminución en la capacidad de la ramificación para sostener frutos debido al estrés térmico
-";;"Rodriguez P (2015). 
-Daymond A et al (2007). "
-Brotes y Yemas axilares ;1;12;;"Menor formación de brotes y secamiento de brotes.
-Acortamientoen la distancia de los lanzamientos vegetativos.";Mayor incidencia de escoba de bruja;;;"
+﻿elem;ini;fin;meses;"deficit
+";exceso;Tmax;Tmin;ref
+Poda de mantenimiento ;1;1;;Entrada de hongos, Patógenos, Formación de nudos;Proliferación de hongos saprófitos  (Ceratocystis) en cortes;"Brotes jóvenes afectados por insolación, Pérdida de área foliar,
+Plantas con recuperación vegetativa limitada";Metabolismo reducido de la planta, Cicatrización lenta de las heridas, Aumento de la susceptibilidad de los cortes frescos a la entrada de enfermedades;
+Aplicación de enmiendas (Corrección de acidez y enmienda organica) ;2;2;;Baja disponibilidad de agua para absorción, Deficiencia de nutrientes esenciales;Anegamiento, Lixiviación acelerada de iones;Reducción de actividad de enzimas de síntesis de materia orgánica;Reducción de la actividad microbiana, Reducción de la mineralización de materia orgánica, Disminución de la solubilidad y disponibilidad de nutrientes, Menor respuesta de la planta a la corrección de suelos;
+Deschuponado (cada 2 meses);;;3,5,7,9,11;Producción acelerada de chupones,  Desarrollo de brotes inproductivos;"Alta humedad en las heridas recientes, Hongos patógenos (Phytophthora; Ceratocystis; etc), Limitación de la absorción de nutrientes necesarios para la regeneración, Mayor rebrote de chupones en clones vigorosos";"Rápida deshidratación en las heridas, que puede causar quemaduras o daño tisular en la zona podada y por consiguiente una cicatrización deficiente
+Estrés térmico en la planta, que limita la regeneración ordenada de brotes.
+Mayor atracción de insectos a las heridas expuestas, como escarabajos vectores de enfermedades.";"Cicatrización muy lenta de las heridas del deschuponado.
+Mayor exposición a patógenos.";
+Control de arvenses y plateo (cada 2 meses);;;2,4,6,8,10,12;Baja retención de humedad del suelo;Disminución de la aireación del suelo tras el control.;Mayor insolación en raíces superficiales y cuello del árbol, Incremento de evapotranspiración en el área de plateo, Menor disponibilidad de humedad y nutrientes;Estrés radicular en suelos descubiertos;
+Fertilización ;;;3, 9;Baja absorción de nutrientes, Volatilización de los elementos minerales;Anegamiento, Pérdida de nutrientes esenciales por lixiviación;Afectación en la síntesis de giberelinas y auxinas, Afectaciones en el crecimiento y asimilación de nutrientes, Pobre respuesta a la fertilización, Reducción en la eficiencia del uso de nutrientes aplicados;Ralentización metabólica, Baja absorción de nutrientes;
+Cosecha ;9;12;;Retraso en la maduración del grano;Dificultad en la cosecha por humedad;Estrés térmico durante la maduración, Disminución en la calidad del grano, Variaciones en la actividad enzimática de la ruta de los ácidos grasos, Presencia de phytophthora;Retraso en la maduración de mazorcas, Heterogeneidad en la cosecha, Pudrición en frutos por mayor humedad, Dificultad en el desprendimiento de frutos, Daños mecánicos en los frutos, Menur acumulación de azúcares en la similla, Reducción en la calidad de la semilla;"Daymond A et al (2007),
+Rodriguez P (2015)"
+Raices ;1;12;;"Reducción en la absorción de agua y nutrientes, Afectando del crecimiento general de la planta, Aumento de la tensión en el xilema,  
+Potencial hidrico de las plantas se torna más negativo, 
+Defoliación parcial o total de la planta";Daño en el sistema  radical, Asfixia de las raices, Muerte de la planta por  Phythoptora y Ceratosystis;"Formación de burbujas de aire en el xilema, Bloqueo del transporte de agua,
+Afectación de raices superficiales, Limitación de la capacidad de absorción";Disminución en actividades de las raices;"Opoku E. (2024),
+Rodriguez P (2015),
+Paredes M (2003)"
+Tallo y corteza;1;12;;"Pérdida de turgencia, Reducción de la resistencia estructural 
+";Mayor incidencia de phytophthora (Cancer de tallo), Fusarium.;Deshidratación y fisuras en la corteza, Entrada de patógenos.;"
+
+Afectación de la funcionalidad del floema, Limitación en el movimiento de carbohidratos hacia raíces y órganos en crecimiento, Retraso en el engrosamiento del tallo";"Rodriguez P (2015),
+Daymond A et al (2007),
+Agudelo G et al ( 2021)"
+Ramificación;1;12;;Menor número de ramas laterales, Reducción en producción potencial;Mayor incidencia de phytophthora, Lasiodiplodia;"Estrés térmico, Disminución en la capacidad de la ramificación para sostener frutos
+";"Retraso en la brotación y en la aparición de nuevas ramas, Crecimiento lento de las ramificaciones, Entrenudos cortos,
+Tejidos tiernos más susceptibles a hongos";"Rodriguez P (2015),
+Daymond A et al (2007)"
+Brotes y Yemas axilares ;1;12;;Menor formación de brotes, Secamiento de brotes. Acortamiento en la distancia de los lanzamientos vegetativos;Mayor incidencia de escoba de bruja;Marchitez y muerte de brotes jóvenes, Aborto de yemas axilares, Necrosis por quemaduras solares;Retraso en la brotación, necrosis de yemas tiernas, Mayor susceptibilidad a infecciones, Desuniformidad en el desarrollo de ramas;"
 "
-Hojas;1;12;;"Defoliación de la planta.
-Cierre parcial de estomas para conservación de agua a costa de disminuir la absorción de CO2. 
-";Mayor incidencia de phytophthora y antracnosis;"Marchitamiento de hojas por aumento de temperatura foliar. 
-Mayor densidad de estomas por unidad de área.
-Disminución de fotosintesís debido a la fotorespiración y a la desnaturalización de enzimas ";;"Opoku E. (2024);
-Rodriguez P (2015). "
-Floración;4;6;;"Retraso en la floración o pérdida de la floración programada.
-Detención del desarrollo o botones muy pequeños.
-Inducción de senescencia prematura de botones florales y caída o aborto floral. 
-Reducción de la apertura de las flores. Menor secreción de néctar, disminuyendo la atracción de polinizadores (como Forcipomyia spp.). Abortos florales tempranos por falta de recursos fisiológicos. Menor cantidad de flores abiertas, baja tasa de polinización y fecundación.";"Inhibición por hipoxia, se puede inducir mayor desarrollo vegetativo en lugar de reproductivo. 
-Aumento de enfermedades fúngicas (Phytophthora o Colletotrichum) que atacan los botones. Caída prematura de botones antes de alcanzar la antesis y baja floración efectiva.
-Alta humedad ambiental favorece el crecimiento de patógenos (Phytophthora, Moniliophthora).  Lavado de néctar o polen por lluvias, interfiriendo con la polinización y 
-actividad reducida para insectos polinizadores. Caída de flores por daño en el cojín floral o por infecciones.
-Presencia de escoba de bruja (Moniliophthora perniciosa)";"Disminuye la viabilidad floral, inhibe activación. Reducción de la inducción floral, flores débiles o abortadas. 
-Botones mal formados, menor viabilidad floral, apertura incompleta.
-Rápido marchitamiento floral, disminuyendo el tiempo disponible para la polinización. Reducción en la viabilidad del polen. Estrés fisiológico general que interfiere con la apertura completa de la flor.";"Ralentiza procesos metabólicos y hormonales. Inducción floral muy limitada o detenida. 
-Lentificación del metabolismo desarrollo floral muy lento.  Botones permanecen inactivos o se desarrollan en forma anormal. Botones no evolucionan o se estancan, floración irregular.
-Disminución en la tasa metabólica, lo que retrasa la apertura floral (antesis). Baja producción de néctar, reduciendo atracción de polinizadores. Menor producción de hormonas florales (giberelinas), dificultando la fecundación.";"Osorio Zambrano, M. A. (2021).  Opoku E. (2024). 
-Agudelo G et al ( 2021). "
-Polinizacion y fecundación;5;7;;Menor actividad de polinizadores;Menor éxito en el desarrollo de la polinización;;Dificulta la polinización, debido a la menor movilidad de los polinizadores;Agudelo G et al ( 2021). 
-Cuajado de frutos ;5;8;;"Menor retención de frutos 
-Abortos de frutos y menor desarrollo del grano debido a estrés hídrico.";"Aborto de frutos jovenes. 
-Presencia de Monialisis.
-Producción de alta cantidad de esporangios ";"Maduración acelerada y frutos pequeños.
-Presencia de phytophthora. Momificación de frutos";Frutos pequeños y menos desarrollados;Rodriguez P (2015). 
-Crecimiento y maduración del fruto;7;12;;"Secado acelerado de fruto.
-Incremento de la Presencia de Carmenta";"Presencia de Monialisis, Phythopthora y Monalonion
-Reducción en tamaño de fruto";"Disminución en el tiempo de maduración del fruto.
-Alteración de la composición del fruto.
-Presencia de phytophthora";;"Daymond A et al (2007);
-Rodriguez P (2015). "
-Fermentación;1;12;;;Riesgo de fermentación inadecuada y desarrollo de moho en los granos.;;Fermentación lenta, menor desarrollo de sabor;
-Secado;1;12;;Secado acelerado con baja calidad;Proliferación de mohos;;;
-Almacenamiento;1;12;;Aumento de las plagas en almacenamiento;Proliferación de mohos;;;
+Hojas;1;12;;"Defoliación de la planta, Cierre parcial de estomas para conservación de agua, Disminución en la absorción de CO2
+";Mayor incidencia de phytophthora, Antracnosis;Marchitamiento de hojas, Mayor densidad de estomas por unidad de área, Fotorespiración y desnaturalización de enzimas, Disminución de fotosintesís;Reducción de la fotosíntesis, Retraso en la expansión foliar, Clorosis, Necrosis en bordes, Caída prematura de hojas, Debilitamiento tisular, Mayor susceptibilidad a patógenos foliares;"Opoku E. (2024),
+Rodriguez P (2015)"
+Floración;4;6;;Retraso o pérdida de la floración programada, Detención del desarrollo o botones muy pequeños, Inducción de senescencia prematura de botones florales, Caída o aborto floral, Reducción de la apertura de las flores, Menor secreción de néctar, Disminución de la atracción de polinizadores (como Forcipomyia spp.),  Abortos florales tempranos por falta de recursos fisiológicos, Menor cantidad de flores abiertas, Baja tasa de polinización y fecundación.;"Inhibición por hipoxia, Inducción de mayor desarrollo vegetativo en lugar de reproductivo, Aumento de enfermedades fúngicas (Phytophthora o Colletotrichum) que atacan los botones, Caída prematura de botones antes de alcanzar la antesis, Baja floración efectiva, Crecimiento de patógenos (Phytophthora; Moniliophthora),  Lavado de néctar o polen por lluvias, Actividad reducida para insectos polinizadores, Caída de flores por daño en el cojín floral o infecciones, Presencia de escoba de bruja (Moniliophthora perniciosa)";Disminución de la viabilidad floral, inhibición de activación. Reducción de la inducción floral, Flores débiles o abortadas, Botones mal formados, Menor viabilidad floral, Apertura incompleta, Rápido marchitamiento floral, Disminución del tiempo disponible para la polinización,  Reducción en la viabilidad del polen, Estrés fisiológico general que interfiere con la apertura completa de la flor;"Ralentización de procesos metabólicos y hormonales, Inducción floral muy limitada o detenida,  
+Desarrollo floral muy lento,  Botones permanecen inactivos o se desarrollan en forma anormal, Botones no evolucionan o se estancan, Floración irregular,
+Retraso de la apertura floral (antesis). Baja producción de néctar, reduciendo atracción de polinizadores. Menor producción de hormonas florales (giberelinas), Dificultad en la fecundación";"Osorio Zambrano, M. A. (2021),
+Opoku E. (2024),
+Agudelo G et al ( 2021)"
+Polinizacion y fecundación;5;7;;Menor actividad de polinizadores;Menor éxito en el desarrollo de la polinización;"Pérdida de viabilidad del polen y reducción de la receptividad estigmática.
+
+Alteración en la germinación del tubo polínico.
+
+Disminución en la actividad de insectos polinizadores (Forcipomyia spp.).
+
+Mayor aborto floral y de frutos incipientes por fallas en la fecundación.";Dificulta la polinización, debido a la menor movilidad de los polinizadores;Agudelo G et al ( 2021)
+Cuajado de frutos ;5;8;;Menor retención de frutos, Abortos de frutos, Menor desarrollo del grano debido a estrés hídrico;Aborto de frutos jovenes, Presencia de Monialisis, Producción de alta cantidad de esporangios ;Maduración acelerada y frutos pequeños, Presencia de phytophthora, Momificación de frutos;Frutos pequeños y menos desarrollados;Rodriguez P (2015)
+Crecimiento y maduración del fruto;7;12;;"Secado acelerado de fruto, 
+Incremento de la Presencia de Carmenta";Presencia de Monialisis, Phythopthora y Monalonion, Reducción en tamaño de fruto;Disminución en el tiempo de maduración del fruto, Alteración de la composición del fruto, Presencia de phytophthora;Retraso en el crecimiento del fruto, Reducción del tamaño del fruto, Deformaciones y debilitamiento del pericarpio, Mayor vulnerabilidad a plagas y enfermedades, Aborto de frutos jóvenes en fases tempranas, Aumento de infecciones fúngicas por mayor retención de humedad en la mazorca.;"Daymond A et al (2007),
+Rodriguez P (2015)"
+Fermentación;1;12;;"Fermentación incompleta por falta de actividad microbiana, Escasa producción de etanol; ácido acético y ácido láctico, Granos con bajo desarrollo de aroma y sabor característico, Granos “pizarrosos” (mal fermentados; de color violeta)";Fermentación inadecuada, desarrollo de moho en los granos;Aumento del daño térmico a los embriones, Muerte prematura de microorganismos benéficos, Incremento en el desarrollo de sabores amargos o astringentes, Reducción de la calidad sensorial, Sobrefermentación y degradación excesiva, Disminución de compuestos volátiles deseables, Reducción de la integridad física de los granos, Granos quebradizos y de menor calidad comercial;Fermentación lenta, Menor desarrollo de sabor;
+Secado;1;12;;Secado acelerado con baja calidad;Proliferación de mohos;Sobresecado y quiebre de granos, Pérdida de compuestos aromáticos, Defectos en color y textura;Retraso en el secado, Proliferación de mohos y fermentaciones indeseadas, Aumento de granos defectuosos;
+Almacenamiento;1;12;;Aumento de las plagas en almacenamiento;Proliferación de mohos;Incremento de plagas de almacenamiento, Rancidez por degradación lipídica, Reducción de la vida útil del grano;Condensación de humedad en sacos, Proliferación de mohos, Compactación de granos, Pérdida de calidad organoléptica;
