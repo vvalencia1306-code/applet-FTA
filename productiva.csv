@@ -1,5 +1,4 @@
-﻿elem;ini;fin;meses;"deficit
-";exceso;Tmax;Tmin;ref
+﻿elem;ini;fin;meses;"deficit";exceso;Tmax;Tmin;ref
 Poda de mantenimiento ;1;1;;Entrada de hongos, Patógenos, Formación de nudos;Proliferación de hongos saprófitos  (Ceratocystis) en cortes;"Brotes jóvenes afectados por insolación, Pérdida de área foliar,
 Plantas con recuperación vegetativa limitada";Metabolismo reducido de la planta, Cicatrización lenta de las heridas, Aumento de la susceptibilidad de los cortes frescos a la entrada de enfermedades;
 Aplicación de enmiendas (Corrección de acidez y enmienda organica) ;2;2;;Baja disponibilidad de agua para absorción, Deficiencia de nutrientes esenciales;Anegamiento, Lixiviación acelerada de iones;Reducción de actividad de enzimas de síntesis de materia orgánica;Reducción de la actividad microbiana, Reducción de la mineralización de materia orgánica, Disminución de la solubilidad y disponibilidad de nutrientes, Menor respuesta de la planta a la corrección de suelos;
@@ -51,4 +50,5 @@ Rodriguez P (2015)"
 Fermentación;1;12;;"Fermentación incompleta por falta de actividad microbiana, Escasa producción de etanol; ácido acético y ácido láctico, Granos con bajo desarrollo de aroma y sabor característico, Granos “pizarrosos” (mal fermentados; de color violeta)";Fermentación inadecuada, desarrollo de moho en los granos;Aumento del daño térmico a los embriones, Muerte prematura de microorganismos benéficos, Incremento en el desarrollo de sabores amargos o astringentes, Reducción de la calidad sensorial, Sobrefermentación y degradación excesiva, Disminución de compuestos volátiles deseables, Reducción de la integridad física de los granos, Granos quebradizos y de menor calidad comercial;Fermentación lenta, Menor desarrollo de sabor;
 Secado;1;12;;Secado acelerado con baja calidad;Proliferación de mohos;Sobresecado y quiebre de granos, Pérdida de compuestos aromáticos, Defectos en color y textura;Retraso en el secado, Proliferación de mohos y fermentaciones indeseadas, Aumento de granos defectuosos;
 Almacenamiento;1;12;;Aumento de las plagas en almacenamiento;Proliferación de mohos;Incremento de plagas de almacenamiento, Rancidez por degradación lipídica, Reducción de la vida útil del grano;Condensación de humedad en sacos, Proliferación de mohos, Compactación de granos, Pérdida de calidad organoléptica;
+
 
