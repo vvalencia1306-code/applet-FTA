@@ -1,5 +1,5 @@
 elem;ini;fin;meses;deficit;exceso;Tmax;Tmin;ref
-Establecimiento del sombrio permanente y transitorio (Forestales);1;6;Reducción en la humedad del suelo Afectaciones en el establecimiento del cultivo Endurecimiento del suelo Menor disponibilidad de nutrientes Saturación del suelo Erosión Compactación pérdida de nutrientes; ; ; ;
+Establecimiento del sombrio permanente y transitorio (Forestales);1,6;;Reducción en la humedad del suelo Afectaciones en el establecimiento del cultivo Endurecimiento del suelo Menor disponibilidad de nutrientes Saturación del suelo Erosión Compactación pérdida de nutrientes; ; ; ;
 Preparacion del terreno (Trazado Ahoyado y drenajes);6;6;Reducción en la humedad del suelo Afectaciones en el establecimiento del cultivo Endurecimiento del suelo Menor disponibilidad de nutrientes Saturación del suelo Erosión Compactación pérdida de nutrientes; ; ; ;
 Aplicación de enmiendas (Corrección de acidez y enmienda organica);6;6;Baja disponibilidad de enmiendas y agua Deficiencia de nutrientes esenciales Baja eficiencia en la incorporación de enmiendas Reducción en la actividad microbiana Afectacion de la mineralización; ; ; ;
 Establecimiento en campo;7;7;Deshidratación de plántulas recién transplantadas Falta de humedad en el hoyo de siembra Limitación en la activación de raíces Limitación en la absorción de nutrientes Reducción de la tasa de crecimiento Encharcamiento del hoyo de siembra; ; ; ;
@@ -12,6 +12,7 @@ Tallo y corteza;6;23;Pérdida de turgencia Reducción de la resistencia estructu
 Ramificación;6;23;Menor número de ramas Reducción en producción potencial Mayor incidencia de phytophthora Lasiodiplodia Estrés térmico Disminución en la capacidad de la ramificación para sostener frutos Retraso en la brotación y en la aparición de nuevas ramas; ; ; ;
 Brotes y Yemas axilares ;6;23;Menor formación de brotes Secamiento de brotes Acortamiento en la distancia de los lanzamientos vegetativos Mayor incidencia de escoba de bruja Marchitez y muerte de brotes jóvenes Aborto de yemas axilares Necrosis por quemaduras solares; ; ; ;
 Hojas;6;23;Defoliación de la planta Cierre de estomas para conservación de agua Disminución en la absorción de CO2 Mayor densidad de estomas por unidad de área Fotorespiración y desnaturalización de enzimas Mayor incidencia de phytophthora Antracnosis Marchitamiento de hojas; ; ; ;
+
 
 
 
