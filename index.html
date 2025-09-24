@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Applet FTA (corregido)</title>
+  <title>Applet FTA (corregido1)</title>
 
   <!-- PapaParse para leer CSV -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
@@ -274,24 +274,30 @@
           <div className="relative z-20 flex items-center justify-between w-full px-8 mt-10 mb-6">
             {/* Paso cards encima de la línea roja — alineadas con la fila de iconos */}
             <div className="flex flex-col items-center border border-gray-400 rounded-2xl p-6 shadow-md w-48 hover:scale-105 transition-transform bg-white">
+              <span className="text-5xl">📊</span>
+              <p className="text-center font-semibold text-gray-700 mt-3">Construir<br/>línea de tiempo (FTA)</p>
+            </div>
+            
+
+            <span className="text-4xl text-gray-600 hidden md:block">➝</span>
+            
+            <div className="flex flex-col items-center border border-gray-400 rounded-2xl p-6 shadow-md w-48 hover:scale-105 transition-transform bg-white">
               <span className="text-5xl">🌱</span>
               <p className="text-center font-semibold text-gray-700 mt-3">Identificar<br/>fases del cultivo</p>
             </div>
+            
+
+            <span className="text-4xl text-gray-600 hidden md:block">➝</span>
 
             <div className="flex flex-col items-center border border-gray-400 rounded-2xl p-6 shadow-md w-48 hover:scale-105 transition-transform bg-white">
               <span className="text-5xl">🌦️</span>
               <p className="text-center font-semibold text-gray-700 mt-3">Relacionar fases<br/>con riesgos climáticos</p>
             </div>
-
-            <div className="flex flex-col items-center border border-gray-400 rounded-2xl p-6 shadow-md w-48 hover:scale-105 transition-transform bg-white">
-              <span className="text-5xl">📊</span>
-              <p className="text-center font-semibold text-gray-700 mt-3">Construir<br/>línea de tiempo (FTA)</p>
-            </div>
           </div>
 
           <div className="relative">
             {/* Línea ondulada de temporalidad (SVG) - queda detrás de los iconos */}
-            <svg className="absolute left-0 right-0 top-1/2 -translate-y-1/2 w-full h-20 pointer-events-none z-0" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden>
+            <svg className="absolute left-0 right-0 top-[70%] -translate-y-1/2 w-full h-20 pointer-events-none z-0" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden>
               <path d="M0 60 C200 40 400 80 600 60 C750 50 850 70 1000 60" fill="none" stroke="#ef4444" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" opacity="0.95" />
             </svg>
 
