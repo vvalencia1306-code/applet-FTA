@@ -237,6 +237,51 @@
             >
               👉 Explorar fichas técnicas
             </button>
+            <button onClick={onTaller} className="px-5 py-3 rounded-xl bg-blue-600 text-white"
+            >
+              🛠 Taller de cocreación FTA 
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    // =========================================================
+    // TALLER DE COCREACIÓN
+    // =========================================================
+    function TallerCocreacion({ onBack }) {
+      const fases = [
+        { id: "M1", nombre: "Preparación del terreno", mes: "Octubre", riesgos: ["Compactación", "Exceso de humedad"], practicas: ["Labranza mínima", "Aplicación de enmiendas"], icono: "🌱" },
+        { id: "M2", nombre: "Siembra", mes: "Nov-Dic", riesgos: ["Lluvias excesivas", "Sequía al inicio"], practicas: ["Selección de semilla", "Densidad adecuada"], icono: "🌾" },
+        { id: "M3", nombre: "Emergencia", mes: "Dic-Ene", riesgos: ["Déficit hídrico", "Bajas temperaturas"], practicas: ["Riego de apoyo", "Control de arvenses"], icono: "🌿" },
+        { id: "M7", nombre: "Cosecha", mes: "Abr-May", riesgos: ["Exceso de humedad", "Altas temperaturas"], practicas: ["Cosecha escalonada", "Almacenamiento adecuado"], icono: "🧺" }
+      ];
+      return (
+        <div className="max-w-6xl mx-auto p-6 space-y-10">
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-semibold">Taller de cocreación de Fichas Agroclimáticas</h1>
+            <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
+          </div>
+          <p className="text-gray-600">Analiza el ciclo de tu cultivo, identifica fases clave, sus meses y los riesgos climáticos asociados.</p>
+          <div className="flex items-center justify-center gap-10">
+            {fases.map((f, idx) => (
+              <div key={f.id} className="flex flex-col items-center">
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl ${idx === 1 ? "bg-emerald-200 ring-4 ring-emerald-400" : "bg-gray-100"}`}>{f.icono}</div>
+                <span className="mt-2 text-sm font-medium">{f.id}: {f.nombre}</span>
+              </div>
+            ))}
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {fases.map(f => (
+              <div key={f.id} className="rounded-2xl border shadow-sm p-5">
+                <h2 className="text-lg font-semibold mb-2">{f.nombre}</h2>
+                <p className="text-sm text-gray-500 mb-3">Mes clave: {f.mes}</p>
+                <b>Riesgos Climáticos:</b>
+                <ul className="list-disc ml-5 text-sm text-gray-700">{f.riesgos.map((r,i)=><li key={i}>{r}</li>)}</ul>
+                <b className="block mt-3">Prácticas de Manejo:</b>
+                <ul className="list-disc ml-5 text-sm text-gray-700">{f.practicas.map((p,i)=><li key={i}>{p}</li>)}</ul>
+              </div>
+            ))}
           </div>
         </div>
       );
