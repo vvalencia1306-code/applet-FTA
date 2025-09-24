@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Applet FTA</title>
+  <title>Applet FTA (corregido)</title>
 
   <!-- PapaParse para leer CSV -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
@@ -76,8 +76,6 @@
               Unica: "https://raw.githubusercontent.com/vvalencia1306-code/applet-FTA/main/Tabasco_Palmira.csv"
             }
           },
-          // Agrega más variedades aquí...
-          // "c-chinense": { nombre:"Capsicum chinense", fases:["Unica"], csv:{ Unica:"..." } },
         },
         imagen: "assets/DiseñoFTA.png",
       },
@@ -151,7 +149,7 @@
     // =========================================================
     // INTRODUCCIÓN
     // =========================================================
-    function Intro({ onStart }) {
+    function Intro({ onStart, onTaller }) {
       return (
         <div className="max-w-5xl mx-auto p-6">
           <h1 className="text-3xl font-semibold mb-10 text-center">
@@ -230,7 +228,7 @@
           </div>
 
           {/* 6) Botón */}
-          <div className="flex justify-center">
+          <div className="flex justify-center gap-4">
             <button
               onClick={onStart}
               className="px-5 py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700"
@@ -348,8 +346,6 @@
   );
 }
 
-    
-
     // =========================================================
     // PANEL DETALLE (sin cambios)
     // =========================================================
@@ -389,12 +385,12 @@
         : entry;
 
       const hasTwoPhases = fuente?.fases?.includes("Vegetativa") && fuente?.fases?.includes("Productiva");
-      const [fase, setFase] = useState(hasTwoPhases ? "Vegetativa" : "Única");
+      const [fase, setFase] = useState(hasTwoPhases ? "Vegetativa" : "Unica");
       const [sel, setSel] = useState(null);
 
       // Si cambia la variedad (o entrada), re-sincroniza la fase inicial
       useEffect(() => {
-        setFase(hasTwoPhases ? "Vegetativa" : "Única");
+        setFase(hasTwoPhases ? "Vegetativa" : "Unica");
         setSel(null);
       }, [entry, variedadKey]);
 
@@ -499,14 +495,18 @@
     // SELECTOR DE MATRIZ 
     // =========================================================
     function App() {
-      const [paso, setPaso] = useState("intro");     // "intro" | "selector" | "matriz"
+      const [paso, setPaso] = useState("intro");     // "intro" | "selector" | "matriz" | "taller"
       const [entry, setEntry] = useState(null);      // cultivo seleccionado
       const [variedadKey, setVariedadKey] = useState(null); // clave de variedad (si aplica)
 
       const { veg, prod } = useCsvData(entry, variedadKey);
 
       if (paso === "intro") {
-        return <Intro onStart={() => setPaso("selector")} />;
+        return <Intro onStart={() => setPaso("selector")} onTaller={() => setPaso("taller")} />;
+      }
+
+      if (paso === "taller") {
+        return <TallerCocreacion onBack={() => setPaso("intro")} />;
       }
 
       if (paso === "selector") {
