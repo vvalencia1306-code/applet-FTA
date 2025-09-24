@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Applet FTA (corregido1)</title>
+  <title>Applet FTA (corregido)</title>
 
   <!-- PapaParse para leer CSV -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
@@ -280,7 +280,7 @@
             
 
             <span className="text-4xl text-gray-600 hidden md:block">➝</span>
-            
+
             <div className="flex flex-col items-center border border-gray-400 rounded-2xl p-6 shadow-md w-48 hover:scale-105 transition-transform bg-white">
               <span className="text-5xl">🌱</span>
               <p className="text-center font-semibold text-gray-700 mt-3">Identificar<br/>fases del cultivo</p>
@@ -297,11 +297,11 @@
 
           <div className="relative">
             {/* Línea ondulada de temporalidad (SVG) - queda detrás de los iconos */}
-            <svg className="absolute left-0 right-0 top-[70%] -translate-y-1/2 w-full h-20 pointer-events-none z-0" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden>
+            <svg className="absolute left-0 right-0 top-[70%] -translate-y-1/2 w-full h-20 pointer-events-none z-10" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden>
               <path d="M0 60 C200 40 400 80 600 60 C750 50 850 70 1000 60" fill="none" stroke="#ef4444" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" opacity="0.95" />
             </svg>
 
-            <div className="relative z-10 flex items-center justify-between w-full px-8">
+            <div className="relative z-0 flex items-center justify-between w-full px-8 mt-4">
               {fases.map((f, idx) => (
                 <div key={f.id} className="flex flex-col items-center min-w-[64px]">
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl ${idx === 1 ? "bg-emerald-200 ring-4 ring-emerald-400" : "bg-gray-100"}`}>{f.icono}</div>
