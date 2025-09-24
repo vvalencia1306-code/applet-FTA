@@ -241,7 +241,7 @@
             >
               👉 Explorar fichas técnicas
             </button>
-            <button onClick={onTaller} className="px-5 py-3 rounded-xl bg-esmerald-600600 text-white font-medium hover:bg-emerald-700"
+            <button onClick={onTaller} className="px-5 py-3 rounded-xl bg-esmerald-600 text-white font-medium hover:bg-emerald-700"
             >
               🛠 Taller de cocreación FTA 
             </button>
@@ -254,30 +254,48 @@
     // TALLER DE COCREACIÓN
     // =========================================================
     function TallerCocreacion({ onBack }) {
+      // Ahora la secuencia completa M1..M7 con fases adicionales solicitadas
       const fases = [
         { id: "M1", nombre: "Preparación del terreno", mes: "Octubre", riesgos: ["Compactación", "Exceso de humedad"], practicas: ["Labranza mínima", "Aplicación de enmiendas"], icono: "🌱" },
         { id: "M2", nombre: "Siembra", mes: "Nov-Dic", riesgos: ["Lluvias excesivas", "Sequía al inicio"], practicas: ["Selección de semilla", "Densidad adecuada"], icono: "🌾" },
         { id: "M3", nombre: "Emergencia", mes: "Dic-Ene", riesgos: ["Déficit hídrico", "Bajas temperaturas"], practicas: ["Riego de apoyo", "Control de arvenses"], icono: "🌿" },
+        { id: "M4", nombre: "Plagas y enfermedades", mes: "--", riesgos: ["Plagas", "Patógenos"], practicas: ["Monitoreo", "Manejo integrado"], icono: "🐛" },
+        { id: "M5", nombre: "Floración", mes: "--", riesgos: ["Heladas", "Estrés térmico"], practicas: ["Riego de apoyo", "Manejo de nutrientes"], icono: "🌸" },
+        { id: "M6", nombre: "Desarrollo del fruto", mes: "--", riesgos: ["Caída de fruto", "Plagas del fruto"], practicas: ["Fertilización", "Control poscosecha"], icono: "🍊" },
         { id: "M7", nombre: "Cosecha", mes: "Abr-May", riesgos: ["Exceso de humedad", "Altas temperaturas"], practicas: ["Cosecha escalonada", "Almacenamiento adecuado"], icono: "🧺" }
       ];
       return (
         <div className="max-w-6xl mx-auto p-6 space-y-10">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-semibold">Taller de cocreación de Fichas Agroclimáticas</h1>
+            <h1 className="text-2xl font-semibold">Taller de codiseño de Fichas Técnicas Agroclimáticas</h1>
             <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
           </div>
-          <p className="text-gray-600">Analiza el ciclo de tu cultivo, identifica fases clave, sus meses y los riesgos climáticos asociados.</p>
+          <p className="text-gray-600">Espacio participativo donde se construyen las FTA, integrando saberes técnicos y locales con el fin de afinar os principales elementos expuestos del cultivo, los riesgos asociados a las amenazas climáticas</p>
           <div className="relative">
             {/* Línea ondulada de temporalidad (SVG) - queda detrás de los iconos */}
             <svg className="absolute left-0 right-0 top-1/2 -translate-y-1/2 w-full h-20 pointer-events-none z-0" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden>
               <path d="M0 60 C200 40 400 80 600 60 C750 50 850 70 1000 60" fill="none" stroke="#ef4444" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" opacity="0.95" />
+
+              {/* Marcadores fijos al inicio y final: M1 / M7 */}
+              <g aria-hidden>
+                <g transform="translate(40,0)">
+                  <circle cx="0" cy="60" r="6" fill="#ef4444" />
+                  <rect x="-28" y="30" rx="6" width="56" height="22" fill="#ffffff" opacity="0.98" />
+                  <text x="0" y="46" textAnchor="middle" fontSize="12" fill="#ef4444" fontWeight="600">M1</text>
+                </g>
+                <g transform="translate(960,0)">
+                  <circle cx="0" cy="60" r="6" fill="#ef4444" />
+                  <rect x="-28" y="30" rx="6" width="56" height="22" fill="#ffffff" opacity="0.98" />
+                  <text x="0" y="46" textAnchor="middle" fontSize="12" fill="#ef4444" fontWeight="600">M7</text>
+                </g>
+              </g>
             </svg>
 
-            <div className="relative z-10 flex items-center justify-center gap-10">
+            <div className="relative z-10 flex items-center justify-between w-full px-8">
               {fases.map((f, idx) => (
-                <div key={f.id} className="flex flex-col items-center">
+                <div key={f.id} className="flex flex-col items-center min-w-[64px]">
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl ${idx === 1 ? "bg-emerald-200 ring-4 ring-emerald-400" : "bg-gray-100"}`}>{f.icono}</div>
-                  <span className="mt-2 text-sm font-medium">{f.id}: {f.nombre}</span>
+                  <span className="mt-2 text-sm font-medium text-center max-w-[100px]">{f.id}: {f.nombre}</span>
                 </div>
               ))}
             </div>
