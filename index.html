@@ -17,7 +17,7 @@
 </head>
 
 <body class="bg-white text-gray-800">
-  <header class="p-4 flex items-center bg-white shadow-sm">
+    <header class="p-4 flex items-center bg-white shadow-sm">
         <img src="https://raw.githubusercontent.com/vvalencia1306-code/applet-FTA/main/assets/Logo_Agrorac.png" 
          alt="Logo AGRORAC" 
          class="h-12 w-auto mr-3" />
@@ -241,7 +241,7 @@
             >
               👉 Explorar fichas técnicas
             </button>
-            <button onClick={onTaller} className="px-5 py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700"
+            <button onClick={onTaller} className="px-5 py-3 rounded-xl bg-esmerald-600600 text-white font-medium hover:bg-emerald-700"
             >
               🛠 Taller de cocreación FTA 
             </button>
@@ -267,13 +267,20 @@
             <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
           </div>
           <p className="text-gray-600">Analiza el ciclo de tu cultivo, identifica fases clave, sus meses y los riesgos climáticos asociados.</p>
-          <div className="flex items-center justify-center gap-10">
-            {fases.map((f, idx) => (
-              <div key={f.id} className="flex flex-col items-center">
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl ${idx === 1 ? "bg-emerald-200 ring-4 ring-emerald-400" : "bg-gray-100"}`}>{f.icono}</div>
-                <span className="mt-2 text-sm font-medium">{f.id}: {f.nombre}</span>
-              </div>
-            ))}
+          <div className="relative">
+            {/* Línea ondulada de temporalidad (SVG) - queda detrás de los iconos */}
+            <svg className="absolute left-0 right-0 top-1/2 -translate-y-1/2 w-full h-20 pointer-events-none z-0" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden>
+              <path d="M0 60 C200 40 400 80 600 60 C750 50 850 70 1000 60" fill="none" stroke="#ef4444" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" opacity="0.95" />
+            </svg>
+
+            <div className="relative z-10 flex items-center justify-center gap-10">
+              {fases.map((f, idx) => (
+                <div key={f.id} className="flex flex-col items-center">
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl ${idx === 1 ? "bg-emerald-200 ring-4 ring-emerald-400" : "bg-gray-100"}`}>{f.icono}</div>
+                  <span className="mt-2 text-sm font-medium">{f.id}: {f.nombre}</span>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             {fases.map(f => (
