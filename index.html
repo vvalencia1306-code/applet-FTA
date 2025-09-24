@@ -23,7 +23,7 @@
     const { useState, useMemo, useEffect } = React;
 
     // =========================================================
-    //  FICHAS TÉCNICAS AGROCLIMÁTICAS // CATALOGOS 
+    // CATÁLOGO DE FICHAS
     // =========================================================
     const CATALOGO = [
       {
@@ -32,7 +32,7 @@
         tipo: "Perenne",
         fases: ["Vegetativa", "Productiva"],
         csv: {
-          Vegetativa: "https://raw.githubusercontent.com/vvalencia1306-code/applet-FTA/main/vegetativa2.csv",
+          Vegetativa: "https://raw.githubusercontent.com/vvalencia1306-code/applet-FTA/main/vegetativa.csv",
           Productiva: "https://raw.githubusercontent.com/vvalencia1306-code/applet-FTA/main/productiva.csv",
         },
         imagen: "assets/DiseñoFTA.png",
@@ -47,13 +47,10 @@
         },
         imagen: "assets/DiseñoFTA.png",
       },
-
-      // === NUEVO: capsicum con variedades ===
       {
         id: "capsicum",
         nombre: "Capsicum (ají/pimentón)",
         tipo: "Ciclo corto",
-        // Las variedades definen sus propias fases y CSV
         variedades: {
           "Cayenne · Palmira": {
             nombre: "Cayenne · Palmira",
@@ -76,19 +73,15 @@
               Unica: "https://raw.githubusercontent.com/vvalencia1306-code/applet-FTA/main/Tabasco_Palmira.csv"
             }
           },
-          // Agrega más variedades aquí...
-          // "c-chinense": { nombre:"Capsicum chinense", fases:["Unica"], csv:{ Unica:"..." } },
         },
         imagen: "assets/DiseñoFTA.png",
       },
-
-      // Otros (placeholder)
       { id: "aguacate", nombre: "Aguacate", tipo: "Perenne", fases: ["Vegetativa", "Productiva"], csv: {}, comingSoon: true },
       { id: "zanahoria", nombre: "Zanahoria", tipo: "Ciclo corto", fases: ["Unica"], csv: {}, comingSoon: true },
     ];
 
     // =========================================================
-    // LEER CSV CON VARIEDAD SI APLICA
+    // LECTOR DE CSV
     // =========================================================
     function useCsvData(entry, variedadKey) {
       const [veg, setVeg] = useState([]);
@@ -98,7 +91,6 @@
         setVeg([]); setProd([]);
         if (!entry || entry.comingSoon) return;
 
-        // Si el cultivo tiene "variedades", usa la variedad elegida; si no, usa el propio entry.
         const fuente = entry.variedades
           ? (entry.variedades[variedadKey] || Object.values(entry.variedades)[0])
           : entry;
@@ -139,26 +131,24 @@
           });
         };
 
-        // Soporta Vegetativa / Productiva / Unica
         if (fuente.fases?.includes("Vegetativa")) cargar(fuente.csv?.Vegetativa, setVeg);
         if (fuente.fases?.includes("Productiva")) cargar(fuente.csv?.Productiva, setProd);
-        if (fuente.fases?.includes("Unica"))      cargar(fuente.csv?.Unica,       setVeg);
+        if (fuente.fases?.includes("Unica"))      cargar(fuente.csv?.Unica, setVeg);
       }, [entry, variedadKey]);
 
       return { veg, prod };
     }
 
     // =========================================================
-    // INTRODUCCIÓN
+    // INTRO
     // =========================================================
-    function Intro({ onStart }) {
+    function Intro({ onStart, onTaller }) {
       return (
         <div className="max-w-5xl mx-auto p-6">
           <h1 className="text-3xl font-semibold mb-10 text-center">
             ¿QUÉ ES UNA FICHA TÉCNICA AGROCLIMÁTICA (FTA)?
           </h1>
 
-          {/* 1) Párrafo inicial */}
           <p className="text-gray-700 mb-10">
             Una FTA es un instrumento <b>técnico</b> que organiza y sintetiza los principales <b>riesgos agroclimáticos</b> que afectan un sistema productivo agrícola.
             Para ello, se identifican los <b>elementos expuestos</b> del cultivo (raíces, tallo, floración, prácticas de manejo) y los relacionan con
@@ -166,37 +156,12 @@
             por parte de los actores del sistema productivo con el fin de fortalecer la planificación agrícola.
           </p>
 
-          {/* 2) DOS CUADROS */}
           <section className="grid md:grid-cols-2 gap-6 mb-10">
             <div className="rounded-2xl border p-5">
               <h2 className="font-semibold mb-2">Componentes de la FTA</h2>
               <ul className="list-disc ml-6 text-gray-700 space-y-1">
-                <li>
-                  Filas ={" "}
-                  <span className="relative group cursor-help inline-block">
-                    <b>elementos expuestos</b>
-                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
-                      Componentes del cultivo susceptibles a los riesgos climáticos, como raíces, tallo, hojas o prácticas agrícolas.
-                    </span>
-                  </span>{" "}
-                  (fases fenológicas o prácticas agrícolas)
-                </li>
-                <li>
-                  Columnas ={" "}
-                  <span className="relative group cursor-help inline-block">
-                    <b>ventana de temporalidad</b>
-                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
-                      Intervalos de tiempo dentro del ciclo productivo en los que se presentan riesgos climáticos.
-                    </span>
-                  </span>{" "}
-                  y{" "}
-                  <span className="relative group cursor-help inline-block">
-                    <b>amenazas climáticas</b>
-                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-lg">
-                      Condiciones como déficit hídrico, exceso hídrico y temperaturas extremas que afectan al cultivo.
-                    </span>
-                  </span>
-                </li>
+                <li>Filas = <b>elementos expuestos</b> (fases fenológicas o prácticas agrícolas)</li>
+                <li>Columnas = <b>ventana de temporalidad</b> y <b>amenazas climáticas</b></li>
               </ul>
             </div>
 
@@ -209,7 +174,6 @@
             </div>
           </section>
 
-          {/* 3) RECUADRO AMARILLO + 4) PÁRRAFO largo (MOVIDOS ABAJO) */}
           <div className="p-4 rounded-xl bg-amber-50 text-amber-900 mb-10">
             <b>Importante:</b> Los campos <i>Mes inicio</i> y <i>Mes fin</i> <b>no son meses de calendario</b>.
             “Mes 1” es el primer mes del evento dentro del sistema productivo. Por ejemplo, puede coincidir con octubre si allí inicia la preparación del terreno.
@@ -220,22 +184,16 @@
             Así, la FTA se convierte en una herramienta flexible y útil frente a la variabilidad y el cambio climático, facilitando su contextualización territorial.
           </p>
 
-          {/* 5) Imagen */}
           <div className="mb-12 flex justify-center">
-            <img
-              src="assets/DiseñoFTA.png"
-              alt="Diseño de la FTA"
-              className="rounded-xl shadow-lg max-w-3xl w-full"
-            />
+            <img src="assets/DiseñoFTA.png" alt="Diseño de la FTA" className="rounded-xl shadow-lg max-w-3xl w-full" />
           </div>
 
-          {/* 6) Botón */}
-          <div className="flex justify-center">
-            <button
-              onClick={onStart}
-              className="px-5 py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700"
-            >
+          <div className="flex justify-center gap-4">
+            <button onClick={onStart} className="px-5 py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700">
               👉 Explorar fichas técnicas
+            </button>
+            <button onClick={onTaller} className="px-5 py-3 rounded-xl bg-indigo-600 text-white font-medium hover:bg-indigo-700">
+              🎯 Taller de cocreación
             </button>
           </div>
         </div>
@@ -243,70 +201,82 @@
     }
 
     // =========================================================
-    // SELECCIONAR LAS FICHAS TÉCNICAS AGROCLIMÁTICAS //OJO IMPORTANTE ESTABLECER EL TIPO (PERENNE O CICLO CORTO)
+    // TALLER DE COCREACIÓN (Timeline)
     // =========================================================
-   function SelectorFichas({ onBack, onPick }) {
-  const [tab, setTab] = useState("Perenne");
+    function TallerCocreacion({ onBack }) {
+      const elementos = [
+        { mes: 1, nombre: "Preparación del terreno" },
+        { mes: 2, nombre: "Siembra" },
+        { mes: 3, nombre: "Emergencia" },
+        { mes: 5, nombre: "Floración" },
+        { mes: 7, nombre: "Cosecha" },
+      ];
 
-  // Filtra por tipología (normalizando mayúsculas/minúsculas y espacios)
-  const items = useMemo(() => {
-    const t = (tab || "").toLowerCase().trim();
-    return CATALOGO.filter(c => (c.tipo || "").toLowerCase().trim() === t);
-  }, [tab]);
-
-  return (
-    <div className="max-w-6xl mx-auto p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
-        <div className="flex gap-2">
-          <button
-            className={`px-3 py-2 rounded-lg border text-sm ${tab === "Perenne" ? "bg-gray-900 text-white" : ""}`}
-            onClick={() => setTab("Perenne")}
-          >
-            Perennes
-          </button>
-          <button
-            className={`px-3 py-2 rounded-lg border text-sm ${tab === "Ciclo corto" ? "bg-gray-900 text-white" : ""}`}
-            onClick={() => setTab("Ciclo corto")}
-          >
-            Ciclo corto
-          </button>
-        </div>
-      </div>
-
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {items.map((it) => (
-          <div
-            key={it.id}
-            className={`rounded-2xl border p-5 shadow-sm ${it.comingSoon ? "opacity-60" : "hover:shadow-md"}`}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="font-semibold">{it.nombre}</h3>
-              {it.comingSoon && (
-                <span className="text-xs bg-gray-100 border px-2 py-1 rounded-full">Próximamente</span>
-              )}
-            </div>
-            <p className="text-sm text-gray-600 mb-4">Tipo: {it.tipo}</p>
-            <button
-              disabled={!!it.comingSoon}
-              onClick={() => onPick(it)}
-              className={`px-3 py-2 rounded-lg text-sm ${
-                it.comingSoon ? "bg-gray-100 text-gray-400 border" : "bg-emerald-600 hover:bg-emerald-700 text-white"
-              }`}
-            >
-              Ver ficha
-            </button>
+      return (
+        <div className="max-w-6xl mx-auto p-6 space-y-6">
+          <div className="flex justify-between items-center">
+            <h1 className="text-2xl font-semibold">🛠 Taller de cocreación</h1>
+            <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
           </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
-    
+          <p className="text-gray-700">
+            Esta línea temporal resume los <b>elementos expuestos</b> de un sistema productivo, para discutir de manera participativa cómo se relacionan con las fases del ciclo y los riesgos climáticos.
+          </p>
+
+          <div className="relative mt-10">
+            <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-300"></div>
+            <div className="flex justify-between">
+              {elementos.map((e, i) => (
+                <div key={i} className="relative flex flex-col items-center">
+                  <div className="w-6 h-6 bg-emerald-500 rounded-full mb-2"></div>
+                  <span className="text-xs text-gray-700 text-center w-24">{`M${e.mes} · ${e.nombre}`}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     // =========================================================
-    // PANEL DETALLE (sin cambios)
+    // SELECTOR DE FICHAS
+    // =========================================================
+    function SelectorFichas({ onBack, onPick }) {
+      const [tab, setTab] = useState("Perenne");
+
+      const items = useMemo(() => {
+        const t = (tab || "").toLowerCase().trim();
+        return CATALOGO.filter(c => (c.tipo || "").toLowerCase().trim() === t.toLowerCase());
+      }, [tab]);
+
+      return (
+        <div className="max-w-6xl mx-auto p-6 space-y-6">
+          <div className="flex items-center justify-between">
+            <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
+            <div className="flex gap-2">
+              <button className={`px-3 py-2 rounded-lg border text-sm ${tab==="Perenne" ? "bg-gray-900 text-white" : ""}`} onClick={() => setTab("Perenne")}>Perennes</button>
+              <button className={`px-3 py-2 rounded-lg border text-sm ${tab==="Ciclo corto" ? "bg-gray-900 text-white" : ""}`} onClick={() => setTab("Ciclo corto")}>Ciclo corto</button>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {items.map((it) => (
+              <div key={it.id} className={`rounded-2xl border p-5 shadow-sm ${it.comingSoon ? "opacity-60" : "hover:shadow-md"}`}>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold">{it.nombre}</h3>
+                  {it.comingSoon && <span className="text-xs bg-gray-100 border px-2 py-1 rounded-full">Próximamente</span>}
+                </div>
+                <p className="text-sm text-gray-600 mb-4">Tipo: {it.tipo}</p>
+                <button disabled={!!it.comingSoon} onClick={() => onPick(it)} className={`px-3 py-2 rounded-lg text-sm ${it.comingSoon ? "bg-gray-100 text-gray-400 border" : "bg-emerald-600 hover:bg-emerald-700 text-white"}`}>Ver ficha</button>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // =========================================================
+    // PANEL DETALLE
     // =========================================================
     function PanelDetalle({ fila, onClose }) {
       if (!fila) return null;
@@ -319,9 +289,7 @@
               <button onClick={onClose} className="text-gray-500 hover:text-gray-700">✕</button>
             </div>
             <p className="text-sm text-gray-600 mb-3">
-              {fila.meses?.length
-                ? <>Meses: {fila.meses.map(m => `M${m}`).join(", ")}</>
-                : <>Ventana: M{fila.ini ?? "—"} – M{fila.fin ?? "—"}</>}
+              {fila.meses?.length ? <>Meses: {fila.meses.map(m => `M${m}`).join(", ")}</> : <>Ventana: M{fila.ini ?? "—"} – M{fila.fin ?? "—"}</>}
             </p>
             <div className="grid md:grid-cols-2 gap-3 text-sm">
               <div className="border rounded-xl p-3"><b>Déficit hídrico:</b> {R.deficit || "—"}</div>
@@ -334,28 +302,24 @@
         </div>
       );
     }
+
     // =========================================================
-    // MATRIZ — SELECTOR DE VARIEDAD EN CASO DE QUE SEA (POR EJEMPLO CAPSICUM ESTAMOS TRABAJANDO CON TRES CAYYENE-TABASCO-HABANERO)
+    // MATRIZ
     // =========================================================
     function Matriz({ onBack, entry, veg, prod, variedadKey, setVariedadKey }) {
       const variedades = entry?.variedades || null;
-      const fuente = variedades
-        ? (variedades[variedadKey] || Object.values(variedades)[0])
-        : entry;
+      const fuente = variedades ? (variedades[variedadKey] || Object.values(variedades)[0]) : entry;
 
       const hasTwoPhases = fuente?.fases?.includes("Vegetativa") && fuente?.fases?.includes("Productiva");
       const [fase, setFase] = useState(hasTwoPhases ? "Vegetativa" : "Única");
       const [sel, setSel] = useState(null);
 
-      // Si cambia la variedad (o entrada), re-sincroniza la fase inicial
       useEffect(() => {
         setFase(hasTwoPhases ? "Vegetativa" : "Única");
         setSel(null);
       }, [entry, variedadKey]);
 
-      const data = hasTwoPhases
-        ? (fase === "Productiva" ? prod : veg)
-        : (veg?.length ? veg : prod);
+      const data = hasTwoPhases ? (fase === "Productiva" ? prod : veg) : (veg?.length ? veg : prod);
 
       const maxMes = useMemo(() => {
         const filaMax = (r) =>
@@ -368,10 +332,7 @@
 
       const meses = useMemo(() => Array.from({ length: maxMes }, (_, i) => i + 1), [maxMes]);
 
-      // Título con nombre del cultivo y, si aplica, de la variedad
-      const titulo = variedades
-        ? `${entry?.nombre} · ${variedades[variedadKey]?.nombre || ""}`
-        : entry?.nombre || "";
+      const titulo = variedades ? `${entry?.nombre} · ${variedades[variedadKey]?.nombre || ""}` : entry?.nombre || "";
 
       return (
         <div className="max-w-7xl mx-auto p-6 space-y-6">
@@ -382,30 +343,20 @@
             </div>
             <div className="flex items-center gap-2">
               <button onClick={onBack} className="px-3 py-2 border rounded-lg text-sm">← Volver</button>
-
               {variedades && (
                 <>
                   <label className="text-sm text-gray-600">Variedad:</label>
-                  <select
-                    value={variedadKey}
-                    onChange={e => setVariedadKey(e.target.value)}
-                    className="border rounded-lg px-3 py-2 text-sm"
-                  >
+                  <select value={variedadKey} onChange={e => setVariedadKey(e.target.value)} className="border rounded-lg px-3 py-2 text-sm">
                     {Object.entries(variedades).map(([key, v]) => (
                       <option key={key} value={key}>{v.nombre}</option>
                     ))}
                   </select>
                 </>
               )}
-
               {hasTwoPhases && (
                 <>
                   <label className="text-sm text-gray-600">Fase:</label>
-                  <select
-                    value={fase}
-                    onChange={e => setFase(e.target.value)}
-                    className="border rounded-lg px-3 py-2 text-sm"
-                  >
+                  <select value={fase} onChange={e => setFase(e.target.value)} className="border rounded-lg px-3 py-2 text-sm">
                     <option>Vegetativa</option>
                     <option>Productiva</option>
                   </select>
@@ -451,17 +402,21 @@
     }
 
     // =========================================================
-    // SELECTOR DE MATRIZ 
+    // APP
     // =========================================================
     function App() {
-      const [paso, setPaso] = useState("intro");     // "intro" | "selector" | "matriz"
-      const [entry, setEntry] = useState(null);      // cultivo seleccionado
-      const [variedadKey, setVariedadKey] = useState(null); // clave de variedad (si aplica)
+      const [paso, setPaso] = useState("intro");
+      const [entry, setEntry] = useState(null);
+      const [variedadKey, setVariedadKey] = useState(null);
 
       const { veg, prod } = useCsvData(entry, variedadKey);
 
       if (paso === "intro") {
-        return <Intro onStart={() => setPaso("selector")} />;
+        return <Intro onStart={() => setPaso("selector")} onTaller={() => setPaso("taller")} />;
+      }
+
+      if (paso === "taller") {
+        return <TallerCocreacion onBack={() => setPaso("intro")} />;
       }
 
       if (paso === "selector") {
@@ -482,7 +437,6 @@
         );
       }
 
-      // Paso "matriz"
       if (!entry) {
         return <div className="p-6 text-center text-gray-500">Selecciona un sistema productivo…</div>;
       }
@@ -495,10 +449,7 @@
         );
       }
 
-      // Esperando carga CSV (según fases de la fuente actual)
-      const fuente = entry.variedades
-        ? (entry.variedades[variedadKey] || Object.values(entry.variedades)[0])
-        : entry;
+      const fuente = entry.variedades ? (entry.variedades[variedadKey] || Object.values(entry.variedades)[0]) : entry;
 
       const esperando =
         (fuente?.fases?.includes("Vegetativa") && veg.length === 0) ||
@@ -509,16 +460,7 @@
         return <div className="p-6 text-center text-gray-500">Cargando datos…</div>;
       }
 
-      return (
-        <Matriz
-          onBack={() => setPaso("selector")}
-          entry={entry}
-          veg={veg}
-          prod={prod}
-          variedadKey={variedadKey}
-          setVariedadKey={setVariedadKey}
-        />
-      );
+      return <Matriz onBack={() => setPaso("selector")} entry={entry} veg={veg} prod={prod} variedadKey={variedadKey} setVariedadKey={setVariedadKey} />;
     }
 
     ReactDOM.createRoot(document.getElementById("root")).render(<App />);
