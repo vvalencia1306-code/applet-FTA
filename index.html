@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Applet FTA (corregido)</title>
+  <title>Applet FTA </title>
 
   <!-- PapaParse para leer CSV -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
@@ -256,13 +256,13 @@
     function TallerCocreacion({ onBack }) {
       // Ahora la secuencia completa M1..M7 con fases adicionales solicitadas
       const fases = [
-        { id: "M1", nombre: "Preparación del terreno", mes: "Octubre", riesgos: ["Compactación", "Exceso de humedad"], practicas: ["Labranza mínima", "Aplicación de enmiendas"], icono: "🌱" },
-        { id: "M2", nombre: "Siembra", mes: "Noviembre", riesgos: ["Lluvias excesivas", "Sequía al inicio"], practicas: ["Selección de semilla", "Densidad adecuada"], icono: "🌾" },
-        { id: "M3-M4", nombre: "Emergencia", mes: "Diciembre-Enero", riesgos: ["Déficit hídrico", "Bajas temperaturas"], practicas: ["Riego de apoyo", "Control de arvenses"], icono: "🌿" },
-        { id: "M5-M7", nombre: "Plagas y enfermedades", mes: "Febrero y Abril", riesgos: ["Plagas", "Patógenos"], practicas: ["Monitoreo", "Manejo integrado"], icono: "🐛" },
-        { id: "M6", nombre: "Floración", mes: "Marzo", riesgos: ["Heladas", "Estrés térmico"], practicas: ["Riego de apoyo", "Manejo de nutrientes"], icono: "🌸" },
-        { id: "M7", nombre: "Desarrollo del fruto", mes: "Abril", riesgos: ["Caída de fruto", "Plagas del fruto"], practicas: ["Fertilización", "Control poscosecha"], icono: "🍊" },
-        { id: "M10", nombre: "Cosecha", mes: "Julio", riesgos: ["Exceso de humedad", "Altas temperaturas"], practicas: ["Cosecha escalonada", "Almacenamiento adecuado"], icono: "🧺" }
+        { id: "M1", nombre: "Preparación del terreno", mes: "Octubre", riesgos: ["Compactación", "Exceso de humedad"], icono: "🌱" },
+        { id: "M2", nombre: "Siembra", mes: "Noviembre", riesgos: ["Lluvias excesivas", "Sequía al inicio"], icono: "🌾" },
+        { id: "M3-M4", nombre: "Emergencia", mes: "Diciembre-Enero", riesgos: ["Déficit hídrico", "Bajas temperaturas"], icono: "🌿" },
+        { id: "M5 y M7", nombre: "Plagas y enfermedades", mes: "Febrero y Abril", riesgos: ["Plagas", "Patógenos"], icono: "🐛" },
+        { id: "M6", nombre: "Floración", mes: "Marzo", riesgos: ["Heladas", "Estrés térmico"], icono: "🌸" },
+        { id: "M7", nombre: "Desarrollo del fruto", mes: "Abril", riesgos: ["Caída de fruto", "Plagas del fruto"], icono: "🍊" },
+        { id: "M10", nombre: "Cosecha", mes: "Julio", riesgos: ["Exceso de humedad", "Altas temperaturas"], icono: "🧺" }
       ];
       return (
         <div className="max-w-6xl mx-auto p-6 space-y-10">
