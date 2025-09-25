@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Applet FTA (corregido 1)</title>
+  <title>Applet FTA (corregido)</title>
 
   <!-- PapaParse para leer CSV -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
@@ -264,6 +264,16 @@
         { id: "M7", nombre: "Desarrollo del fruto", mes: "Abril", riesgos: ["Caída de fruto", "Plagas del fruto"], icono: "🍊" },
         { id: "M10", nombre: "Cosecha", mes: "Julio", riesgos: ["Exceso de humedad", "Altas temperaturas"], icono: "🧺" }
       ];
+      // Resalta temporalmente el cuadro objetivo y hace scroll hacia él
+      const highlight = (id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.add('ring-4', 'ring-emerald-300', 'ring-offset-2');
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => {
+          el.classList.remove('ring-4', 'ring-emerald-300', 'ring-offset-2');
+        }, 1200);
+      };
       return (
         <div className="max-w-6xl mx-auto p-6 space-y-10">
           <div className="flex items-center justify-between">
@@ -304,15 +314,25 @@
             <div className="relative z-0 flex items-center justify-between w-full px-8 mt-7">
               {fases.map((f, idx) => (
                 <div key={f.id} className="flex flex-col items-center min-w-[64px]">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl ${idx === 1 ? "bg-emerald-200 ring-4 ring-emerald-400" : "bg-gray-100"}`}>{f.icono}</div>
-                  <span className="mt-2 text-sm font-medium text-center max-w-[100px]">{f.id}: {f.nombre}</span>
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => highlight(`fase-${f.id}`)}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); highlight(`fase-${f.id}`); } }}
+                    className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl cursor-pointer ${idx === 1 ? "bg-emerald-200 ring-4 ring-emerald-400" : "bg-gray-100"}`}
+                  >{f.icono}</div>
+                  <button
+                    onClick={() => highlight(`fase-${f.id}`)}
+                    className="mt-2 text-sm font-medium text-center max-w-[100px] text-gray-800 hover:underline"
+                    aria-label={`Ir a ${f.nombre}`}
+                  >{f.id}: {f.nombre}</button>
                 </div>
               ))}
             </div>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             {fases.map(f => (
-              <div key={f.id} className="rounded-2xl border shadow-sm p-5">
+              <div id={`fase-${f.id}`} key={f.id} className="rounded-2xl border shadow-sm p-5">
                 <h2 className="text-lg font-semibold mb-2">{f.nombre}</h2>
                 <p className="text-sm text-gray-500 mb-3">Mes clave: {f.mes}</p>
                 <b>Riesgos Agroclimáticos:</b>
