@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Applet FTA (corregido1)</title>
+  <title>Applet FTA (corregido)</title>
 
   <!-- PapaParse para leer CSV -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
@@ -333,6 +333,17 @@
               ))}
             </div>
           </div>
+          <div className="grid md:grid-cols-2 gap-6 mt-6">
+            {fases.map(f => (
+              <div id={`fase-${f.id}`} key={f.id} className="rounded-2xl border shadow-sm p-5">
+                <h2 className="text-lg font-semibold mb-2">{f.nombre}</h2>
+                <p className="text-sm text-gray-500 mb-3">Mes clave: {f.mes}</p>
+                <b>Riesgos Agroclimáticos:</b>
+                <ul className="list-disc ml-5 text-sm text-gray-700">{f.riesgos.map((r,i)=><li key={i}>{r}</li>)}</ul>
+              </div>
+            ))}
+          </div>
+
           {/* Galería de talleres (usa assets/foto1.JPEG .. foto4.JPEG) */}
           <div className="mt-8">
             <h3 className="text-lg font-semibold mb-4">Galería de talleres</h3>
@@ -356,17 +367,6 @@
                 </div>
               </div>
             )}
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 mt-6">
-            {fases.map(f => (
-              <div id={`fase-${f.id}`} key={f.id} className="rounded-2xl border shadow-sm p-5">
-                <h2 className="text-lg font-semibold mb-2">{f.nombre}</h2>
-                <p className="text-sm text-gray-500 mb-3">Mes clave: {f.mes}</p>
-                <b>Riesgos Agroclimáticos:</b>
-                <ul className="list-disc ml-5 text-sm text-gray-700">{f.riesgos.map((r,i)=><li key={i}>{r}</li>)}</ul>
-              </div>
-            ))}
           </div>
         </div>
       );
