@@ -100,7 +100,7 @@
     ];
 
     // =========================================================
-    // LEER CSV CON VARIEDAD SI APLICA
+    // LEER CSV CON VARIEDAD 
     // =========================================================
     function useCsvData(entry, variedadKey) {
       const [veg, setVeg] = useState([]);
@@ -408,7 +408,7 @@
     }
 
     // =========================================================
-    // SELECCIONAR LAS FICHAS TÉCNICAS AGROCLIMÁTICAS //OJO IMPORTANTE ESTABLECER EL TIPO (PERENNE O CICLO CORTO)
+    // SELECCION DE FTA (PERENNE O CICLO CORTO)
     // =========================================================
    function SelectorFichas({ onBack, onPick }) {
   const [tab, setTab] = useState("Perenne");
@@ -469,7 +469,7 @@
 }
 
     // =========================================================
-    // PANEL DETALLE (sin cambios)
+    // PANEL DETALLE
     // =========================================================
     function PanelDetalle({ fila, onClose }) {
       if (!fila) return null;
@@ -498,7 +498,7 @@
       );
     }
     // =========================================================
-    // MATRIZ — SELECTOR DE VARIEDAD EN CASO DE QUE SEA (POR EJEMPLO CAPSICUM ESTAMOS TRABAJANDO CON TRES CAYYENE-TABASCO-HABANERO)
+    // MATRIZ, SELECTOR DE VARIEDAD EN CASO DE MOSTRAR MAS DE UNA ESPECIE 
     // =========================================================
     function Matriz({ onBack, entry, veg, prod, variedadKey, setVariedadKey }) {
       const variedades = entry?.variedades || null;
