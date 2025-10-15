@@ -1,3 +1,12 @@
-﻿elem;ini;fin;meses;deficit;exceso;Tmax;Tmin;ref
-Raíces;1;10;;Estrés hídrico, reducción en el crecimiento, baja absorción de nutrientes, Marchitez por Fusarium, Phytophthora, Rhizoctonia, nemátodos fitoparásitos, pudrición bacteriana; Asfixia radicular, ataque de Phytophthora, Cinnamomi y Verticillium albo-atrum, bajo desarrollo radicular, baja absorción de nutrientes, erosión del suelo alrededor de las raíces, reducción de longitud de raices; Afectaciones en el desarrollo del sistema radical; Afectaciones en el desarrollo del sistema radical, reducción en absorción de micronutrientes;  
-Tallos;1;10;;Pérdida de turgencia, menor tamaño y grosor, mayor vulnerabilidad a daños mecánicos, tallos débiles y susceptibles a enfermedades y plagas; Pérdida de turgencia en los tallos y partes superiores de la planta, debilitamiento estructural, pudrición por Phytophthora spp., Rhizoctonia spp., Fusarium spp., Botrytis cinerea, ácaros, babosas; Disminución acelerada de reservas de almidón, afectando el suministro energético a otras partes de la planta, reducción del diámetro del tallo; Daño celular por estrés térmico, reducción en transporte de nutrientes (tallos débiles);
+﻿Elemento expuesto,M1,M2,M3,M4,M5,M6,M7,M8,M9,M10
+Raíces,true,true,true,true,true,true,true,true,true,true
+Tallos,true,true,true,true,true,true,true,true,true,true
+Ramas,true,true,true,true,true,true,true,true,true,true
+Hojas,true,true,true,true,true,true,true,true,true,true
+Yemas,true,true,true,true,true,true,true,true,true,true
+Polinización,false,true,false,false,false,false,false,false,false,false
+Floración,false,true,false,false,false,false,false,false,false,false
+Desarrollo del fruto,false,false,true,true,true,true,true,true,true,true
+Cosecha,false,false,false,false,false,false,false,false,false,true
+Fertilización,false,false,true,false,true,false,true,false,true,false
+Arvenses,true,true,true,true,true,true,true,true,true,true
